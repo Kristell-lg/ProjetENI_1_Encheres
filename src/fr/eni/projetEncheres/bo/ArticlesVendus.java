@@ -157,5 +157,7 @@ public class ArticlesVendus {
 		sb.append(no_categorie);
 		sb.append("]");
 		return sb.toString();
+		
+		//commentaire test
 	}
 }
