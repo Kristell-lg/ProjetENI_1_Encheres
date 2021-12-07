@@ -42,7 +42,7 @@ public class Utilisateurs {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	public String getPNom() {
+	public String getNom() {
 		return nom;
 	}
 	public void setNom(String nom) {
@@ -115,9 +115,9 @@ public class Utilisateurs {
 		this.administrateurs = administrateurs;
 	}
 	
-	//CONSTRUCTEUR sans no_utilisateur pour les utilisateurs qui sont créés (inscription)
+	//CONSTRUCTEUR sans no_utilisateur & admnistrateurs pour les utilisateurs qui sont créés (inscription)
 	public Utilisateurs(String pseudo, String nom,String prenom, String email, String telephone, String rue, String code_postal,
-			String ville, String mot_de_passe, int credit, boolean administrateurs) {
+			String ville, String mot_de_passe, int credit) {
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -128,7 +128,6 @@ public class Utilisateurs {
 		this.ville = ville;
 		this.mot_de_passe = mot_de_passe;
 		this.credit = credit;
-		this.administrateurs = administrateurs;
 	}
 	
 	

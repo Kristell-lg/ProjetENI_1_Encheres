@@ -10,5 +10,5 @@ import fr.eni.projetEncheres.bo.Utilisateurs;
  */
 public interface UtilisateursDAO {
 	public List<Utilisateurs> selectionner();
-
+	public void ajoutUtilisateur(Utilisateurs utilisateur);
 }
