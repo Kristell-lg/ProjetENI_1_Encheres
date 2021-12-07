@@ -1,0 +1,94 @@
+/* @author: Luka CHOUVILLE */
+
+form {
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+/* 1- Position 2 colone */
+.inscription {
+	display: flex;
+	
+	justify-content: center;
+}
+.inscription > div {
+	flex: 1;
+	min-width: 0;
+	width: auto;
+}
+.inscription > div + div {
+	margin-left: 1em;
+}
+
+/* 2- fluid inputs */
+.inscription-champs > p {
+	display: flex;
+}
+.inscription input:not([type=submit]) {
+	flex: 1;
+	display: block;
+	min-width: 0;
+}
+.inscription-champs + .inscription-champs {
+	display: flex;
+	flex-direction: column;
+}
+
+.inscription-Bouton{
+	display: flex;
+	justify-content: center;
+}
+
+/* Design Graphique*/
+
+
+body {
+	max-width: 1000px;
+	margin: auto;
+	padding: 1em;
+	background:rgba(0,0,0,.1);
+	color: #333;
+}
+
+form {
+	padding: 1em;
+	background: #fff;
+	border: 1px solid gray;
+	border-radius: 4px;
+}
+.inscription {
+	margin-bottom: 1em;
+}
+input,
+textarea {
+	padding: .3em;
+	border: 1px solid #555;
+	border-radius: 4px;
+  background: rgba(0,0,0,.02);
+}
+input[type="submit"] {
+	padding: .3em 1em;
+	margin-right: 1em;
+	background: #555;
+	border: none;
+	color: #fff;   
+	border-radius: 4px;
+	cursor: pointer;
+}
+input[type="reset"] {
+	padding: .3em 1em;
+	margin-left: 1em;
+	background: #555;
+	border: none;
+	color: #fff;   
+	border-radius: 4px;
+	cursor: pointer;
+}
+label {
+	width: auto;;
+	text-align: left;
+}
+.champs > p:first-child {margin-top: 0;}
+.champs > p:last-child {margin-bottom: 0;}
+
+}
