@@ -129,7 +129,7 @@ public class ArticlesVendus {
 		this.date_debut_encheres = date_debut_encheres;
 		this.prix_initial = prix_initial;
 		this.no_utilisateur = no_utilisateur;
-		this.no_categorie = no_categorie;
+		this.no_categorie = no_categorie; 
 	}
 
 	// Methode ToString
