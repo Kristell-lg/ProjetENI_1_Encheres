@@ -101,7 +101,7 @@ public class ArticlesVendus {
 		super();
 	}
 
-	// Constructeur avec tous les paramètres pour les objets déja présent en base
+	// Constructeur avec tous les paramètres pour les Articles vendus (avec date de fin d'enchères et prix de vente final 
 
 	public ArticlesVendus(int no_artcile, String nom_article, String description, LocalDate date_debut_encheres,
 			LocalDate date_fin_encheres, int prix_initial, int prix_vente, int no_utilisateur, int no_categorie) {
@@ -117,20 +117,6 @@ public class ArticlesVendus {
 		this.no_categorie = no_categorie;
 	}
 
-	// Constructeur avec snas les paramètres date_fin_encheres et prix_vente pour
-	// les artciles non vendus
-
-	public ArticlesVendus(int no_artcile, String nom_article, String description, LocalDate date_debut_encheres,
-			int prix_initial, int no_utilisateur, int no_categorie) {
-		super();
-		this.no_artcile = no_artcile;
-		this.nom_article = nom_article;
-		this.description = description;
-		this.date_debut_encheres = date_debut_encheres;
-		this.prix_initial = prix_initial;
-		this.no_utilisateur = no_utilisateur;
-		this.no_categorie = no_categorie; 
-	}
 
 	// Methode ToString
 
