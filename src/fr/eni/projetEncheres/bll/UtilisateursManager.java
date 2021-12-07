@@ -12,7 +12,7 @@ import fr.eni.projetEncheres.dal.UtilisateursDAO;
 
 /**
  * @author Kristell
- *
+ * BLL Utilisateur
  */
 public class UtilisateursManager {
 
