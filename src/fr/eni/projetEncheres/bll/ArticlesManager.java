@@ -24,8 +24,8 @@ public class ArticlesManager {
 		this.articlesDAO = DAOFactory.getArticlesDAO();	
 }
 
-	public Articles AjouterArticle(int no_artcile, String nom_article, String description, LocalDate date_debut_encheres, 
-			LocalDate date_fin_encheres, int prix_initial, int prix_vente, int no_utilisateur, int no_categorie) {
+	public Articles AjouterArticle(String nom_article, String description, LocalDate date_debut_encheres, 
+			LocalDate date_fin_encheres, int prix_initial/**, int no_utilisateur, int no_categorie**/) {
 		ArticlesDAO DAOArticles = DAOFactory.getArticlesDAO();
 		Articles a = null;
 		DAOArticles.insert(a);
