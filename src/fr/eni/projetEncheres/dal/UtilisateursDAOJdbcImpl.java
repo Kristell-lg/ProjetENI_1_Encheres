@@ -15,7 +15,7 @@ import fr.eni.projetEncheres.bo.Utilisateurs;
  */
 public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 
-	private static final String SELECT_TOUT = "SELECT (*) FROM UTILISATEURS";
+	private static final String SELECT_TOUT = "SELECT * FROM UTILISATEURS";
 
 	
 	//Selectionner l'ensemble des données - pour se connecter
@@ -44,7 +44,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return utilisateursListe;
 	}
 
 }
