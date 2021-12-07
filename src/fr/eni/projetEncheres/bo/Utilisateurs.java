@@ -132,6 +132,11 @@ public class Utilisateurs {
 	}
 	
 	
+	public Utilisateurs(String pseudo, String mot_de_passe) {
+		this.pseudo = pseudo;
+		this.mot_de_passe = mot_de_passe;
+	}
+	
 	//Méthode TOSTRING 
 	@Override
 	public String toString() {
