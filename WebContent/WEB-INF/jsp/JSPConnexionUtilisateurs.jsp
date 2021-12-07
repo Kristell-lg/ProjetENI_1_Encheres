@@ -17,17 +17,17 @@
 		<c:when test="${!empty requestScope.msgErreurConnexion}">
 			<p style="color:red">${requestScope.msgErreurConnexion}</p>
 			<label for="pseudo">Pseudo : </label>
-			<input type=text name="pseudo" value="${requestScope.pseudoSaisi}">
+			<input type=text name="pseudo" value="${requestScope.pseudoSaisi}" required>
 			<label for="mot_de_passe">Mot de passe : </label>
-			<input type="password" name="mot_de_passe">
+			<input type="password" name="mot_de_passe" required>
 			<input type="submit" value="Se Connecter">
 		</c:when>
 		
 		<c:otherwise>
 			<label for="pseudo">Pseudo : </label>
-			<input type=text name="pseudo">
+			<input type=text name="pseudo" required>
 			<label for="mot_de_passe">Mot de passe : </label>
-			<input type="password" name="mot_de_passe">
+			<input type="password" name="mot_de_passe" required>
 			<input type="submit" value="Se Connecter">
 		</c:otherwise>
 		
