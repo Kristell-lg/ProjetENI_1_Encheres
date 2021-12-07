@@ -11,6 +11,7 @@ public class Utilisateurs {
 	
 	private int no_utilisateur;
 	private String pseudo;
+	private String nom;
 	private String prenom;
 	private String email;
 	private String telephone;
@@ -40,6 +41,12 @@ public class Utilisateurs {
 	}
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
+	}
+	public String getPNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 	public String getEmail() {
 		return email;
@@ -92,10 +99,11 @@ public class Utilisateurs {
 	
 	
 	//CONSTRUCTEUR avec no_utilisateur pour les utilisateurs déjà présents en BDD (affichage, modification ou suppression)
-	public Utilisateurs(int no_utilisateur, String pseudo, String prenom, String email, String telephone, String rue,
+	public Utilisateurs(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String code_postal, String ville, String mot_de_passe, int credit, boolean administrateurs) {
 		this.no_utilisateur = no_utilisateur;
 		this.pseudo = pseudo;
+		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 		this.telephone = telephone;
@@ -108,9 +116,10 @@ public class Utilisateurs {
 	}
 	
 	//CONSTRUCTEUR sans no_utilisateur pour les utilisateurs qui sont créés (inscription)
-	public Utilisateurs(String pseudo, String prenom, String email, String telephone, String rue, String code_postal,
+	public Utilisateurs(String pseudo, String nom,String prenom, String email, String telephone, String rue, String code_postal,
 			String ville, String mot_de_passe, int credit, boolean administrateurs) {
 		this.pseudo = pseudo;
+		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 		this.telephone = telephone;
@@ -131,6 +140,8 @@ public class Utilisateurs {
 		builder.append(no_utilisateur);
 		builder.append(", pseudo=");
 		builder.append(pseudo);
+		builder.append(", nom=");
+		builder.append(nom);
 		builder.append(", prenom=");
 		builder.append(prenom);
 		builder.append(", email=");
