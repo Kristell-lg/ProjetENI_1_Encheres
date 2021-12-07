@@ -60,7 +60,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	}
 	
 	
-	//Ajouter un utilisateur 
+	//Ajouter un utilisateur après inscription
 		public void ajoutUtilisateur(Utilisateurs utilisateur) {
 			PreparedStatement pstmtUtilisateurs = null;
 			

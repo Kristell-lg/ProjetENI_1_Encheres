@@ -5,7 +5,7 @@ import java.util.List;
 import fr.eni.projetEncheres.bo.Utilisateurs;
 /**
  * @author Kristell
- * DAOUtilisateur
+ * DAOUtilisateur pour les méthodes à implémenter dans le JDBCImpl
  *
  */
 public interface UtilisateursDAO {

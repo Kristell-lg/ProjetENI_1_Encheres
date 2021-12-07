@@ -42,6 +42,7 @@ public class UtilisateursManager {
 
 	}
 	
+	//Ajouter un utilisateur après inscription
 	public void ajoutUtilisateur(Utilisateurs utilisateur) {
 		//VERIFIER LA SAISIE
 		if (utilisateur.getPseudo()!=null && utilisateur.getNom()!=null && utilisateur.getPrenom()!=null && utilisateur.getEmail()!=null &&

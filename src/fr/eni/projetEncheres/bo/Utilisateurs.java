@@ -115,7 +115,7 @@ public class Utilisateurs {
 		this.administrateurs = administrateurs;
 	}
 	
-	//CONSTRUCTEUR sans no_utilisateur & admnistrateurs pour les utilisateurs qui sont créés (inscription)
+	//CONSTRUCTEUR sans no_utilisateur & admnistrateurs pour les utilisateurs qui sont créés (nouvelle inscription)
 	public Utilisateurs(String pseudo, String nom,String prenom, String email, String telephone, String rue, String code_postal,
 			String ville, String mot_de_passe, int credit) {
 		this.pseudo = pseudo;
