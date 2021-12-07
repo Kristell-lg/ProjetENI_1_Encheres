@@ -28,7 +28,11 @@ public class UtilisateursManager {
 
 		try {
 			utilisateursListe = this.utilisateursDAO.selectionner();
+			if (utilisateursListe==null) {
+				System.out.println("liste bll nulle");
+			}
 		} catch (Exception e) {
+			System.out.println("BLL UtilisateursManager");
 			e.printStackTrace();
 		}
 
