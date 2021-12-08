@@ -15,5 +15,5 @@ public interface ArticlesDAO {
 	public List<Articles> selectionner() throws SQLException;
 
 	public void insert(Articles article);
-
+	
 }

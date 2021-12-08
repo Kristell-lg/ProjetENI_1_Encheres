@@ -39,7 +39,7 @@ public class ArticlesManager {
 		List<Articles> ArticlesListe = new ArrayList<Articles>();
 
 		try {
-			ArticlesListe = this.articlesDAO.selectionner();
+			ArticlesListe = articlesDAO.selectionner();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
