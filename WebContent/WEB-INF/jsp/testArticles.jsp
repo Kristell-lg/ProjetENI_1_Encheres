@@ -41,24 +41,29 @@
 	%>
 	
 		
-	<form method="post" action="ServletTestArticles">
+	<form method="post" action="/ProjetENI_1_Encheres/ServletTestArticles">
 		
-		<label for="no_article"> no_article :</label> 
-		<input type="text" id="no_article" name="no_article" placeholder="Article"> 
 		<label for="nom_article"> Nom :</label> 
 		<input type="text" id="nom_article" name="nom_article" placeholder="Article"> 
+		
 		<label for="description"> description :</label> 
 		<input type="text" id="description" name="description" placeholder="description">
+		
 		<label for="date_debut_encheres"> Date début encheres :</label> 
 		<input type="date" id="date_debut_encheres" name="date_debut_encheres">
-		<label for="date_fin_encheres"> date_debut_encheres :</label> 
+		
+		<label for="date_fin_encheres"> date_fin_encheres :</label> 
 		<input type="date" id="date_fin_encheres" name="date_fin_encheres"> 	
+		
 		<label for="prix_initial"> prix_initial :</label> 
 		<input type="number"id="prix_initial" name="prix_initial"> 
+		
 		<label for="prix_vente"> prix_vente :</label> 
 		<input type="number"id="prix_vente" name="prix_vente"> 
+		
 		<label for="no_utilisateur"> no_utilisateur :</label> 
 		<input type="number"id="no_utilisateur" name="no_utilisateur"> 
+		
 		<label for="no_categorie"> no_categorie :</label> 
 		<input type="number"id="no_categorie" name="no_categorie"> 
 	

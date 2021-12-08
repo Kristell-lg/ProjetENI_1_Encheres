@@ -108,6 +108,8 @@ public class Articles {
 		sb.append(description);
 		sb.append(", date_debut_encheres=");
 		sb.append(date_debut_encheres);
+		sb.append(", date_fin_encheres=");
+		sb.append(date_fin_encheres);
 		sb.append(", prix_initial=");
 		sb.append(prix_initial);
 		sb.append(", no_utilisateur=");

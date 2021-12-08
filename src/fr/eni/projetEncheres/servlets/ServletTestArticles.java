@@ -2,6 +2,7 @@ package fr.eni.projetEncheres.servlets;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,21 +36,23 @@ public class ServletTestArticles extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int no_article = Integer.parseInt(request.getParameter("no_article"));
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
 		String nom_article = request.getParameter("nom_article");
 		String description = request.getParameter("description");
-		String date_debut_encheres = request.getParameter("date_debut_encheres");
-		String date_fin_encheres = request.getParameter("date_fin_encheres");
+		LocalDate date_debut_encheres = LocalDate.parse(request.getParameter("date_debut_encheres"), formatter);
+		LocalDate date_fin_encheres = LocalDate.parse(request.getParameter("date_fin_encheres"), formatter);
 		int prix_initial = Integer.parseInt(request.getParameter("prix_initial"));
 		int no_utilisateur = Integer.parseInt(request.getParameter("no_utilisateur")); 
 		int no_categorie = Integer.parseInt(request.getParameter("no_categorie"));
-		 
+		
 		
 		ArticlesManager ArticlesManager = new ArticlesManager();
 		
 		try {
 			Articles a = new Articles(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie);
-					
+			
 			ArticlesManager.AjouterArticle(a);
 			request.setAttribute("retour", "insertion de l'article à réussi");
 			request.setAttribute("Articles", a);

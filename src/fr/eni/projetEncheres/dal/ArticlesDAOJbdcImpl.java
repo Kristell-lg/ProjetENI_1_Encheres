@@ -18,7 +18,7 @@ import fr.eni.projetEncheres.bo.Articles;
 public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 
 	private static final String SELECT_TOUT = "SELECT (*) FROM ARTICLES_VENDUS";
-	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS(no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie)VALUES(?,?,?,?,?,?,?,?,?)";
+	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie)VALUES(?,?,?,?,?,?,?,?)";
 
 	// Selectionner l'ensemble des données - pour se connecter
 	public List<Articles> selectionner() {
@@ -50,8 +50,6 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 	}
 
 	public void insert(Articles a) {
-		Articles ar = new Articles();
-
 		ResultSet rs = null;
 
 		try (Connection c = ConnectionProvider.getConnection();
@@ -59,19 +57,17 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 			// mise en place de la requete
 
 			// Parametrage
-
-			stmt.setInt(1, ar.getNo_article());
-			stmt.setString(2, ar.getNom_article());
-			stmt.setString(3, ar.getDescription());
-			stmt.setObject(4, ar.getDate_debut_encheres());
-			stmt.setObject(5, ar.getDate_fin_encheres());
-			stmt.setInt(6, ar.getPrix_initial());
-			stmt.setInt(7, ar.getPrix_vente());
-			stmt.setInt(8, ar.getNo_utilisateur());
-			stmt.setInt(9, ar.getNo_categorie());
-			// Execution de la requet
-
-			/* int nbDeLignesAffectees = stmt.executeUpdate(); */
+			stmt.setString(1, a.getNom_article());
+			stmt.setString(2, a.getDescription());
+			stmt.setDate(3, java.sql.Date.valueOf(a.getDate_debut_encheres()));
+			stmt.setDate(4, java.sql.Date.valueOf(a.getDate_fin_encheres()));
+			stmt.setInt(5, a.getPrix_initial());
+			stmt.setInt(6, a.getPrix_vente());
+			stmt.setInt(7, a.getNo_utilisateur());
+			stmt.setInt(8, a.getNo_categorie());
+			
+			// Execution de la requete
+			stmt.executeUpdate();
 
 			// récupérer des clés générées
 
@@ -80,6 +76,7 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 			 * { ar.setNo_article(rs.getInt(1)); } stmt.execute(); }
 			 */
 		} catch (SQLException e) {
+			System.out.println("Je n'ai pas réussi à insérer dans la BDD -DAL");
 			e.printStackTrace();
 		}
 	}
