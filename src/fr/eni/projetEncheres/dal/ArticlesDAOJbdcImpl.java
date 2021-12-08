@@ -20,6 +20,9 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 	private static final String SELECT_TOUT = "SELECT (*) FROM ARTICLES_VENDUS";
 	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie)VALUES(?,?,?,?,?,?,?,?)";
 
+	// select by encheres 
+	
+	
 	// Selectionner l'ensemble des données - pour se connecter
 	public List<Articles> selectionner() {
 
@@ -50,7 +53,6 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 	}
 
 	public void insert(Articles a) {
-		ResultSet rs = null;
 
 		try (Connection c = ConnectionProvider.getConnection();
 				PreparedStatement stmt = c.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
@@ -69,12 +71,9 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 			// Execution de la requete
 			stmt.executeUpdate();
 
-			// récupérer des clés générées
+		
 
-			/*
-			 * if (nbDeLignesAffectees >= 1) { rs = stmt.getGeneratedKeys(); if (rs.next())
-			 * { ar.setNo_article(rs.getInt(1)); } stmt.execute(); }
-			 */
+			
 		} catch (SQLException e) {
 			System.out.println("Je n'ai pas réussi à insérer dans la BDD -DAL");
 			e.printStackTrace();

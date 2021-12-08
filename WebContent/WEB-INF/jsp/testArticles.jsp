@@ -12,34 +12,21 @@
 	<h1>Gestion Article</h1>
 	<h2>Ajout Article</h2>
 	
-	
-	<%
-	if (request.getAttribute("retour") != null) { // condiiton pour ne pas passser par la au premier envoi
-	%>
-	<p><%=request.getAttribute("retour")%></p>
+	<c:if test="${!empty a}">
 
-	<%
-	if (request.getAttribute("a") != null) {
-		Articles a = (Articles)request.getAttribute("a");
-	
-	
-	%>
 	<p>
-	<%=a.getNo_article() %>
-	<%=a.getNom_article()%> 
-	<%=a.getDescription()%> 
-	<%=a.getDate_debut_encheres()%>
-	<%=a.getDate_fin_encheres()%>
-	<%=a.getPrix_initial()%>
-	<%=a.getPrix_vente()%>
-	<%=a.getNo_utilisateur()%>
-	<%=a.getNo_categorie()%>	
+	${a.getNo_article()}
+	${a.getNom_article()} 
+	${a.getDescription()}
+	${a.getDate_debut_encheres()}
+	${a.getDate_fin_encheres()}
+	${a.getPrix_initial()}
+	${a.getPrix_vente()}
+	${a.getNo_utilisateur()}
+	${a.getNo_categorie()}
 	</p>
-<% 
-}
-	}
-	%>
 	
+	</c:if>
 		
 	<form method="post" action="/ProjetENI_1_Encheres/ServletTestArticles">
 		
@@ -66,9 +53,7 @@
 		
 		<label for="no_categorie"> no_categorie :</label> 
 		<input type="number"id="no_categorie" name="no_categorie"> 
-	
-	
-		
+			
 			<input type="submit"> 
 		</form>
 

@@ -28,10 +28,8 @@ public class ArticlesManager {
 		//VALIDATION DONNEES
 		System.out.println(a);
 		try {
-			System.out.println("j'ai réussi à passer à la DAL");
 			this.articlesDAO.insert(a);;
 		} catch (Exception e) {
-			System.out.println("je n'ai pas à passer à la DAL");
 			e.printStackTrace();
 		}
 		
