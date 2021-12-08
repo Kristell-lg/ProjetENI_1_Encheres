@@ -17,7 +17,7 @@ import fr.eni.projetEncheres.bo.Utilisateurs;
 public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 
 	private static final String SELECT_TOUT = "SELECT * FROM UTILISATEURS";
-	private static final String INSERTUTILISATEURS = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,rue,code_postal, ville,mot_de_passe,credit) VALUES (?,?,?,?,?,?,?,?,?,100)";
+	private static final String INSERTUTILISATEURS = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,rue,code_postal, ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,100,0)";
 
 	
 	//Selectionner l'ensemble des données - pour se connecter

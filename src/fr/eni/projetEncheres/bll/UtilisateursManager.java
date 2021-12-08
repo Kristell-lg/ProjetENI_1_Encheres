@@ -49,6 +49,7 @@ public class UtilisateursManager {
 			utilisateur.getEmail().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$") && utilisateur.getTelephone().matches("^(0|\\+33)[1-9]([-. ]?[0-9]{2}){4}$") 
 			&& utilisateur.getRue()!=null && utilisateur.getCode_postal()!=null && utilisateur.getCode_postal().matches("\\d{2}[ ]?\\d{3}") && utilisateur.getVille()!=null && utilisateur.getMot_de_passe()!=null) {
 			System.out.println("ça match les formats je peux envoyer à la DAL");
+			this.utilisateursDAO.ajoutUtilisateur(utilisateur);
 		}
 		else {
 			System.out.println("Au moins un des champ requis est vide ou l'email/le téléphone ne respecte pas le format");
