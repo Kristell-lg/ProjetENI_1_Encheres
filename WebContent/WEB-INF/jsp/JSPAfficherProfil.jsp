@@ -13,7 +13,7 @@
 		<fieldset>
 			<div>
 				<label for="Pseudo">Pseudo : </label>
-				<input type="text" name="Pseudo" id="Pseudo" value="@pseudo" disabled/>	
+				<input type="text" name="Pseudo" id="Pseudo" value="<%=request.getAttribute("pseudo") %>" disabled/>	
 			</div>
 			<div>
 				<label for="prenom">Prénom : </label>

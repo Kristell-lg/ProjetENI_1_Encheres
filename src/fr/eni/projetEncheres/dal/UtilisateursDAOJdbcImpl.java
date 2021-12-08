@@ -8,17 +8,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.projetEncheres.dal.DALException;
 import fr.eni.projetEncheres.bo.Utilisateurs;
 /**
  * @author Kristell
  * JDBCImpl
- *
+ * @update Luka CHOUVILLE
  */
 public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 
 	private static final String SELECT_TOUT = "SELECT * FROM UTILISATEURS";
 	private static final String INSERTUTILISATEURS = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,rue,code_postal, ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,100,0)";
-
+	private static final String SELECT_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
 	
 	//Selectionner l'ensemble des données - pour se connecter
 	public List<Utilisateurs> selectionner() {
@@ -61,7 +62,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	
 	
 	//Ajouter un utilisateur après inscription
-		public void ajoutUtilisateur(Utilisateurs utilisateur) {
+	public void ajoutUtilisateur(Utilisateurs utilisateur) {
 			PreparedStatement pstmtUtilisateurs = null;
 			
 			try (Connection cnx = ConnectionProvider.getConnection()) {
@@ -95,6 +96,41 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 			
 		}
 	
-	
+	//Selectionner l'ensemble des données - pour se connecter
+	public Utilisateurs selectUtilisateur(int no_utilisateur) throws DALException {
+			
+			Utilisateurs utilisateur = null;
+			PreparedStatement statementUtilisateurs = null;
+			ResultSet resultUtilisateurs = null;
+			
+			try (Connection cnx = ConnectionProvider.getConnection()) {
+				statementUtilisateurs = cnx.prepareStatement(SELECT_ID);
+				statementUtilisateurs.setInt(1, no_utilisateur);
+				resultUtilisateurs = statementUtilisateurs.executeQuery();
 
+				resultUtilisateurs.next();
+				utilisateur = new Utilisateurs(resultUtilisateurs.getInt("no_utilisateur"), resultUtilisateurs.getString("pseudo"),
+							resultUtilisateurs.getString("nom"),resultUtilisateurs.getString("prenom"),resultUtilisateurs.getString("email"),
+							resultUtilisateurs.getString("telephone"),resultUtilisateurs.getString("rue"),resultUtilisateurs.getString("code_postal"),
+							resultUtilisateurs.getString("ville"),resultUtilisateurs.getString("mot_de_passe"),resultUtilisateurs.getInt("credit"),
+							resultUtilisateurs.getBoolean("administrateur"));
+
+				
+
+			} catch (SQLException e) {
+				throw new DALException(e);
+			}
+			finally {
+				
+				try {
+					statementUtilisateurs.close();
+					resultUtilisateurs.close();
+				} catch (SQLException e) {
+					throw new DALException(e);
+				}
+			}
+			
+			return utilisateur;
+		}
+	
 }

@@ -9,12 +9,14 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import fr.eni.projetEncheres.bll.BLLException;
 import fr.eni.projetEncheres.bo.Utilisateurs;
 import fr.eni.projetEncheres.dal.DAOFactory;
 import fr.eni.projetEncheres.dal.UtilisateursDAO;
 
 /**
  * @author Kristell
+ * @update Luka CHOUVILLE
  * BLL Utilisateur
  */
 public class UtilisateursManager {
@@ -44,6 +46,25 @@ public class UtilisateursManager {
 		return utilisateursListe;
 
 	}
+	
+	//METHODE Selectionner pour un utilisateur présents en BDD sur l'id
+		public Utilisateurs selectUtilisateur(int no_utilisateur){
+
+			Utilisateurs utilisateur = null;
+
+			try {
+				utilisateur = this.utilisateursDAO.selectUtilisateur(no_utilisateur);
+				if (utilisateur==null) {
+					System.out.println("l'utilisateur n'existe pas");
+				}
+			} catch (Exception e) {
+				System.out.println("BLL UtilisateursManager");
+				e.printStackTrace();
+			}
+
+			return utilisateur;
+
+		}
 	
 	//Ajouter un utilisateur après inscription
 	public void ajoutUtilisateur(Utilisateurs utilisateur) {
