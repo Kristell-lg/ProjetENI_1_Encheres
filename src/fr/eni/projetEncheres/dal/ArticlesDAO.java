@@ -7,7 +7,7 @@ import fr.eni.projetEncheres.bo.Utilisateurs;
 /**
  * 
  * @author Clément
- *
+ * DAO
  */
 
 public interface ArticlesDAO {
