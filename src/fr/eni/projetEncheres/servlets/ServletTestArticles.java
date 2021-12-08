@@ -35,24 +35,24 @@ public class ServletTestArticles extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		int no_article = Integer.parseInt(request.getParameter("no_article"));
 		String nom_article = request.getParameter("nom_article");
 		String description = request.getParameter("description");
-		LocalDate date_debut_encheres = (LocalDate) request.getAttribute("date_debut_encheres");
-		LocalDate date_fin_encheres = (LocalDate) request.getAttribute("date_fin_encheres");
+		String date_debut_encheres = request.getParameter("date_debut_encheres");
+		String date_fin_encheres = request.getParameter("date_fin_encheres");
 		int prix_initial = Integer.parseInt(request.getParameter("prix_initial"));
-		/*
-		 * int no_utilisateur =
-		 * Integer.parseInt(request.getParameter("no_utilisateur ")); int no_categorie =
-		 * Integer.parseInt(request.getParameter("no_categorie"));
-		 */
+		int no_utilisateur = Integer.parseInt(request.getParameter("no_utilisateur")); 
+		int no_categorie = Integer.parseInt(request.getParameter("no_categorie"));
+		 
 		
 		ArticlesManager ArticlesManager = new ArticlesManager();
 		
 		try {
-			Articles a = ArticlesManager.AjouterArticle(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial/**, no_utilisateur, no_categorie**/);
+			Articles a = new Articles(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie);
+					
+			ArticlesManager.AjouterArticle(a);
 			request.setAttribute("retour", "insertion de l'article à réussi");
-			request.setAttribute("article", a);
+			request.setAttribute("Articles", a);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/testArticles.jsp");
 			rd.forward(request, response);
 			

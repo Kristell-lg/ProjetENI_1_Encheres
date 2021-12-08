@@ -24,11 +24,15 @@ public class ArticlesManager {
 		this.articlesDAO = DAOFactory.getArticlesDAO();	
 }
 
-	public Articles AjouterArticle(String nom_article, String description, LocalDate date_debut_encheres, 
-			LocalDate date_fin_encheres, int prix_initial/**, int no_utilisateur, int no_categorie**/) {
-		ArticlesDAO DAOArticles = DAOFactory.getArticlesDAO();
-		Articles a = null;
-		DAOArticles.insert(a);
+	public Articles AjouterArticle(Articles a) {
+		System.out.println(a);
+		try {
+			this.articlesDAO.insert(a);;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 
 	return a;
 }
