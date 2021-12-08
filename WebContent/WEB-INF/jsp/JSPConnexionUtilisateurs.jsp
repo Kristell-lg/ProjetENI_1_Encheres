@@ -6,16 +6,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<link rel="Shortcut Icon" href="css/images/iconeOsna.png">
+<link rel="stylesheet" href="css/reset.css"> <!-- Reset le design css -->
+<link rel="stylesheet" href="css/inscription.css"> <!-- Applique le nouveau design -->
+
 <title>Connexion</title>
 </head>
+
 <body>
+<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 	<h1>Connexion</h1>
 	<form action="/ProjetENI_1_Encheres/ServletConnexionUtilisateurs" method="post">
 	
 	<c:choose>
 	
 		<c:when test="${!empty requestScope.msgErreurConnexion}">
-			<p style="color:red">${requestScope.msgErreurConnexion}</p>
+			<p>${requestScope.msgErreurConnexion}</p>
 			<label for="pseudo">Pseudo : </label>
 			<input type=text name="pseudo" value="${requestScope.pseudoSaisi}" required>
 			<label for="mot_de_passe">Mot de passe : </label>
