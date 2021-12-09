@@ -25,7 +25,7 @@
 		<label for="nom_article"> Nom :</label> 
 		<input type="text" id="nom_article" name="nom_article" placeholder="Article"> 
 		
-		<label for="description"> Description :</label> 
+		<label for="description"> Description:</label> 
 		<input type="text" id="description" name="description" placeholder="description">
 		
 		<label for="date_debut_encheres"> Date de début des enchères :</label> 
