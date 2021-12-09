@@ -20,7 +20,8 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	private static final String SELECT_TOUT = "SELECT * FROM UTILISATEURS";
 	private static final String INSERTUTILISATEURS = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,rue,code_postal, ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,100,0)";
 	private static final String SELECT_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
-	
+	private static final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
+
 	//Selectionner l'ensemble des données - pour se connecter
 	public List<Utilisateurs> selectionner() {
 		
@@ -132,5 +133,15 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 			
 			return utilisateur;
 		}
+	
+	public void supprimerUtilisateur(Utilisateurs u) throws Exception {
+	    try (Connection connection = ConnectionProvider.getConnection();
+	            PreparedStatement stmt = connection.prepareStatement(DELETE);) {
+	        stmt.setInt(1, u.getNo_utilisateur());
+	        stmt.execute();
+	    } catch (SQLException e) {
+	        throw new Exception(e);
+	    }
+	}
 	
 }
