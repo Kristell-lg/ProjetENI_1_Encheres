@@ -25,7 +25,6 @@ public class ArticlesManager {
 
 	public void AjouterArticle(Articles article) throws BLLException {
 		ArticlesValidation(article);
-		System.out.println(article);
 		try {
 			this.articlesDAO.insert(article);;
 		} catch (Exception e) {

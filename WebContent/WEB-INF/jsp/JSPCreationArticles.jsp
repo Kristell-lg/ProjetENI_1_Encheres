@@ -12,23 +12,15 @@
 	<h1>Gestion Article</h1>
 	<h2>Ajout Article</h2>
 	
-	<c:if test="${!empty a}">
-
-	<p>
-	${a.getNo_article()}
-	${a.getNom_article()} 
-	${a.getDescription()}
-	${a.getDate_debut_encheres()}
-	${a.getDate_fin_encheres()}
-	${a.getPrix_initial()}
-	${a.getPrix_vente()}
-	${a.getNo_utilisateur()}
-	${a.getNo_categorie()}
-	</p>
-	
+	<c:if test="${!empty articlesListe}">
+		<c:forEach var="article" items="${articlesListe}">
+			<p>
+				${article}
+			</p>
+		</c:forEach>
 	</c:if>
 		
-	<form method="post" action="/ProjetENI_1_Encheres/ServletTestArticles">
+	<form method="post" action="/ProjetENI_1_Encheres/ServletCreationArticles">
 		
 		<label for="nom_article"> Nom :</label> 
 		<input type="text" id="nom_article" name="nom_article" placeholder="Article"> 
@@ -47,12 +39,6 @@
 		
 		<label for="prix_vente"> prix_vente :</label> 
 		<input type="number"id="prix_vente" name="prix_vente"> 
-		
-		<label for="no_utilisateur"> no_utilisateur :</label> 
-		<input type="number"id="no_utilisateur" name="no_utilisateur"> 
-		
-		<label for="no_categorie"> no_categorie :</label> 
-		<input type="number"id="no_categorie" name="no_categorie"> 
 			
 			<input type="submit"> 
 		</form>

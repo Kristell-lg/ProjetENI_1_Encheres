@@ -13,7 +13,6 @@ import fr.eni.projetEncheres.bo.Utilisateurs;
 
 public interface ArticlesDAO {
 	public List<Articles> selectionner() throws SQLException;
-
 	public void insert(Articles article);
 	
 }

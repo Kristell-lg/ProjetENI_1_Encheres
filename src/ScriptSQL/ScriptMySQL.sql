@@ -25,15 +25,20 @@ CREATE TABLE UTILISATEURS (
     pseudo           VARCHAR(30) NOT NULL,
     nom              VARCHAR(30) NOT NULL,
     prenom           VARCHAR(30) NOT NULL,
-    email            VARCHAR(20) NOT NULL,
+    --EMAIL UN PEU PLUS LONG
+    email            VARCHAR(50) NOT NULL,
     telephone        VARCHAR(15),
     rue              VARCHAR(30) NOT NULL,
+    --CODE POSTAL 5 CHIFFRES EN FRANCE 
     code_postal      VARCHAR(10) NOT NULL,
     ville            VARCHAR(30) NOT NULL,
     mot_de_passe     VARCHAR(30) NOT NULL,
     credit           INTEGER NOT NULL,
     administrateur   bit NOT NULL,
     PRIMARY KEY PK_utilisateur  (no_utilisateur)
+    --UNIQUE pour le pseudo & l'email
+	CONSTRAINT UQ_PSEUDO UNIQUE (pseudo),
+	CONSTRAINT UQ_EMAIL UNIQUE (email)
 );
 
 CREATE TABLE ARTICLES_VENDUS (

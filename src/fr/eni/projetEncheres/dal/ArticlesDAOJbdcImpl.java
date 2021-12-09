@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import fr.eni.projetEncheres.bo.Articles;
@@ -17,7 +18,7 @@ import fr.eni.projetEncheres.bo.Articles;
 
 public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 
-	private static final String SELECT_TOUT = "SELECT (*) FROM ARTICLES_VENDUS";
+	private static final String SELECT_TOUT = "SELECT * FROM ARTICLES_VENDUS";
 	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie)VALUES(?,?,?,?,?,?,?,?)";
 
 	// select by encheres 
@@ -35,7 +36,7 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 			while (resultArticles.next()) {
 				Articles Article = new Articles(resultArticles.getInt("no_article"),
 						resultArticles.getString("nom_article"), resultArticles.getString("description"),
-						resultArticles.getDate("date_debut_encheres"), resultArticles.getDate("date_fin_encheres"),
+						LocalDate.parse(resultArticles.getString("date_debut_encheres")), LocalDate.parse(resultArticles.getString("date_fin_encheres")),
 						resultArticles.getInt("prix_initial"), resultArticles.getInt("prix_vente"),
 						resultArticles.getInt("no_utilisateur"), resultArticles.getInt("no_categorie"));
 				ArticlesListe.add(Article);
@@ -49,7 +50,7 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 			e.printStackTrace();
 		}
 
-		return null;
+		return ArticlesListe;
 	}
 
 	public void insert(Articles a) {

@@ -127,14 +127,14 @@ public class Articles {
 	}
 
 // Constructeur avec tous les paramètres
-	public Articles(int no_article, String nom_article, String description, Object date_debut_encheres,
-			Object date_fin_encheres, int prix_initial, int prix_vente, int no_utilisateur, int no_categorie) {
+	public Articles(int no_article, String nom_article, String description, LocalDate date_debut_encheres,
+			LocalDate date_fin_encheres, int prix_initial, int prix_vente, int no_utilisateur, int no_categorie) {
 		super();
 		this.no_article = no_article;
 		this.nom_article = nom_article;
 		this.description = description;
-		this.date_debut_encheres = (LocalDate) date_debut_encheres;
-		this.date_fin_encheres = (LocalDate) date_fin_encheres;
+		this.date_debut_encheres = date_debut_encheres;
+		this.date_fin_encheres = date_fin_encheres;
 		this.prix_initial = prix_initial;
 		this.prix_vente = prix_vente;
 		this.no_utilisateur = no_utilisateur;
@@ -143,13 +143,13 @@ public class Articles {
 
 	// Constructeur sans le parametre no_article
 
-	public Articles(String nom_article, String description, Object date_debut_encheres, Object date_fin_encheres,
+	public Articles(String nom_article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres,
 			int prix_initial, int prix_vente, int no_utilisateur, int no_categorie) {
 		super();
 		this.nom_article = nom_article;
 		this.description = description;
-		this.date_debut_encheres = (LocalDate) date_debut_encheres;
-		this.date_fin_encheres = (LocalDate) date_fin_encheres;
+		this.date_debut_encheres = date_debut_encheres;
+		this.date_fin_encheres = date_fin_encheres;
 		this.prix_initial = prix_initial;
 		this.prix_vente = prix_vente;
 		this.no_utilisateur = no_utilisateur;
@@ -158,13 +158,13 @@ public class Articles {
 
 	// Constructeur sans les parametres no_article et prix_vente
 
-	public Articles(String nom_article, String description, Object date_debut_encheres, Object date_fin_encheres,
+	public Articles(String nom_article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres,
 			int prix_initial, int no_utilisateur, int no_categorie) {
 		super();
 		this.nom_article = nom_article;
 		this.description = description;
-		this.date_debut_encheres = (LocalDate) date_debut_encheres;
-		this.date_fin_encheres = (LocalDate) date_fin_encheres;
+		this.date_debut_encheres = date_debut_encheres;
+		this.date_fin_encheres = date_fin_encheres;
 		this.prix_initial = prix_initial;
 		this.no_utilisateur = no_utilisateur;
 		this.no_categorie = no_categorie;

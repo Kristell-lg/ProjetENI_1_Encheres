@@ -3,6 +3,7 @@ package fr.eni.projetEncheres.servlets;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,8 +20,8 @@ import fr.eni.projetEncheres.bo.Articles;
 /**
  * Servlet implementation class ServletTestArticles
  */
-@WebServlet("/ServletTestArticles")
-public class ServletTestArticles extends HttpServlet {
+@WebServlet("/ServletCreationArticles")
+public class ServletCreationArticles extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
@@ -48,15 +49,16 @@ public class ServletTestArticles extends HttpServlet {
 		int no_categorie = Integer.parseInt(request.getParameter("no_categorie"));
 		
 		
-		ArticlesManager ArticlesManager = new ArticlesManager();
+		ArticlesManager articlesManager = new ArticlesManager();
 		
 		try {
 			Articles a = new Articles(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie);
 			
-			ArticlesManager.AjouterArticle(a);
+			articlesManager.AjouterArticle(a);
 			request.setAttribute("retour", "insertion de l'article à réussi");
-			request.setAttribute("Articles", a);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/testArticles.jsp");
+			List<Articles> articlesListe = articlesManager.selectionner();
+			request.setAttribute("articlesListe", articlesListe);
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPAffichageArticles.jsp");
 			rd.forward(request, response);
 			
 			
