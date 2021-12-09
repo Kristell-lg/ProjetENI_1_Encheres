@@ -48,7 +48,7 @@ public class ServletAffichageCatalogueArticles extends HttpServlet {
 			
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
-			request.setAttribute("retour", "insertion d'article à échoué");	
+			request.setAttribute("retour", "insertion d'article à échoué!");	
 	}
 	}
 
