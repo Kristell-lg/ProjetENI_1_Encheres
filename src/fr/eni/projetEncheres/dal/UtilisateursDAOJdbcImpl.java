@@ -134,10 +134,10 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 			return utilisateur;
 		}
 	
-	public void supprimerUtilisateur(Utilisateurs u) throws Exception {
+	public void supprimerUtilisateur(Utilisateurs utilisateur) throws Exception {
 	    try (Connection connection = ConnectionProvider.getConnection();
 	            PreparedStatement stmt = connection.prepareStatement(DELETE);) {
-	        stmt.setInt(1, u.getNo_utilisateur());
+	        stmt.setInt(1, utilisateur.getNo_utilisateur());
 	        stmt.execute();
 	    } catch (SQLException e) {
 	        throw new Exception(e);
