@@ -1,3 +1,5 @@
+ <!-- @author: Maxence */ --> 
+ 
  <header>
     <!--Remplacement du H1 par l'image du site  -->
 
@@ -8,7 +10,15 @@
 
 
     <!-- Lien a ajouter -->
-    <div id="header">
+   <div id="header">
+      <!-- Bouton search a css-->
+
+      <form class="form-wrapper cf">
+        <input type="text" placeholder="Je recherche" required>
+        <button type="submit">Rechercher</button>
+
+      </form>
+      <div id="bouton">
       <button><a href="#">Mon Compte</a></button>
       <button><a href="${pageContext.request.contextPath}/WEB-INF/pageAccueil/logOut">Deconnexion</a></button>
 
@@ -22,12 +32,5 @@
       
 
     </div>
-    <!-- Bouton search a css-->
-
-    <!--<label for="site-search">Je recherche ... </label>
-    <input type="search" id="site-search" name="q" aria-label="Search through site content">
-
-    <button>Recherche</button>
-    </div> -->
-
+   
   </header>

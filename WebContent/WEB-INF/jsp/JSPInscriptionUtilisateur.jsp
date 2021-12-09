@@ -1,4 +1,5 @@
 <!-- @author: Luka CHOUVILLE -->
+<!-- V2 MAXENCE ajout de la rationnalisation du css -->
 <%@ page language="java" 
 			contentType="text/html; charset=UTF-8"
     		pageEncoding="UTF-8"
@@ -12,6 +13,7 @@
 		<title>Inscription</title>
 		<link rel="stylesheet" href="css/reset.css"> <!-- Reset le design css -->
         <link rel="stylesheet" href="css/inscription.css"> <!-- Applique le nouveau design -->
+        <link rel="stylesheet" href="css/styleForm.css"> <!-- Rationnalisation du CSS -->
     
 	</head>
 	<body>
