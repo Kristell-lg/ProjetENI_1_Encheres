@@ -13,4 +13,5 @@ public interface UtilisateursDAO {
 	public List<Utilisateurs> selectionner();
 	public void ajoutUtilisateur(Utilisateurs utilisateur);
 	public Utilisateurs selectUtilisateur(int no_utilisateur) throws DALException;
+	public void supprimerUtilisateur(Utilisateurs u) throws Exception;
 }

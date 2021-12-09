@@ -80,6 +80,12 @@ public class UtilisateursManager {
 		}
 	}
 	
+	public void supprimerUtilisateur(Utilisateurs utilisateur) throws Exception{
+
+	    this.utilisateursDAO.supprimerUtilisateur(utilisateur); 
+	}
+	
+	
 	
 		// vérification des données Utilisateur
 		// rajout du statut d'admin ?
