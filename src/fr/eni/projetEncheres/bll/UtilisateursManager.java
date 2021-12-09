@@ -67,8 +67,10 @@ public class UtilisateursManager {
 		}
 	
 	//Ajouter un utilisateur après inscription
-	public void ajoutUtilisateur(Utilisateurs utilisateur) {
+	public void ajoutUtilisateur(Utilisateurs utilisateur) throws BLLException {
 		//VERIFIER LA SAISIE
+		 UtilisateurValidation(utilisateur);
+
 		if (utilisateur.getPseudo()!=null && utilisateur.getNom()!=null && utilisateur.getPrenom()!=null && utilisateur.getEmail()!=null &&
 			utilisateur.getEmail().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$") && utilisateur.getTelephone().matches("^(0|\\+33)[1-9]([-. ]?[0-9]{2}){4}$") 
 			&& utilisateur.getRue()!=null && utilisateur.getCode_postal()!=null && utilisateur.getCode_postal().matches("\\d{2}[ ]?\\d{3}") && utilisateur.getVille()!=null && utilisateur.getMot_de_passe()!=null) {
@@ -81,7 +83,6 @@ public class UtilisateursManager {
 	}
 	
 	public void supprimerUtilisateur(Utilisateurs utilisateur) throws Exception{
-		 UtilisateurValidation(utilisateur);
 	    this.utilisateursDAO.supprimerUtilisateur(utilisateur); 
 	}
 	
@@ -119,12 +120,12 @@ public class UtilisateursManager {
 
 		// Validation email
 		
-		Pattern validEmail = Pattern.compile("^[A-Z0-9._-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-		Matcher matcherEmail = validEmail.matcher(utilisateur.getEmail());
-		if (!matcherEmail.find()) {
-			sb.append("L'email n'est pas au format attendu !\n");
-			dataValid = false;
-		}
+		  Pattern validEmail =
+		  Pattern.compile("^[A-Z0-9._-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
+		  Pattern.CASE_INSENSITIVE); Matcher matcherEmail =
+		  validEmail.matcher(utilisateur.getEmail()); if (!matcherEmail.find()) {
+		  sb.append("L'email n'est pas au format attendu !\n"); dataValid = false; }
+		 
 
 		// Validation du telephone
 		
@@ -151,14 +152,17 @@ public class UtilisateursManager {
 
 		// Validation mdp
 		
-		Pattern validMDP = Pattern.compile("^[a-zA-Z0-9]{4,}$");
+		Pattern validMDP = Pattern.compile("^.*(?=.{8,})(?=.*\\d)(?=.*[a-zA-Z])|(?=.{8,})(?=.*\\d)(?=.*[!@#$%^&])|(?=.{8,})(?=.*[a-zA-Z])(?=.*[!@#$%^&]).*$");
+		
+
 		Matcher matcherMDP = validMDP.matcher(utilisateur.getMot_de_passe());
 		if (!matcherMDP.find()) {
 			sb.append("Le mot de passe n'est pas au format attendu !\n");
 			dataValid = false;
 		}
-
-
+		 
+		  
+		 
 		// Etat du boolean
 		if (!dataValid) {
 			throw new BLLException(sb.toString());

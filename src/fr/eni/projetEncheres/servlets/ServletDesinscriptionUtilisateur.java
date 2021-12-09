@@ -52,23 +52,17 @@ public class ServletDesinscriptionUtilisateur extends HttpServlet {
 			if (listeUtilisateursBDD != null) {
 				for (Utilisateurs utilisateurs : listeUtilisateursBDD) {
 					//CHERCHER DANS LA BDD - si un pseudo correpond à celui entré par l'utilisateur
-					if (utilisateurs.getPseudo().trim().equals(pseudo)) {
+					if (utilisateurs.getPseudo().trim().equals(pseudo)|| utilisateurs.getMot_de_passe().trim().equals(mot_de_passe)) {
 						//CHERCHER DANS LA BDD - si le mot de passe correspond à ce pseudo
-						if (utilisateurs.getMot_de_passe().trim().equals(mot_de_passe)) {
 							System.out.println("utilisateur Désinscrit");
+							logIn = true;
 							utilisateursManager.supprimerUtilisateur(utilisateurs);
-							logIn = true;	
-							succesConnexion.forward(request, response);
 
 						} else {
 							request.setAttribute("msgErreurConnexion", "Pseudo ou Mot de Passe erroné");
 							request.setAttribute("pseudoSaisi", pseudo);
 						}
-					} else {
-						request.setAttribute("msgErreurConnexion", "Pseudo ou Mot de Passe erroné");
-						request.setAttribute("pseudoSaisi", pseudo);
 					}
-				}
 
 			} else {
 				System.out.println("Liste utilisateur nulle!");
