@@ -1,4 +1,4 @@
-<!--JSP ACCUEIL -->
+<!--JSP ACCUEIL CONNECTE -->
 <!-- @Author Maxence -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -14,7 +14,7 @@
 <title>Accueil</title>
 </head>
 <body>
-<%@ include file="css/header.html" %>
+<%@ include file="css/headerCO.html" %>
 
 <h3 style="text-align:center">La seclection</h3>
 
