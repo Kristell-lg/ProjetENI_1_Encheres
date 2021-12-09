@@ -23,7 +23,7 @@
 			</c:when>
 			<c:otherwise>
 				<p>
-					Aucune article n'est disponible
+					Aucun article n'est disponible
 				</p>
 			</c:otherwise>
 		</c:choose>	

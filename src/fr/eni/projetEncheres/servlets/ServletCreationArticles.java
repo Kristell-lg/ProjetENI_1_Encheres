@@ -52,7 +52,7 @@ public class ServletCreationArticles extends HttpServlet {
 		ArticlesManager articlesManager = new ArticlesManager();
 		
 		try {
-			//TODO Changer utilisateur et catégorie
+			//TODO Changer utilisateur et catégories
 			Articles a = new Articles(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, 1, 1);
 			
 			articlesManager.AjouterArticle(a);
