@@ -153,7 +153,14 @@ public class UtilisateursManager {
 		// Validation mdp
 		
 		Pattern validMDP = Pattern.compile("^.*(?=.{8,})(?=.*\\d)(?=.*[a-zA-Z])|(?=.{8,})(?=.*\\d)(?=.*[!@#$%^&])|(?=.{8,})(?=.*[a-zA-Z])(?=.*[!@#$%^&]).*$");
-		
+	
+		/*
+		 * Le mot de passe doit comporter au moins huit (8) caractères lorsque le
+		 * système peut le prendre en charge. Les mots de passe doivent inclure des
+		 * caractères d'au moins deux (2) de ces groupements: caractères alphanumériques
+		 * et spéciaux.
+		 * 
+		 */
 
 		Matcher matcherMDP = validMDP.matcher(utilisateur.getMot_de_passe());
 		if (!matcherMDP.find()) {
