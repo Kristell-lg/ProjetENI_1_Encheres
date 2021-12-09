@@ -54,8 +54,12 @@ public class ServletAfficherProfil extends HttpServlet {
 		UtilisateursManager utilisateursManager = new UtilisateursManager();
 		
 		Utilisateurs u = null;
-		int id = (int)request.getAttribute("user");
+		int id = 1;
+		
+		
+		id= Integer.parseInt(request.getParameter("no_utilisateur"));
 		u = utilisateursManager.selectUtilisateur(id);
+		
 		
 		// mise en place des variable
 		request.setAttribute("pseudo",(String)u.getPseudo());
@@ -70,5 +74,4 @@ public class ServletAfficherProfil extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPAfficherProfil.jsp");
 		rd.forward(request, response);
 	}
-
 }
