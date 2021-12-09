@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Test Article</title>
+<title>Creation Article</title>
 </head>
 <body>
 	<h1>Gestion Article</h1>
@@ -25,21 +25,18 @@
 		<label for="nom_article"> Nom :</label> 
 		<input type="text" id="nom_article" name="nom_article" placeholder="Article"> 
 		
-		<label for="description"> description :</label> 
+		<label for="description"> Description :</label> 
 		<input type="text" id="description" name="description" placeholder="description">
 		
-		<label for="date_debut_encheres"> Date début encheres :</label> 
+		<label for="date_debut_encheres"> Date de début des enchères :</label> 
 		<input type="date" id="date_debut_encheres" name="date_debut_encheres">
 		
-		<label for="date_fin_encheres"> date_fin_encheres :</label> 
+		<label for="date_fin_encheres"> Date de fin des enchères :</label> 
 		<input type="date" id="date_fin_encheres" name="date_fin_encheres"> 	
 		
-		<label for="prix_initial"> prix_initial :</label> 
+		<label for="prix_initial"> Prix:</label> 
 		<input type="number"id="prix_initial" name="prix_initial"> 
 		
-		<label for="prix_vente"> prix_vente :</label> 
-		<input type="number"id="prix_vente" name="prix_vente"> 
-			
 			<input type="submit"> 
 		</form>
 

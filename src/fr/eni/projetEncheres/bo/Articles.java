@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 /**
  * @author clementcorcuff
+ * @update kristell
  * 
  *         Classe générant des objets "Articles Vendus" et leurs
  *         caractéristiques

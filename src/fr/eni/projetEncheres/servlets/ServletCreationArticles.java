@@ -29,7 +29,7 @@ public class ServletCreationArticles extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/testArticles.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPCreationArticles.jsp");
 		rd.forward(request, response);
 	}
 
@@ -45,14 +45,15 @@ public class ServletCreationArticles extends HttpServlet {
 		LocalDate date_debut_encheres = LocalDate.parse(request.getParameter("date_debut_encheres"), formatter);
 		LocalDate date_fin_encheres = LocalDate.parse(request.getParameter("date_fin_encheres"), formatter);
 		int prix_initial = Integer.parseInt(request.getParameter("prix_initial"));
-		int no_utilisateur = Integer.parseInt(request.getParameter("no_utilisateur")); 
-		int no_categorie = Integer.parseInt(request.getParameter("no_categorie"));
+		//int no_utilisateur = Integer.parseInt(request.getParameter("no_utilisateur")); 
+		//int no_categorie = Integer.parseInt(request.getParameter("no_categorie"));
 		
 		
 		ArticlesManager articlesManager = new ArticlesManager();
 		
 		try {
-			Articles a = new Articles(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie);
+			//TODO Changer utilisateur et catégorie
+			Articles a = new Articles(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, 1, 1);
 			
 			articlesManager.AjouterArticle(a);
 			request.setAttribute("retour", "insertion de l'article à réussi");

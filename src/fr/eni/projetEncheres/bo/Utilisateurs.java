@@ -93,9 +93,7 @@ public class Utilisateurs {
 	public boolean isAdministrateurs() {
 		return administrateurs;
 	}
-	public void setAdministrateurs(boolean administrateurs) {
-		this.administrateurs = administrateurs;
-	}
+
 	
 	
 	//CONSTRUCTEUR avec no_utilisateur pour les utilisateurs déjà présents en BDD (affichage, modification ou suppression)

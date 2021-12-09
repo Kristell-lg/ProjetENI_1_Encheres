@@ -13,6 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.projetEncheres.bll.ArticlesManager;
 import fr.eni.projetEncheres.bo.Articles;
 
+/**@author Clement
+ * @update Kristell Servlet implementation class ServletConnexionUtilisateurs
+ */
+
 /**
  * Servlet implementation class ServletAffichageCatalogueArticles
  */

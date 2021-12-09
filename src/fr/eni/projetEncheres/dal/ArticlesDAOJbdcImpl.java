@@ -13,7 +13,7 @@ import fr.eni.projetEncheres.bo.Articles;
 /**
  * 
  * @author Clément
- *
+ *@update Kristell
  */
 
 public class ArticlesDAOJbdcImpl implements ArticlesDAO {
