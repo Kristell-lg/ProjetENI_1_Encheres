@@ -9,11 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.projetEncheres.bll.BLLException;
 import fr.eni.projetEncheres.bll.UtilisateursManager;
 import fr.eni.projetEncheres.bo.Utilisateurs;
-import fr.eni.projetEncheres.dal.UtilisateursDAO;
-import fr.eni.projetEncheres.dal.DALException;
 /**
  * @author Luka CHOUVILLE
  * Servlet implementation class ServletAfficherProfil
@@ -26,13 +23,25 @@ public class ServletAfficherProfil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TEST
 		UtilisateursManager utilisateursManager = new UtilisateursManager();
 		
 		Utilisateurs u = null;
-		u = utilisateursManager.selectUtilisateur(1);
-		System.out.println(u);
-		request.setAttribute("utilisateur", u);
+		int id = 1;
+		u = utilisateursManager.selectUtilisateur(id);
+		
+		// mise en place des variable
+		request.setAttribute("pseudo",(String)u.getPseudo());
+		request.setAttribute("prenom",(String)u.getPrenom());
+		request.setAttribute("nom",(String)u.getNom());
+		request.setAttribute("email",(String)u.getEmail());
+		request.setAttribute("tel",(String)u.getTelephone());
+		request.setAttribute("rue",(String)u.getRue());
+		request.setAttribute("ville",(String)u.getVille());
+		request.setAttribute("cp",(String)u.getCode_postal());
+		
+		
+		// F-TEST //
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPAfficherProfil.jsp");
 		rd.forward(request, response);
 	}
@@ -41,8 +50,25 @@ public class ServletAfficherProfil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-
+		
+		UtilisateursManager utilisateursManager = new UtilisateursManager();
+		
+		Utilisateurs u = null;
+		int id = (int)request.getAttribute("user");
+		u = utilisateursManager.selectUtilisateur(id);
+		
+		// mise en place des variable
+		request.setAttribute("pseudo",(String)u.getPseudo());
+		request.setAttribute("prenom",(String)u.getPrenom());
+		request.setAttribute("nom",(String)u.getNom());
+		request.setAttribute("email",(String)u.getEmail());
+		request.setAttribute("tel",(String)u.getTelephone());
+		request.setAttribute("rue",(String)u.getRue());
+		request.setAttribute("ville",(String)u.getVille());
+		request.setAttribute("cp",(String)u.getCode_postal());
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPAfficherProfil.jsp");
+		rd.forward(request, response);
 	}
 
 }
