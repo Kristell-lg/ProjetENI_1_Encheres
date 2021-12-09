@@ -40,7 +40,7 @@ public class ServletDesinscriptionUtilisateur extends HttpServlet {
 		RequestDispatcher erreurConnexion = request.getRequestDispatcher("/WEB-INF/jsp/JSPDesinscriptionUtilisateurs.jsp");
 		// intégrer JSP accueil
 		RequestDispatcher succesConnexion = request.getRequestDispatcher("/WEB-INF/jsp/.jsp");
-		
+		Boolean logIn = false;
 		String pseudo = request.getParameter("pseudo");
 		String mot_de_passe = request.getParameter("mot_de_passe");
 
@@ -56,17 +56,17 @@ public class ServletDesinscriptionUtilisateur extends HttpServlet {
 						//CHERCHER DANS LA BDD - si le mot de passe correspond à ce pseudo
 						if (utilisateurs.getMot_de_passe().trim().equals(mot_de_passe)) {
 							System.out.println("utilisateur Désinscrit");
-							succesConnexion.forward(request, response);
 							utilisateursManager.supprimerUtilisateur(utilisateurs);
+							logIn = true;	
+							succesConnexion.forward(request, response);
+
 						} else {
 							request.setAttribute("msgErreurConnexion", "Pseudo ou Mot de Passe erroné");
 							request.setAttribute("pseudoSaisi", pseudo);
-							erreurConnexion.forward(request, response);
 						}
 					} else {
 						request.setAttribute("msgErreurConnexion", "Pseudo ou Mot de Passe erroné");
 						request.setAttribute("pseudoSaisi", pseudo);
-						erreurConnexion.forward(request, response);
 					}
 				}
 

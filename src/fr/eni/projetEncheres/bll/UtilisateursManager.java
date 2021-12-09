@@ -81,7 +81,7 @@ public class UtilisateursManager {
 	}
 	
 	public void supprimerUtilisateur(Utilisateurs utilisateur) throws Exception{
-
+		 UtilisateurValidation(utilisateur);
 	    this.utilisateursDAO.supprimerUtilisateur(utilisateur); 
 	}
 	
@@ -89,7 +89,7 @@ public class UtilisateursManager {
 	
 		// vérification des données Utilisateur
 		// rajout du statut d'admin ?
-	private void UtilisateurValidation(String pseudo, String nom, String prenom, String email,String telephone,String rue, String code_postal, String ville, String mot_de_passe, int credit) throws BLLException {
+	private void UtilisateurValidation(Utilisateurs utilisateur) throws BLLException {
 
 		boolean dataValid = true;
 
@@ -97,21 +97,21 @@ public class UtilisateursManager {
 
 		// Validation du Pseudo
 		
-		if (pseudo == null || pseudo.trim().isEmpty()) {
+		if (utilisateur.getPseudo() == null || utilisateur.getPseudo().trim().isEmpty()) {
 			sb.append("Le pseudo est obligatoire\n");
 			dataValid = false;
 		}
 
 		// Validation du nom
 		
-		if (nom == null || nom.trim().isEmpty()) {
+		if (utilisateur.getNom() == null || utilisateur.getNom().trim().isEmpty()) {
 			sb.append("La nom est obligatoire\n");
 			dataValid = false;
 		}
 		
 		// Validation du prénom
 		
-		if (prenom == null || prenom.trim().isEmpty()) {
+		if (utilisateur.getPrenom() == null || utilisateur.getPrenom().trim().isEmpty()) {
 			sb.append("La prenom est obligatoire\n");
 			dataValid = false;
 		}
@@ -120,7 +120,7 @@ public class UtilisateursManager {
 		// Validation email
 		
 		Pattern validEmail = Pattern.compile("^[A-Z0-9._-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-		Matcher matcherEmail = validEmail.matcher(email);
+		Matcher matcherEmail = validEmail.matcher(utilisateur.getEmail());
 		if (!matcherEmail.find()) {
 			sb.append("L'email n'est pas au format attendu !\n");
 			dataValid = false;
@@ -128,23 +128,23 @@ public class UtilisateursManager {
 
 		// Validation du telephone
 		
-		if (telephone == null || telephone.trim().isEmpty()) {
+		if (utilisateur.getTelephone() == null || utilisateur.getTelephone().trim().isEmpty()) {
 			sb.append("Le téléphone est obligatoire\n");
 			dataValid = false;
 		}
 		
 		// Validation Adresse @TO DO : REGEX SUR LE CODE POSTAL ?
-		if (rue == null || rue.trim().isEmpty()) {
+		if (utilisateur.getRue() == null || utilisateur.getRue().trim().isEmpty()) {
 			sb.append("La rue est obligatoire\n");
 			dataValid = false;
 		}
 
-		if (code_postal == null || code_postal.trim().isEmpty()) {
+		if (utilisateur.getCode_postal() == null || utilisateur.getCode_postal().trim().isEmpty()) {
 			sb.append("Le code postal est obligatoire\n");
 			dataValid = false;
 		}
 
-		if (ville == null || ville.trim().isEmpty()) {
+		if (utilisateur.getVille() == null || utilisateur.getVille().trim().isEmpty()) {
 			sb.append("La ville est obligatoire\n");
 			dataValid = false;
 		}
@@ -152,7 +152,7 @@ public class UtilisateursManager {
 		// Validation mdp
 		
 		Pattern validMDP = Pattern.compile("^[a-zA-Z0-9]{4,}$");
-		Matcher matcherMDP = validMDP.matcher(mot_de_passe);
+		Matcher matcherMDP = validMDP.matcher(utilisateur.getMot_de_passe());
 		if (!matcherMDP.find()) {
 			sb.append("Le mot de passe n'est pas au format attendu !\n");
 			dataValid = false;
