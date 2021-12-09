@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.projetEncheres.bll.UtilisateursManager;
 import fr.eni.projetEncheres.bo.Utilisateurs;
@@ -41,10 +42,14 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 		RequestDispatcher erreurConnexion = request.getRequestDispatcher("/WEB-INF/jsp/JSPConnexionUtilisateurs.jsp");
 		
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!TODO mettre la JSP accueil connecté!!!!!!!!!!!!!!
-		RequestDispatcher succesConnexion = request.getRequestDispatcher("/WEB-INF/jsp/JSPConnexionUtilisateurs.jsp");
+		RequestDispatcher succesConnexion = request.getRequestDispatcher("/WEB-INF/jsp/TestConnexion.jsp");
 		
 		String pseudo = request.getParameter("pseudo");
 		String mot_de_passe = request.getParameter("mot_de_passe");
+		
+		String pseudoSession =null;
+		int credit = 0;
+		Boolean logIn = false;
 
 		List<Utilisateurs> listeUtilisateursBDD = new ArrayList<>();
 		UtilisateursManager utilisateursManager = new UtilisateursManager();
@@ -57,17 +62,16 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 					if (utilisateurs.getPseudo().trim().equals(pseudo)) {
 						//CHERCHER DANS LA BDD - si le mot de passe correspond à ce pseudo
 						if (utilisateurs.getMot_de_passe().trim().equals(mot_de_passe)) {
-							System.out.println("utilisateur connecté");
-							succesConnexion.forward(request, response);
+							logIn = true;	
+							pseudoSession = utilisateurs.getPseudo().trim();
+							credit = utilisateurs.getCredit();
 						} else {
 							request.setAttribute("msgErreurConnexion", "Pseudo ou Mot de Passe erroné");
 							request.setAttribute("pseudoSaisi", pseudo);
-							erreurConnexion.forward(request, response);
 						}
 					} else {
 						request.setAttribute("msgErreurConnexion", "Pseudo ou Mot de Passe erroné");
 						request.setAttribute("pseudoSaisi", pseudo);
-						erreurConnexion.forward(request, response);
 					}
 				}
 
@@ -76,10 +80,29 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 			}
 		} catch (Exception e) {
 			request.setAttribute("msgErreurConnexion", "Erreur dans le chargement des données");
+			System.out.println("henlo3");
 			erreurConnexion.forward(request, response);
-			System.out.println("ServletUtilisateur");
 			e.printStackTrace();
 		}
+		
+		//DETERMINER SI LA RECHERCHE DANS BDD A MATCH LA SAISIE UTILISATEUR OU PAS
+		if (logIn) {
+			System.out.println("Utilisateur connecté");
+			System.out.println("utilisateur connecté");
+			HttpSession session = request.getSession();
+			
+			if (session!=null) {
+				 session.setAttribute("pseudoSession", pseudoSession);  
+				 session.setAttribute("credit", credit); 
+				 succesConnexion.forward(request, response);
+			}
+		}
+		else {
+			erreurConnexion.forward(request, response);
+		}
+	        //TODO Réécriture du lien si le client n'accepte pas les cookies 						
+	   
+
 
 	}
 

@@ -17,7 +17,7 @@
 <body>
 <%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 	<h1>Connexion</h1>
-	<form action="/ProjetENI_1_Encheres/ServletConnexionUtilisateurs" method="post">
+	<form action="${pageContext.request.contextPath}/ServletConnexionUtilisateurs" method="post">
 	
 	<c:choose>
 	
