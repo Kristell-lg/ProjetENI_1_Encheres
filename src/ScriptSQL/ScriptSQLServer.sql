@@ -59,12 +59,7 @@ ON DELETE NO ACTION
 --Categories
 ALTER TABLE CATEGORIES ADD constraint categorie_pk PRIMARY KEY (no_categorie)
 
-INSERT INTO CATEGORIES(libelle) VALUES ('Vêtement')
-INSERT INTO CATEGORIES(libelle) VALUES ('Multimédia et Jeux_vidéos')
+INSERT INTO CATEGORIES(libelle) VALUES ('Informatique')
 INSERT INTO CATEGORIES(libelle) VALUES ('Ameublement')
-INSERT INTO CATEGORIES(libelle) VALUES ('Maison')
-INSERT INTO CATEGORIES(libelle) VALUES ('Bricolage')
-INSERT INTO CATEGORIES(libelle) VALUES ('Loisir créatif')
-INSERT INTO CATEGORIES(libelle) VALUES ('Sport')
-INSERT INTO CATEGORIES(libelle) VALUES ('Livres')
-INSERT INTO CATEGORIES(libelle) VALUES ('Divers')
+INSERT INTO CATEGORIES(libelle) VALUES ('Vêtement')
+INSERT INTO CATEGORIES(libelle) VALUES ('Sport&Loisirs')

@@ -34,15 +34,10 @@
 
 		<select name="categorie" id="categorie">
 		    <option value="">--Choisir une catégorie--</option>
-		    <option value=1>Vêtement</option>
-		    <option value=2>Multimédia et Jeux-vidéos</option>
-		    <option value=3>Ameublement</option>
-		    <option value=4>Maison</option>
-		    <option value=5>Bricolage</option>
-		    <option value=6>Loisir créatif</option>
-		    <option value=7>Sport</option>
-		    <option value=8>Livres</option>
-		    <option value=9>Divers</option>
+		    <option value=1>Informatique</option>
+		    <option value=2>Ameublement</option>
+		    <option value=3>Vêtement</option>
+		    <option value=4>Sport et Loisirs</option>
 		</select>
 			<input type="submit"> 
 		</form>

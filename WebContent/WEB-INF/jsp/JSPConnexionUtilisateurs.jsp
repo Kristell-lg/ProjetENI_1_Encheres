@@ -41,5 +41,7 @@
 	</c:choose>
 		
 	</form>
+	
+	<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
 </body>
 </html>
