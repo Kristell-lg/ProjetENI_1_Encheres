@@ -86,7 +86,66 @@ public class UtilisateursManager {
 	    this.utilisateursDAO.supprimerUtilisateur(utilisateur); 
 	}
 	
-	
+	//Modification du profil de l'utilisateur
+ 	public void modifierUtilisateur (Utilisateurs utilisateur) throws BLLException{
+ 		boolean dataValide = true;
+
+		StringBuffer sb = new StringBuffer();
+
+		// Validation du Pseudo
+		
+		if (utilisateur.getPseudo() == null || utilisateur.getPseudo().trim().isEmpty()) {
+			sb.append("Le pseudo est obligatoire\n");
+			dataValide = false;
+		}
+
+		// Validation du nom
+		
+		if (utilisateur.getNom() == null || utilisateur.getNom().trim().isEmpty()) {
+			sb.append("La nom est obligatoire\n");
+			dataValide = false;
+		}
+		
+		// Validation du prénom
+		
+		if (utilisateur.getPrenom() == null || utilisateur.getPrenom().trim().isEmpty()) {
+			sb.append("La prenom est obligatoire\n");
+			dataValide = false;
+		}
+
+
+		// Validation email
+		
+		  Pattern validEmail =
+		  Pattern.compile("^[A-Z0-9._-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
+		  Pattern.CASE_INSENSITIVE); Matcher matcherEmail =
+		  validEmail.matcher(utilisateur.getEmail()); if (!matcherEmail.find()) {
+		  sb.append("L'email n'est pas au format attendu !\n"); dataValide = false; }
+		 
+
+		// Validation du telephone
+		
+		if (utilisateur.getTelephone() == null || utilisateur.getTelephone().trim().isEmpty()) {
+			sb.append("Le téléphone est obligatoire\n");
+			dataValide = false;
+		}
+		
+		// Validation Adresse @TO DO : REGEX SUR LE CODE POSTAL ?
+		if (utilisateur.getRue() == null || utilisateur.getRue().trim().isEmpty()) {
+			sb.append("La rue est obligatoire\n");
+			dataValide = false;
+		}
+
+		if (utilisateur.getCode_postal() == null || utilisateur.getCode_postal().trim().isEmpty()) {
+			sb.append("Le code postal est obligatoire\n");
+			dataValide = false;
+		}
+
+		if (utilisateur.getVille() == null || utilisateur.getVille().trim().isEmpty()) {
+			sb.append("La ville est obligatoire\n");
+			dataValide = false;
+		}
+ 	}
 	
 		// vérification des données Utilisateur
 		// rajout du statut d'admin ?

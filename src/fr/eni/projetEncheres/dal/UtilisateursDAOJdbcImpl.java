@@ -14,7 +14,9 @@ import fr.eni.projetEncheres.bo.Utilisateurs;
  * @author Kristell
  * JDBCImpl
  * @update Luka CHOUVILLE
+ * @update Maxence Medard
  */
+
 public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 
 	private static final String SELECT_TOUT = "SELECT * FROM UTILISATEURS";
@@ -143,5 +145,30 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	        throw new Exception(e);
 	    }
 	}
-	
+	//AJOUT DE L'OPTION MODIFIER //
+	public static int modifierUtilisateurs(String pseudo , String prenom , String nom, String mdp , String email , String tel , 
+			String rue , String ville , String codepostal) throws SQLException {
+      
+		String modifierUtilisateurs = "UPDATE bdd_utilisateurs Set pseudo = ?" +" prenom = ?"+" nom = ?"+" mdp= ?"+ 
+                 "email = ?"+" tel = ?"+"rue = ?"+" ville = ?"+" codepostal = ?"; 
+                
+		
+        try (Connection cnx = ConnectionProvider.getConnection();
+        		PreparedStatement updateInformation= cnx.prepareStatement(modifierUtilisateurs);)
+        		
+           
+        		{
+            updateInformation.setString(1, pseudo);
+            updateInformation.setString(2, prenom);
+            updateInformation.setString(3, nom);
+            updateInformation.setString(4, mdp);
+            updateInformation.setString(5, email); 
+            updateInformation.setString(6, tel);
+            updateInformation.setString(7, rue);
+            updateInformation.setString(8, ville);
+            updateInformation.setString(9, codepostal);
+
+            return updateInformation.executeUpdate();
+        } 
+}
 }
