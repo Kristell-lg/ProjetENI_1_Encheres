@@ -27,7 +27,7 @@
 		<c:choose>
 			<c:when test="${!empty articlesListe}">
 				<c:forEach var="article" items="${articlesListe}">
-					<a class="affichageArticle" href="/ProjetENI_1_Encheres/ServletConnexionUtilisateurs">${article.getNom_article()}</a>
+					<a class="affichageArticle" href="/ProjetENI_1_Encheres/">${article.getNom_article()}</a>
 					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres()}</p>
 					<p class="affichageArticle">Prix de vente :${article.getPrix_initial()}</p>
 					<p class="affichageArticle">Vendeur :</p><a href="/ProjetENI_1_Encheres/ServletConnexionUtilisateurs">${article.getUtilisateur().getPseudo()}</a>

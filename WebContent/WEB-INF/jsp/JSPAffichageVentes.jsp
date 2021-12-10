@@ -37,7 +37,7 @@
 			</c:when>
 			<c:otherwise>
 				<p class="affichageVente">
-					Aucun article n'est disponible
+					Aucun article n'a été vendu
 				</p>
 			</c:otherwise>
 		</c:choose>	
