@@ -22,7 +22,44 @@ public class Utilisateurs {
 	private int credit;
 	private boolean administrateurs;
 	
-	
+	//CONSTRUCTEUR avec no_utilisateur pour les utilisateurs déjà présents en BDD (affichage, modification ou suppression)
+		public Utilisateurs(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue,
+				String code_postal, String ville, String mot_de_passe, int credit, boolean administrateurs) {
+			this.no_utilisateur = no_utilisateur;
+			this.pseudo = pseudo;
+			this.nom = nom;
+			this.prenom = prenom;
+			this.email = email;
+			this.telephone = telephone;
+			this.rue = rue;
+			this.code_postal = code_postal;
+			this.ville = ville;
+			this.mot_de_passe = mot_de_passe;
+			this.credit = credit;
+			this.administrateurs = administrateurs;
+		}
+		
+		//CONSTRUCTEUR sans no_utilisateur & admnistrateurs pour les utilisateurs qui sont créés (nouvelle inscription)
+		public Utilisateurs(String pseudo, String nom,String prenom, String email, String telephone, String rue, String code_postal,
+				String ville, String mot_de_passe, int credit) {
+			this.pseudo = pseudo;
+			this.nom = nom;
+			this.prenom = prenom;
+			this.email = email;
+			this.telephone = telephone;
+			this.rue = rue;
+			this.code_postal = code_postal;
+			this.ville = ville;
+			this.mot_de_passe = mot_de_passe;
+			this.credit = credit;
+		}
+		
+		
+		public Utilisateurs(String pseudo, String mot_de_passe) {
+			this.pseudo = pseudo;
+			this.mot_de_passe = mot_de_passe;
+		}
+		
 	//Méthodes GETTERS & SETTERS pour l'ensemble des variables
 	public int getNo_utilisateur() {
 		return no_utilisateur;
@@ -95,44 +132,6 @@ public class Utilisateurs {
 	}
 
 	
-	
-	//CONSTRUCTEUR avec no_utilisateur pour les utilisateurs déjà présents en BDD (affichage, modification ou suppression)
-	public Utilisateurs(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String code_postal, String ville, String mot_de_passe, int credit, boolean administrateurs) {
-		this.no_utilisateur = no_utilisateur;
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.telephone = telephone;
-		this.rue = rue;
-		this.code_postal = code_postal;
-		this.ville = ville;
-		this.mot_de_passe = mot_de_passe;
-		this.credit = credit;
-		this.administrateurs = administrateurs;
-	}
-	
-	//CONSTRUCTEUR sans no_utilisateur & admnistrateurs pour les utilisateurs qui sont créés (nouvelle inscription)
-	public Utilisateurs(String pseudo, String nom,String prenom, String email, String telephone, String rue, String code_postal,
-			String ville, String mot_de_passe, int credit) {
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.telephone = telephone;
-		this.rue = rue;
-		this.code_postal = code_postal;
-		this.ville = ville;
-		this.mot_de_passe = mot_de_passe;
-		this.credit = credit;
-	}
-	
-	
-	public Utilisateurs(String pseudo, String mot_de_passe) {
-		this.pseudo = pseudo;
-		this.mot_de_passe = mot_de_passe;
-	}
 	
 	//Méthode TOSTRING 
 	@Override
