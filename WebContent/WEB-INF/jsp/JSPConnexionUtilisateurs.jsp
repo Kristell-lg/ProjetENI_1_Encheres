@@ -16,26 +16,26 @@
 
 <body>
 <%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
-	<h1>Connexion</h1>
+	<h1 id="titreConnexion">Connexion</h1>
 	<form action="${pageContext.request.contextPath}/ServletConnexionUtilisateurs" method="post">
 	
 	<c:choose>
 	
 		<c:when test="${!empty requestScope.msgErreurConnexion}">
-			<p>${requestScope.msgErreurConnexion}</p>
-			<label for="pseudo">Pseudo : </label>
-			<input type=text name="pseudo" value="${requestScope.pseudoSaisi}" required>
-			<label for="mot_de_passe">Mot de passe : </label>
-			<input type="password" name="mot_de_passe" required>
-			<input type="submit" value="Se Connecter">
+			<p id="msgErreurConnexionUtilisateur">${requestScope.msgErreurConnexion}</p>
+			<label class="LabelFormulaireConnexion" for="pseudo">Pseudo : </label>
+			<input class="inputFormulaireConnexion" type=text name="pseudo" value="${requestScope.pseudoSaisi}" required>
+			<label class="LabelFormulaireConnexion" for="mot_de_passe">Mot de passe : </label>
+			<input class="inputFormulaireConnexion" type="password" name="mot_de_passe" required>
+			<input class="inputFormulaireConnexion" type="submit" value="Se Connecter">
 		</c:when>
 		
 		<c:otherwise>
-			<label for="pseudo">Pseudo : </label>
-			<input type=text name="pseudo" required>
-			<label for="mot_de_passe">Mot de passe : </label>
-			<input type="password" name="mot_de_passe" required>
-			<input type="submit" value="Se Connecter">
+			<label class="LabelFormulaireConnexion" for="pseudo">Pseudo : </label>
+			<input class="inputFormulaireConnexion" type=text name="pseudo" required>
+			<label class="LabelFormulaireConnexion" for="mot_de_passe">Mot de passe : </label>
+			<input class="inputFormulaireConnexion" type="password" name="mot_de_passe" required>
+			<input class="inputFormulaireConnexion" type="submit" value="Se Connecter">
 		</c:otherwise>
 		
 	</c:choose>

@@ -5,16 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Catalogue Articles</title>
+<title>Catalogue Vente</title>
 </head>
 <body>
 
 	<c:choose>
 		<c:when test="${empty requestScope.erreur}">
-			<p class="affichageArticle">Hello ${sessionScope.utilisateur.getPseudo()}</p>
-			<p class="affichageArticle">Tu as ${sessionScope.utilisateur.getCredit()} points</p>
-			<a class="affichageArticle" href="/ProjetENI_1_Encheres/ServletCreationArticles">Mettre en vente un article</a>
-			<a class="affichageArticle" href="/ProjetENI_1_Encheres/ServletDeconnexion">deconnexion</a>
+			<p class="affichageVente">Hello ${sessionScope.utilisateur.getPseudo()}</p>
+			<p class="affichageVente">Tu as ${sessionScope.utilisateur.getCredit()} points</p>
+			<a class="affichageVente" href="/ProjetENI_1_Encheres/ServletCreationArticles">Mettre en vente un article</a>
+			<a class="affichageVente" href="/ProjetENI_1_Encheres/ServletDeconnexion">deconnexion</a>
 		</c:when>
 		
 		<c:otherwise>
@@ -23,9 +23,10 @@
 		
 	</c:choose>	
 	
-	<h1>Catalogue des articles</h1>
+	<h1>Catalogue des ventes</h1>
 		<c:choose>
 			<c:when test="${!empty articlesListe}">
+			<!-- insérer la liste des artciles avec un prix de vente et l'id de l'utilisateur connecté  -->
 				<c:forEach var="article" items="${articlesListe}">
 					<a class="affichageArticle" href="/ProjetENI_1_Encheres/ServletConnexionUtilisateurs">${article.getNom_article()}</a>
 					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres()}</p>
@@ -35,7 +36,7 @@
 				</c:forEach>
 			</c:when>
 			<c:otherwise>
-				<p class="affichageArticle">
+				<p class="affichageVente">
 					Aucun article n'est disponible
 				</p>
 			</c:otherwise>
