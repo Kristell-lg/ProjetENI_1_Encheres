@@ -9,7 +9,7 @@ CREATE TABLE ENCHERES (
     no_article       INTEGER NOT NULL,
     date_enchere     datetime NOT NULL,
 	montant_enchere  INTEGER NOT NULL,
-	PRIMARY KEY PK_enchere (no_utilisateur, no_article)
+	PRIMARY KEY PK_enchere (no_utilisateur, no_article, date_enchere)
 );
 
 CREATE TABLE RETRAITS (
@@ -64,7 +64,13 @@ ALTER TABLE ENCHERES
         REFERENCES ARTICLES_VENDUS( no_article )
 ON DELETE NO ACTION 
     ON UPDATE no action ;
-
+    
+ALTER TABLE ENCHERES
+    ADD CONSTRAINT FK_encheres_encheriseur FOREIGN KEY( no_utilisateur )
+        REFERENCES UTILISATEURS( no_utilisateur )
+ON DELETE NO ACTION 
+    ON UPDATE no action ;
+    
 ALTER TABLE RETRAITS
     ADD CONSTRAINT FK_retraits_articles_vendus FOREIGN KEY( no_article )
         REFERENCES ARTICLES_VENDUS( no_article )
@@ -83,4 +89,9 @@ ALTER TABLE ARTICLES_VENDUS
 ON DELETE NO ACTION 
     ON UPDATE no action ;
 
+-- Insertion --
 
+INSERT INTO CATEGORIES(libelle) VALUES ('Informatique')
+INSERT INTO CATEGORIES(libelle) VALUES ('Ameublement')
+INSERT INTO CATEGORIES(libelle) VALUES ('Vêtement')
+INSERT INTO CATEGORIES(libelle) VALUES ('Sport&Loisirs')
