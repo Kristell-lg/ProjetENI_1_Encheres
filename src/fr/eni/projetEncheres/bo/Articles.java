@@ -19,8 +19,8 @@ public class Articles {
 	private LocalDate date_fin_encheres;
 	private int prix_initial;
 	private int prix_vente;
-	private int no_utilisateur;
-	private int no_categorie;
+	private Utilisateurs utilisateur;
+	private Categories categorie;
 
 	// Constructeur sans paramètre
 		public Articles() {
@@ -29,7 +29,7 @@ public class Articles {
 
 	// Constructeur avec tous les paramètres
 		public Articles(int no_article, String nom_article, String description, LocalDate date_debut_encheres,
-				LocalDate date_fin_encheres, int prix_initial, int prix_vente, int no_utilisateur, int no_categorie) {
+				LocalDate date_fin_encheres, int prix_initial, int prix_vente, Utilisateurs utilisateur, Categories categorie) {
 			super();
 			this.no_article = no_article;
 			this.nom_article = nom_article;
@@ -38,14 +38,14 @@ public class Articles {
 			this.date_fin_encheres = date_fin_encheres;
 			this.prix_initial = prix_initial;
 			this.prix_vente = prix_vente;
-			this.no_utilisateur = no_utilisateur;
-			this.no_categorie = no_categorie;
+			this.utilisateur = utilisateur;
+			this.categorie = categorie;
 		}
 
 		// Constructeur sans le parametre no_article
 
 		public Articles(String nom_article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres,
-				int prix_initial, int prix_vente, int no_utilisateur, int no_categorie) {
+				int prix_initial, int prix_vente, Utilisateurs utilisateur, Categories categorie) {
 			super();
 			this.nom_article = nom_article;
 			this.description = description;
@@ -53,22 +53,22 @@ public class Articles {
 			this.date_fin_encheres = date_fin_encheres;
 			this.prix_initial = prix_initial;
 			this.prix_vente = prix_vente;
-			this.no_utilisateur = no_utilisateur;
-			this.no_categorie = no_categorie;
+			this.utilisateur = utilisateur;
+			this.categorie = categorie;
 		}
 
 		// Constructeur sans les parametres no_article et prix_vente
 
 		public Articles(String nom_article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres,
-				int prix_initial, int no_utilisateur, int no_categorie) {
+				int prix_initial, Utilisateurs utilisateur, Categories categorie) {
 			super();
 			this.nom_article = nom_article;
 			this.description = description;
 			this.date_debut_encheres = date_debut_encheres;
 			this.date_fin_encheres = date_fin_encheres;
 			this.prix_initial = prix_initial;
-			this.no_utilisateur = no_utilisateur;
-			this.no_categorie = no_categorie;
+			this.utilisateur = utilisateur;
+			this.categorie = categorie;
 
 		}
 		
@@ -130,20 +130,20 @@ public class Articles {
 		this.prix_vente = prix_initial;
 	}
 
-	public int getNo_utilisateur() {
-		return no_utilisateur;
+	public Utilisateurs getUtilisateur() {
+		return utilisateur;
 	}
 
-	public void setNo_utilisateur(int no_utilisateur) {
-		this.no_utilisateur = no_utilisateur;
+	public void setUtilisateur(Utilisateurs utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
-	public int getNo_categorie() {
-		return no_categorie;
+	public Categories getCategorie() {
+		return categorie;
 	}
 
-	public void setNo_categorie(int no_categorie) {
-		this.no_categorie = no_categorie;
+	public void setCategorie(Categories categorie) {
+		this.categorie = categorie;
 	}
 
 	// Methode ToString
@@ -164,9 +164,9 @@ public class Articles {
 		sb.append(", prix_initial=");
 		sb.append(prix_initial);
 		sb.append(", no_utilisateur=");
-		sb.append(no_utilisateur);
+		sb.append(utilisateur);
 		sb.append(", no_categorie=");
-		sb.append(no_categorie);
+		sb.append(categorie);
 		sb.append("]");
 		return sb.toString();
 

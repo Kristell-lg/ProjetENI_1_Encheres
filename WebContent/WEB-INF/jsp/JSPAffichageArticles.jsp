@@ -18,6 +18,8 @@
 					<p>Début des enchères :${article.getDate_debut_encheres()}</p>
 					<p>Fin des enchères :${article.getDate_fin_encheres()}</p>
 					<p>Prix de vente :${article.getPrix_initial()}</p>
+					<p>Catégorie :${article.getCategorie().getLibelle()}</p>
+					<p>Vendeur :</p><a href="/ProjetENI_1_Encheres/ServletConnexionUtilisateurs">${article.getUtilisateur().getPseudo()}</a>
 					<p>-----------------------------------------------</p>
 				</c:forEach>
 			</c:when>
