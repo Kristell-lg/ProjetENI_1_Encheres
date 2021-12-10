@@ -7,14 +7,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="headerFooter.css"/>
+<link rel="stylesheet" href="css/headerFooter.css"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
 <link href="https://fonts.googleapis.com/css2?family=Economica&display=swap" rel="stylesheet">
 <title>Accueil</title>
 </head>
 <body>
-<%@ include file="css/headerCO.html" %>
+<%@ include file="headerCO.html" %>
 
 <h3 style="text-align:center">La seclection</h3>
 
