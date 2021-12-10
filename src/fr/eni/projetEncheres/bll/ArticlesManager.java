@@ -48,6 +48,23 @@ public class ArticlesManager {
 
 	}
 	
+	public Articles selectArticle(int no_article) throws BLLException {
+
+		Articles article = null;
+		if (no_article!=0) {
+			try {
+				article = articlesDAO.selectArticle(no_article);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else {
+			throw new BLLException("Le numéro d'article ne peut être nul!");
+		}
+		return article;
+
+	}
+	
 	private void ArticlesValidation(Articles article) throws BLLException {
 
 		boolean dataValid = true;
@@ -85,16 +102,16 @@ public class ArticlesManager {
 		}
 
 		// Validation no_utilisateur, a approfondir 
-		/*if (no_utilisateur == 0 || ??) {
+		if (article.getUtilisateur() == null ) {
 			sb.append("problème au niveau du numéro d'utilisateur");
 			dataValid = false;
-		}*/
+		}
 		
 		// Validation no_categorie, a approfondir 
-				/*if (no_categorie == 0 || ?? {
-					sb.append("problème au niveau du numéro de catégorie");
-					dataValid = false;
-		}*/
+		if (article.getCategorie() == null) {
+			sb.append("problème au niveau du numéro de catégorie");
+			dataValid = false;
+		}
 
 		// Etat du boolean
 		if (!dataValid) {

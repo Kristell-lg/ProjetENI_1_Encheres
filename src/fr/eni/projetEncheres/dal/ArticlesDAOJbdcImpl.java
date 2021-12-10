@@ -22,7 +22,7 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 
 	private static final String SELECT_TOUT = "SELECT * FROM (ARTICLES_VENDUS a  INNER JOIN UTILISATEURS u ON a.no_utilisateur=u.no_utilisateur) INNER JOIN CATEGORIES c ON a.no_categorie =c.no_categorie";
 	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie)VALUES(?,?,?,?,?,?,?,?)";
-
+	private static final String SELECT_ID = "SELECT * FROM (ARTICLES_VENDUS a  INNER JOIN UTILISATEURS u ON a.no_utilisateur=u.no_utilisateur AND a.no_article=?) INNER JOIN CATEGORIES c ON a.no_categorie =c.no_categorie";
 	// select by encheres 
 	
 	
@@ -47,8 +47,7 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 				Articles Article = new Articles(resultArticles.getInt("no_article"),
 						resultArticles.getString("nom_article"), resultArticles.getString("description"),
 						LocalDate.parse(resultArticles.getString("date_debut_encheres")), LocalDate.parse(resultArticles.getString("date_fin_encheres")),
-						resultArticles.getInt("prix_initial"), resultArticles.getInt("prix_vente"),
-						utilisateur, categorie);
+						resultArticles.getInt("prix_initial"), resultArticles.getInt("prix_vente"),utilisateur, categorie);
 				ArticlesListe.add(Article);
 			}
 
@@ -89,4 +88,36 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	//Selectionner un article pour l'afficher
+	public Articles selectArticle(int no_article) throws DALException {
+			
+			Articles article = null;
+			
+			try (Connection cnx = ConnectionProvider.getConnection();
+					PreparedStatement statementArticles = cnx.prepareStatement(SELECT_ID);) {
+				statementArticles.setInt(1, no_article);
+				ResultSet resultArticles = statementArticles.executeQuery();
+
+				while (resultArticles.next()) {
+					Categories categorie = new Categories(resultArticles.getString("libelle"));
+					
+					Utilisateurs utilisateur = new Utilisateurs(resultArticles.getString("pseudo"),
+							resultArticles.getString("nom"),resultArticles.getString("prenom"),resultArticles.getString("email"),
+							resultArticles.getString("telephone"),resultArticles.getString("rue"),resultArticles.getString("code_postal"),
+							resultArticles.getString("ville"),resultArticles.getString("mot_de_passe"),resultArticles.getInt("credit"));
+					
+					article = new Articles(resultArticles.getInt("no_article"),
+							resultArticles.getString("nom_article"), resultArticles.getString("description"),
+							LocalDate.parse(resultArticles.getString("date_debut_encheres")), LocalDate.parse(resultArticles.getString("date_fin_encheres")),
+							resultArticles.getInt("prix_initial"), resultArticles.getInt("prix_vente"),utilisateur, categorie);
+				}
+
+
+			} catch (SQLException e) {
+				throw new DALException(e);
+			}
+			
+			return article;
+		}
 }
