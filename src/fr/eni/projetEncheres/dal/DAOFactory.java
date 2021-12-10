@@ -3,8 +3,8 @@ package fr.eni.projetEncheres.dal;
 public abstract class DAOFactory {
 	/**
 	 * @author Kristell
-	 * 
 	 * @modif Clément
+	 * @update Luka CHOUVILLE
 	 * DAO Factory
 	 *
 	 */
@@ -16,5 +16,10 @@ public abstract class DAOFactory {
 	public static ArticlesDAO getArticlesDAO()
 	{
 		return new ArticlesDAOJbdcImpl();
+	}
+	
+	public static EncheresDAO getEncheresDAO()
+	{
+		return new EncheresDAOJdbcImpl();
 	}
 }

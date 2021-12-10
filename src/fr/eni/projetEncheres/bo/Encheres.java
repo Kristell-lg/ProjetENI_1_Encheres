@@ -2,8 +2,6 @@ package fr.eni.projetEncheres.bo;
 
 import java.time.LocalDate;
 
-import com.sun.org.apache.bcel.internal.classfile.PMGClass;
-
 /**
  * @author Luka CHOUVILLE
  *	Class des Encheres
@@ -44,11 +42,12 @@ public class Encheres {
 	
 	// Methode
 	
-	public string toString() {
+	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append("no_utilisateur : ").append(this.no_utilisateur);
 		sb.append("no_article : ").append(this.no_article);
 		sb.append("date_enchere : ").append(this.date_enchere);
 		sb.append("montant : ").append(this.montant);
+		return sb.toString();
 	}
 }
