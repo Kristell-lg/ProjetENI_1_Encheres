@@ -11,9 +11,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.projetEncheres.bll.ArticlesManager;
 import fr.eni.projetEncheres.bo.Articles;
+import fr.eni.projetEncheres.bo.Categories;
+import fr.eni.projetEncheres.bo.Utilisateurs;
 
 
 
@@ -44,17 +47,25 @@ public class ServletCreationArticles extends HttpServlet {
 		String description = request.getParameter("description");
 		LocalDate date_debut_encheres = LocalDate.parse(request.getParameter("date_debut_encheres"), formatter);
 		LocalDate date_fin_encheres = LocalDate.parse(request.getParameter("date_fin_encheres"), formatter);
-		int prix_initial = Integer.parseInt(request.getParameter("prix_initial"));
-		//int no_utilisateur = Integer.parseInt(request.getParameter("no_utilisateur")); 
-		//int no_categorie = Integer.parseInt(request.getParameter("no_categorie"));
+		int prix_initial = Integer.parseInt(request.getParameter("prix_initial")); 
 		
+		int categorieSaisie = Integer.valueOf(request.getParameter("categorie"));
+		Categories categorie = new Categories(categorieSaisie);
+		//TODO Changer utilisateurs et catégories
+		HttpSession session = request.getSession();
+		
+		Utilisateurs utilisateur = null;
+		if (session!=null) {
+			utilisateur = (Utilisateurs) session.getAttribute("utilisateur");
+		}
+		else {
+			request.setAttribute("erreur", "Utilisateur inconnu");
+		}
 		
 		ArticlesManager articlesManager = new ArticlesManager();
 		
 		try {
-			//TODO Changer utilisateurs et catégories
-			Articles a = new Articles(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, 1, 1);
-			
+			Articles a = new Articles(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, utilisateur, categorie);
 			articlesManager.AjouterArticle(a);
 			request.setAttribute("retour", "insertion de l'article à réussi");
 			List<Articles> articlesListe = articlesManager.selectionner();

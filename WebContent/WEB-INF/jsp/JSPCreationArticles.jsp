@@ -12,14 +12,7 @@
 	<h1>Gestion Article</h1>
 	<h2>Ajout Article</h2>
 	
-	<c:if test="${!empty articlesListe}">
-		<c:forEach var="article" items="${articlesListe}">
-			<p>
-				${article}
-			</p>
-		</c:forEach>
-	</c:if>
-		
+		<c:if test="${!empty sessionScope.pseudoSession}"> <p>Création article : ${sessionScope.pseudoSession}</p> </c:if>
 	<form method="post" action="/ProjetENI_1_Encheres/ServletCreationArticles">
 		
 		<label for="nom_article"> Nom :</label> 
@@ -37,6 +30,20 @@
 		<label for="prix_initial"> Prix:</label> 
 		<input type="number"id="prix_initial" name="prix_initial"> 
 		
+		<label for="categorie">Catégorie:</label>
+
+		<select name="categorie" id="categorie">
+		    <option value="">--Choisir une catégorie--</option>
+		    <option value=1>Vêtement</option>
+		    <option value=2>Multimédia et Jeux-vidéos</option>
+		    <option value=3>Ameublement</option>
+		    <option value=4>Maison</option>
+		    <option value=5>Bricolage</option>
+		    <option value=6>Loisir créatif</option>
+		    <option value=7>Sport</option>
+		    <option value=8>Livres</option>
+		    <option value=9>Divers</option>
+		</select>
 			<input type="submit"> 
 		</form>
 

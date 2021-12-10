@@ -75,8 +75,8 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 			stmt.setInt(6, a.getPrix_vente());
 			
 			//TODO MODIFIER LES CHIFFRES EN DUR
-			stmt.setInt(7, 1);
-			stmt.setInt(8, 1);
+			stmt.setInt(7, a.getUtilisateur().getNo_utilisateur());
+			stmt.setInt(8, a.getCategorie().getNoCategorie());
 			
 			// Execution de la requete
 			stmt.executeUpdate();

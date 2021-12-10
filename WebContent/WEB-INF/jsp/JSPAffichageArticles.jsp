@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +9,20 @@
 </head>
 <body>
 
+	<c:choose>
+		<c:when test="${empty requestScope.erreur}">
+			<p>Hello ${sessionScope.utilisateur.getPseudo()}</p>
+			<p>Tu as ${sessionScope.utilisateur.getCredit()} points</p>
+			<a href="/ProjetENI_1_Encheres/ServletCreationArticles">Mettre en vente un article</a>
+			<a href="/ProjetENI_1_Encheres/ServletDeconnexion">deconnexion</a>
+		</c:when>
+		
+		<c:otherwise>
+			<p>${requestScope.erreur}</p>
+		</c:otherwise>
+		
+	</c:choose>	
+	
 	<h1>Catalogue des articles</h1>
 		<c:choose>
 			<c:when test="${!empty articlesListe}">

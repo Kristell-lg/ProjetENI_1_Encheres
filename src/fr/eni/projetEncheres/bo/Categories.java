@@ -14,7 +14,10 @@ public class Categories {
 	public Categories(String libelle) {
 		this.libelle = libelle;
 	}
-
+	
+	public Categories(int noCategorie) {
+		this.noCategorie = noCategorie;
+	}
 
 	public Categories(int noCategorie, String libelle) {
 		this.noCategorie = noCategorie;
