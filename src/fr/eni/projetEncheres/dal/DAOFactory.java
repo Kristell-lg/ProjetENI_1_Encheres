@@ -22,4 +22,9 @@ public abstract class DAOFactory {
 	{
 		return new EncheresDAOJdbcImpl();
 	}
+	
+	public static RetraitsDAO getRetraitsDAO()
+	{
+		return new RetraitsDAOJdbcImpl();
+	}
 }
