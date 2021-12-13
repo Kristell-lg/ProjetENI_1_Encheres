@@ -14,7 +14,7 @@
 <title>Accueil</title>
 </head>
 <body>
-<%@ include file="headerCO.html" %>
+<%@ include file="headerCo.html" %>
 
 <h3 style="text-align:center">La seclection</h3>
 
