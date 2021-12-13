@@ -56,6 +56,7 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 
 		try {
 			listeUtilisateursBDD = utilisateursManager.selectionner();
+			
 			if (listeUtilisateursBDD != null) {
 				for (Utilisateurs utilisateurs : listeUtilisateursBDD) {
 					//CHERCHER DANS LA BDD - si un pseudo correpond à celui entré par l'utilisateur
@@ -64,13 +65,7 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 						if (utilisateurs.getMot_de_passe().trim().equals(mot_de_passe)) {
 							logIn = true;	
 							id = utilisateurs.getNo_utilisateur();
-						} else {
-							request.setAttribute("erreur", "Pseudo ou Mot de Passe erroné");
-							request.setAttribute("pseudoSaisi", pseudo);
 						}
-					} else {
-						request.setAttribute("erreur", "Pseudo ou Mot de Passe erroné");
-						request.setAttribute("pseudoSaisi", pseudo);
 					}
 				}
 
@@ -108,6 +103,7 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 			
 		}
 		else {
+			request.setAttribute("erreur", "Pseudo ou Mot de Passe erroné");
 			erreurConnexion.forward(request, response);
 		}
 	        //TODO Réécriture du lien si le client n'accepte pas les cookies 						

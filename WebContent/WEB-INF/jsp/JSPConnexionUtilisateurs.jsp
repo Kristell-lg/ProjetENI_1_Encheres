@@ -21,8 +21,8 @@
 	
 	<c:choose>
 	
-		<c:when test="${!empty requestScope.msgErreurConnexion}">
-			<p id="msgErreurConnexionUtilisateur">${requestScope.msgErreurConnexion}</p>
+		<c:when test="${!empty requestScope.erreur}">
+			<p id="msgErreurConnexionUtilisateur">${requestScope.erreur}</p>
 			<label class="LabelFormulaireConnexion" for="pseudo">Pseudo : </label>
 			<input class="inputFormulaireConnexion" type=text name="pseudo" value="${requestScope.pseudoSaisi}" required>
 			<label class="LabelFormulaireConnexion" for="mot_de_passe">Mot de passe : </label>

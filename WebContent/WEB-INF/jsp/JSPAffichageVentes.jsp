@@ -27,8 +27,8 @@
 		<c:choose>
 			<c:when test="${!empty articlesListe}">
 			<!-- insérer la liste des artciles avec un prix de vente et l'id de l'utilisateur connecté  -->
-				<c:forEach var="article" items="${articlesListe}">
-					<a class="affichageArticle" href="/ProjetENI_1_Encheres/ServletConnexionUtilisateurs">${article.getNom_article()}</a>
+				<c:forEach var="article" items="${articlesListe}">			
+					<a class="affichageArticle" href="${pageContext.request.contextPath}/Connexion">${article.getNom_article()}</a>
 					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres()}</p>
 					<p class="affichageArticle">Prix de vente :${article.getPrix_initial()}</p>
 					<p class="affichageArticle">Vendeur :</p><a href="/ProjetENI_1_Encheres/ServletConnexionUtilisateurs">${article.getUtilisateur().getPseudo()}</a>
