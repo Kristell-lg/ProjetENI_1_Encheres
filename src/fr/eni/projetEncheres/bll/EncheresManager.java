@@ -32,4 +32,12 @@ public class EncheresManager {
 
 		return EncheresListe;
 	}
+	
+	public void ajoutEnchere(Encheres enchere) throws BLLException { //INSERT ENCHERE //
+		try {
+			encheresDAO.ajoutEnchere(enchere);
+		} catch (Exception e) {
+			throw new BLLException("Echec Insertion Enchere : ",e);
+		}
+	}
 }

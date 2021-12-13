@@ -11,4 +11,5 @@ import fr.eni.projetEncheres.bo.Encheres;
 
 public interface EncheresDAO {
 	public List<Encheres> selectionner() throws DALException;
+	public void ajoutEnchere(Encheres enchere) throws DALException;
 }
