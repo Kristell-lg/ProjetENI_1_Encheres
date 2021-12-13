@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.projetEncheres.dal.DALException;
 import fr.eni.projetEncheres.bo.Utilisateurs;
 /**
  * @author Kristell
@@ -23,6 +22,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	private static final String INSERTUTILISATEURS = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,rue,code_postal, ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,100,0)";
 	private static final String SELECT_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
 	private static final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
+	private static final String MODIFIERUTILISATEURS = "UPDATE UTILISATEURS SET pseudo = ?, prenom = ?, nom = ?,email = ?, telephone = ?,rue = ?, code_postal = ?, ville = ?,mot_de_passe=?"; 
 
 	//Selectionner l'ensemble des données - pour se connecter
 	public List<Utilisateurs> selectionner() {
@@ -86,7 +86,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 
 			} catch (SQLException e) {
 				//TODO GERER ERREUR UNICITE EMAIL & PSEUDO
-				System.out.println("Méthode ajoutUtilisateur - UtilisateursDAOJdbcImpl.java ");
+				System.out.println("Méthode modifierUtilisateur - UtilisateursDAOJdbcImpl.java ");
 				e.printStackTrace();
 			}
 			finally {
@@ -145,30 +145,29 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	        throw new Exception(e);
 	    }
 	}
+	
+	
 	//AJOUT DE L'OPTION MODIFIER //
-	public static int modifierUtilisateurs(String pseudo , String prenom , String nom, String mdp , String email , String tel , 
-			String rue , String ville , String codepostal) throws SQLException {
-      
-		String modifierUtilisateurs = "UPDATE bdd_utilisateurs Set pseudo = ?" +" prenom = ?"+" nom = ?"+" mdp= ?"+ 
-                 "email = ?"+" tel = ?"+"rue = ?"+" ville = ?"+" codepostal = ?"; 
-                
-		
+	public void modifierUtilisateur(Utilisateurs utilisateur) throws DALException {
+ 
         try (Connection cnx = ConnectionProvider.getConnection();
-        		PreparedStatement updateInformation= cnx.prepareStatement(modifierUtilisateurs);)
-        		
-           
+        		PreparedStatement pstmtUtilisateurs = cnx.prepareStatement(MODIFIERUTILISATEURS);)
         		{
-            updateInformation.setString(1, pseudo);
-            updateInformation.setString(2, prenom);
-            updateInformation.setString(3, nom);
-            updateInformation.setString(4, mdp);
-            updateInformation.setString(5, email); 
-            updateInformation.setString(6, tel);
-            updateInformation.setString(7, rue);
-            updateInformation.setString(8, ville);
-            updateInformation.setString(9, codepostal);
+        	pstmtUtilisateurs.setString(1, utilisateur.getPseudo());
+			pstmtUtilisateurs.setString(2, utilisateur.getNom());
+			pstmtUtilisateurs.setString(3, utilisateur.getPrenom());
+			pstmtUtilisateurs.setString(4, utilisateur.getEmail());
+			pstmtUtilisateurs.setString(5, utilisateur.getTelephone());
+			pstmtUtilisateurs.setString(6, utilisateur.getRue());
+			pstmtUtilisateurs.setString(7, utilisateur.getCode_postal());
+			pstmtUtilisateurs.setString(8, utilisateur.getVille());
+			pstmtUtilisateurs.setString(9, utilisateur.getMot_de_passe());
+			
+			pstmtUtilisateurs.executeUpdate();
 
-            return updateInformation.executeUpdate();
-        } 
-}
+		} catch (SQLException e) {
+			throw new DALException(e);
+		}
+	}
+
 }

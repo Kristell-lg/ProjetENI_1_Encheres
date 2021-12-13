@@ -3,14 +3,13 @@
  */
 package fr.eni.projetEncheres.bll;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import fr.eni.projetEncheres.bll.BLLException;
 import fr.eni.projetEncheres.bo.Utilisateurs;
+import fr.eni.projetEncheres.dal.DALException;
 import fr.eni.projetEncheres.dal.DAOFactory;
 import fr.eni.projetEncheres.dal.UtilisateursDAO;
 
@@ -71,10 +70,7 @@ public class UtilisateursManager {
 		//VERIFIER LA SAISIE
 		 UtilisateurValidation(utilisateur);
 
-		if (utilisateur.getPseudo()!=null && utilisateur.getNom()!=null && utilisateur.getPrenom()!=null && utilisateur.getEmail()!=null &&
-			utilisateur.getEmail().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$") && utilisateur.getTelephone().matches("^(0|\\+33)[1-9]([-. ]?[0-9]{2}){4}$") 
-			&& utilisateur.getRue()!=null && utilisateur.getCode_postal()!=null && utilisateur.getCode_postal().matches("\\d{2}[ ]?\\d{3}") && utilisateur.getVille()!=null && utilisateur.getMot_de_passe()!=null) {
-			System.out.println("ça match les formats je peux envoyer à la DAL");
+		if (utilisateur!=null) {
 			this.utilisateursDAO.ajoutUtilisateur(utilisateur);
 		}
 		else {
@@ -82,69 +78,22 @@ public class UtilisateursManager {
 		}
 	}
 	
+	//Supprimer un utilisateur
 	public void supprimerUtilisateur(Utilisateurs utilisateur) throws Exception{
 	    this.utilisateursDAO.supprimerUtilisateur(utilisateur); 
 	}
 	
+	
 	//Modification du profil de l'utilisateur
- 	public void modifierUtilisateur (Utilisateurs utilisateur) throws BLLException{
- 		boolean dataValide = true;
-
-		StringBuffer sb = new StringBuffer();
-
-		// Validation du Pseudo
-		
-		if (utilisateur.getPseudo() == null || utilisateur.getPseudo().trim().isEmpty()) {
-			sb.append("Le pseudo est obligatoire\n");
-			dataValide = false;
+ 	public void modifierUtilisateur (Utilisateurs utilisateur) throws BLLException, DALException{
+ 		UtilisateurValidation(utilisateur);
+ 		if (utilisateur!=null) {
+			this.utilisateursDAO.modifierUtilisateur(utilisateur);
 		}
-
-		// Validation du nom
-		
-		if (utilisateur.getNom() == null || utilisateur.getNom().trim().isEmpty()) {
-			sb.append("La nom est obligatoire\n");
-			dataValide = false;
+		else {
+			System.out.println("Au moins un des champ requis est vide ou l'email/le téléphone ne respecte pas le format");
 		}
-		
-		// Validation du prénom
-		
-		if (utilisateur.getPrenom() == null || utilisateur.getPrenom().trim().isEmpty()) {
-			sb.append("La prenom est obligatoire\n");
-			dataValide = false;
-		}
-
-
-		// Validation email
-		
-		  Pattern validEmail =
-		  Pattern.compile("^[A-Z0-9._-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
-		  Pattern.CASE_INSENSITIVE); Matcher matcherEmail =
-		  validEmail.matcher(utilisateur.getEmail()); if (!matcherEmail.find()) {
-		  sb.append("L'email n'est pas au format attendu !\n"); dataValide = false; }
-		 
-
-		// Validation du telephone
-		
-		if (utilisateur.getTelephone() == null || utilisateur.getTelephone().trim().isEmpty()) {
-			sb.append("Le téléphone est obligatoire\n");
-			dataValide = false;
-		}
-		
-		// Validation Adresse @TO DO : REGEX SUR LE CODE POSTAL ?
-		if (utilisateur.getRue() == null || utilisateur.getRue().trim().isEmpty()) {
-			sb.append("La rue est obligatoire\n");
-			dataValide = false;
-		}
-
-		if (utilisateur.getCode_postal() == null || utilisateur.getCode_postal().trim().isEmpty()) {
-			sb.append("Le code postal est obligatoire\n");
-			dataValide = false;
-		}
-
-		if (utilisateur.getVille() == null || utilisateur.getVille().trim().isEmpty()) {
-			sb.append("La ville est obligatoire\n");
-			dataValide = false;
-		}
+ 		
  	}
 	
 		// vérification des données Utilisateur

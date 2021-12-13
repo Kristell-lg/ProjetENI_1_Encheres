@@ -42,14 +42,11 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 			throws ServletException, IOException {
 		
 		RequestDispatcher erreurConnexion = request.getRequestDispatcher("/WEB-INF/jsp/JSPConnexionUtilisateurs.jsp");
-		
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!TODO mettre la JSP accueil connecté!!!!!!!!!!!!!!
 		RequestDispatcher succesConnexion = request.getRequestDispatcher("/WEB-INF/jsp/JSPAffichageArticles.jsp");
 		
 		String pseudo = request.getParameter("pseudo");
 		String mot_de_passe = request.getParameter("mot_de_passe");
-		
-		String pseudoSession =null;
+	
 		int id = 0;
 		Boolean logIn = false;
 
@@ -65,7 +62,6 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 						//CHERCHER DANS LA BDD - si le mot de passe correspond à ce pseudo
 						if (utilisateurs.getMot_de_passe().trim().equals(mot_de_passe)) {
 							logIn = true;	
-							pseudoSession = utilisateurs.getPseudo().trim();
 							id = utilisateurs.getNo_utilisateur();
 						} else {
 							request.setAttribute("msgErreurConnexion", "Pseudo ou Mot de Passe erroné");

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.projetEncheres.bll.UtilisateursManager;
 import fr.eni.projetEncheres.bo.Utilisateurs;
@@ -23,25 +24,7 @@ public class ServletAfficherProfil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TEST
-		UtilisateursManager utilisateursManager = new UtilisateursManager();
-		
-		Utilisateurs u = null;
-		int id = 1;
-		u = utilisateursManager.selectUtilisateur(id);
-		
-		// mise en place des variable
-		request.setAttribute("pseudo",(String)u.getPseudo());
-		request.setAttribute("prenom",(String)u.getPrenom());
-		request.setAttribute("nom",(String)u.getNom());
-		request.setAttribute("email",(String)u.getEmail());
-		request.setAttribute("tel",(String)u.getTelephone());
-		request.setAttribute("rue",(String)u.getRue());
-		request.setAttribute("ville",(String)u.getVille());
-		request.setAttribute("cp",(String)u.getCode_postal());
-		
-		
-		// F-TEST //
+		//LE GET POUR LE DETAIL DU PROFIL CONNECTE
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPAfficherProfil.jsp");
 		rd.forward(request, response);
 	}
@@ -51,6 +34,7 @@ public class ServletAfficherProfil extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//LE POST POUR LE DETAIL DES PROFILS EXTERIEURS
 		UtilisateursManager utilisateursManager = new UtilisateursManager();
 		
 		Utilisateurs u = null;
