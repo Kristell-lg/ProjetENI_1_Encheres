@@ -16,6 +16,7 @@
     
 	</head>
 	<body>
+	<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 		<form method="post" action="${pageContext.request.contextPath}/Desinscription">
 		<c:if test="${!empty requestScope.msgMdpCorrespondance}">
 			<p style="color:red">${requestScope.msgMdpCorrespondance}</p>
@@ -41,5 +42,6 @@
 				<input type="reset" value="Annuler"/>
 			</div>
 		</form>
+		<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
 	</body>
 </html>

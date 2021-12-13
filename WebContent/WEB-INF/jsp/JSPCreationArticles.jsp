@@ -9,6 +9,7 @@
 <title>Creation Article</title>
 </head>
 <body>
+<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 	<h1>Gestion Article</h1>
 	<h2>Ajout Article</h2>
 	
@@ -41,6 +42,7 @@
 		</select>
 			<input type="submit"> 
 		</form>
+		<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
 
 </body>
 </html>

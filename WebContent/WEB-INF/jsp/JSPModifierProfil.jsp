@@ -15,6 +15,7 @@
     
 	</head>
 	<body>
+	<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 		<form method="post" action="${pageContext.request.contextPath}/ModifierProfil">
 		<c:if test="${!empty requestScope.erreur}">
 			<p style="color:red">${requestScope.erreur}</p>
@@ -91,6 +92,6 @@
 			<form action="${pageContext.request.contextPath}/Desinscription">
 				<input type="submit" value="Supprimer le compte"/>
 			</form>
-		
+		<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
 	</body>
 </html>

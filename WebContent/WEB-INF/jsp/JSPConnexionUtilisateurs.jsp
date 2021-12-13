@@ -38,7 +38,7 @@
 			<input class="inputFormulaireConnexion" type="submit" value="Se Connecter">
 		</c:otherwise>
 	</c:choose>
-		
+		<p>Si vous n'êtes pas encore inscrit c'est par ici ►<button><a href="${pageContext.request.contextPath}/ServletInscriptionutilisateur">S'inscrire</a></button>
 	</form>
 	
 	<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>

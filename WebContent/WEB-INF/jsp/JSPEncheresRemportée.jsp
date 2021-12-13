@@ -9,6 +9,7 @@
 <title>Bravo ! Vous avez remporté une enchères</title>
 </head>
 <body>
+<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 	<h1>Vous avez remporté la vente</h1>
 
 
@@ -29,6 +30,6 @@
 
 	<a class="affichageArticle" href="/ProjetENI_1_Encheres/ServletAfficherProfil">retour</a>
 
-
+<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
 </body>
 </html>

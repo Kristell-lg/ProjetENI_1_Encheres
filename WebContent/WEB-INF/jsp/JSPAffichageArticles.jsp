@@ -8,7 +8,7 @@
 <title>Catalogue Articles</title>
 </head>
 <body>
-
+<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 	<c:choose>
 		<c:when test="${empty requestScope.erreur}">
 			<p class="affichageArticle">Hello ${sessionScope.utilisateur.getPseudo()}</p>
@@ -41,6 +41,6 @@
 				</p>
 			</c:otherwise>
 		</c:choose>	
-
+<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
 </body>
 </html>

@@ -9,6 +9,7 @@
 <title>Détail Article</title>
 </head>
 <body>
+<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 	<c:choose>
 		<c:when test="${empty requestScope.erreur}">
 			<form action="/ProjetENI_1_Encheres/ServletAfficherArticle" method="post">
@@ -39,6 +40,6 @@
 		
 	</c:choose>
 	
-	
+	<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
 </body>
 </html>

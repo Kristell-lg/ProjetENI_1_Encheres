@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="css/profil.css"> <!-- Applique le nouveau design -->
 	</head>
 	<body>
-	
+	<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 	<c:choose>
 	
 		<c:when test="${!empty sessionScope.utilisateur}">
@@ -101,6 +101,6 @@
 			</fieldset>
 		</c:otherwise>
 	</c:choose>
-		
+		<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
 	</body>
 </html>
