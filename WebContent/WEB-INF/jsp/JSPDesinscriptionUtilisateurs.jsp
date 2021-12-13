@@ -16,12 +16,14 @@
     
 	</head>
 	<body>
-		<form method="post" action="${pageContext.request.contextPath}/ServletDesinscriptionUtilisateur">
+		<form method="post" action="${pageContext.request.contextPath}/Desinscription">
 		<c:if test="${!empty requestScope.msgMdpCorrespondance}">
 			<p style="color:red">${requestScope.msgMdpCorrespondance}</p>
 		</c:if>
 			<fieldset class="desinscription">
 				<div class="desinscription-champs">
+				<p>Veuillez saisir votre pseudo et mot de passe pour effectuer la suppression de votre compte</p>
+				<p>Cette suppression sera définitive</p>
 					<div>
 						<label for="pseudo">*Pseudo : </label>
 						<input type="text" name="pseudo" id="pseudo" maxlength="30" required/>
@@ -35,7 +37,7 @@
 			</fieldset>
 			<!-- Bouton -->
 			<div class="desinscription-Bouton">
-				<input type="submit" value="se désinscrir"/>
+				<input type="submit" value="Se désinscrire"/>
 				<input type="reset" value="Annuler"/>
 			</div>
 		</form>

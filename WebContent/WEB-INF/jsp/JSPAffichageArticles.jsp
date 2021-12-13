@@ -15,7 +15,7 @@
 			<p class="affichageArticle">Tu as ${sessionScope.utilisateur.getCredit()} points</p>
 			<a class="affichageArticle" href="/ProjetENI_1_Encheres/ServletCreationArticles">Mettre en vente un article</a>
 			<a class="affichageArticle" href="/ProjetENI_1_Encheres/Profil">Mon Profil</a>
-			<a class="affichageArticle" href="/ProjetENI_1_Encheres/ServletDeconnexion">deconnexion</a>
+			<a class="affichageArticle" href="/ProjetENI_1_Encheres/ServletDeconnexion">Déconnexion</a>
 		</c:when>
 		
 		<c:otherwise>
@@ -28,10 +28,10 @@
 		<c:choose>
 			<c:when test="${!empty articlesListe}">
 				<c:forEach var="article" items="${articlesListe}">
-					<a class="affichageArticle" href="/ProjetENI_1_Encheres/">${article.getNom_article()}</a>
+					<a class="affichageArticle" href="/${pageContext.request.contextPath}/Connexion">${article.getNom_article()}</a>
 					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres()}</p>
 					<p class="affichageArticle">Prix de vente :${article.getPrix_initial()}</p>
-					<p class="affichageArticle">Vendeur :</p><a href="/ProjetENI_1_Encheres/ServletConnexionUtilisateurs">${article.getUtilisateur().getPseudo()}</a>
+					<p class="affichageArticle">Vendeur :</p><a href="${pageContext.request.contextPath}/Connexion">${article.getUtilisateur().getPseudo()}</a>
 					<p class="affichageArticle">-----------------------------------------------</p>
 				</c:forEach>
 			</c:when>

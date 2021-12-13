@@ -21,7 +21,7 @@ import fr.eni.projetEncheres.bo.Utilisateurs;
 /**
  * Servlet implementation class ServletDesinscriptionUtilisateur
  */
-@WebServlet("/ServletDesinscriptionUtilisateur")
+@WebServlet("/Desinscription")
 public class ServletDesinscriptionUtilisateur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -41,9 +41,11 @@ public class ServletDesinscriptionUtilisateur extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher erreurConnexion = request.getRequestDispatcher("/WEB-INF/jsp/JSPDesinscriptionUtilisateurs.jsp");
+		RequestDispatcher erreurSuppression = request.getRequestDispatcher("/WEB-INF/jsp/JSPDesinscriptionUtilisateurs.jsp");
+		
 		// intégrer JSP accueil
-		RequestDispatcher succesConnexion = request.getRequestDispatcher("/WEB-INF/jsp/.jsp");
+		RequestDispatcher succesSuppression = request.getRequestDispatcher("/Accueil");
+		
 		Boolean logIn = false;
 		String pseudo = request.getParameter("pseudo");
 		String mot_de_passe = request.getParameter("mot_de_passe");
@@ -65,6 +67,7 @@ public class ServletDesinscriptionUtilisateur extends HttpServlet {
 						} else {
 							request.setAttribute("msgErreurConnexion", "Pseudo ou Mot de Passe erroné");
 							request.setAttribute("pseudoSaisi", pseudo);
+							succesSuppression.forward(request, response);
 						}
 					}
 
@@ -73,7 +76,7 @@ public class ServletDesinscriptionUtilisateur extends HttpServlet {
 			}
 		} catch (Exception e) {
 			request.setAttribute("msgErreurConnexion", "Erreur dans le chargement des données");
-			erreurConnexion.forward(request, response);
+			erreurSuppression.forward(request, response);
 			System.out.println("ServletUtilisateur");
 			e.printStackTrace();
 		}

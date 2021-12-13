@@ -15,7 +15,7 @@
     
 	</head>
 	<body>
-		<form method="post" action="${pageContext.request.contextPath}/ServletModifierUtilisateurTest">
+		<form method="post" action="${pageContext.request.contextPath}/ModifierProfil">
 		<c:if test="${!empty requestScope.erreur}">
 			<p style="color:red">${requestScope.erreur}</p>
 		</c:if>
@@ -27,15 +27,15 @@
 				<div class="inscription-champs">
 					<div>
 						<label for="pseudo">Pseudo : </label>
-						<input type="text" name="pseudo" id="pseudo" value="${sessionScope.utilisateur.getPseudo()}" maxlength="30" required/>
+						<input type="text" name="pseudo" id="pseudo" value="${sessionScope.utilisateur.getPseudo()}" maxlength="30" />
 					</div>
 					<div>		
 						<label for="prenom">Prénom : </label>
-						<input type="text" name="prenom" id="prenom"  value="${sessionScope.utilisateur.getPrenom()}" maxlength="30" required/>
+						<input type="text" name="prenom" id="prenom"  value="${sessionScope.utilisateur.getPrenom()}" maxlength="30" />
 					</div>
 					<div>	
 						<label for="nom">Nom : </label>
-						<input type="text" name="nom" id="nom" value="${sessionScope.utilisateur.getNom()}" maxlength="30" required/>
+						<input type="text" name="nom" id="nom" value="${sessionScope.utilisateur.getNom()}" maxlength="30" />
 					</div>
 					<div>
 						<label for="mdp">Mot de passe actuel : </label>
@@ -44,18 +44,18 @@
 					</div>
 					<div>
 						<label for="mdp">Nouveau Mot de passe : </label>
-						<input type="password" name="mdp" id="mdp"maxlength="30" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required/>
+						<input type="password" name="mdp" id="mdp"maxlength="30" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" />
 						<p style="color:grey;font-size: 0.7em;" class="formatMdp">Au moins 8 caractères avec une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial</p>	
 					</div>
 					<div>			
 						<label for="mdpVerif">Confirmation Mot de passe: </label>
-						<input type="password" name="mdpVerif" id="mdpVerif" maxlength="30" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required/>
+						<input type="password" name="mdpVerif" id="mdpVerif" maxlength="30" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" />
 					</div>
 				</div>
 				<div class="inscription-champs">
 					<div>
 						<label for="email">Email : </label>
-						<input type="email" pattern="+@+." name="email" id="email" value="${sessionScope.utilisateur.getEmail()}" maxlength="20" required/>
+						<input type="email" pattern="+@+." name="email" id="email" value="${sessionScope.utilisateur.getEmail()}" maxlength="20" />
 					</div>
 					<div>
 						<label for="tel">Téléphone : </label>
@@ -63,15 +63,15 @@
 					</div>
 					<div>
 						<label for="rue">*Rue : </label>
-						<input type="text" name="rue" id="rue" value="${sessionScope.utilisateur.getRue()}" maxlength="30" required/>
+						<input type="text" name="rue" id="rue" value="${sessionScope.utilisateur.getRue()}" maxlength="30" />
 					</div>
 					<div>
 						<label for="ville">*Ville : </label>
-						<input type="text" name="ville" id="ville" value="${sessionScope.utilisateur.getVille()}" maxlength="30" required/>
+						<input type="text" name="ville" id="ville" value="${sessionScope.utilisateur.getVille()}" maxlength="30" />
 					</div>
 					<div>	
 						<label for="codepostal">*Code Postal : </label>
-						<input type="text" name="codepostal" id="codepostal" value="${sessionScope.utilisateur.getCode_postal()}" maxlength="5" required/>
+						<input type="text" name="codepostal" id="codepostal" value="${sessionScope.utilisateur.getCode_postal()}" maxlength="5" />
 					</div>
 				</div>
 			</fieldset>
@@ -85,8 +85,12 @@
 			<!-- Bouton -->
 			<div class="inscription-Bouton">
 				<input type="submit" value="Enregistrer"/>
-				<input type="button" value="Supprimer mon compte"/>
 			</div>
 		</form>
+		
+			<form action="${pageContext.request.contextPath}/Desinscription">
+				<input type="submit" value="Supprimer le compte"/>
+			</form>
+		
 	</body>
 </html>

@@ -20,7 +20,7 @@ import fr.eni.projetEncheres.bo.Utilisateurs;
 /**
  * @author Kristell Servlet implementation class ServletConnexionUtilisateurs
  */
-@WebServlet("/ServletConnexionUtilisateurs")
+@WebServlet("/Connexion")
 public class ServletConnexionUtilisateurs extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

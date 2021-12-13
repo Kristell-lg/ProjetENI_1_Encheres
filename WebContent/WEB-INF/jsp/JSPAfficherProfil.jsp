@@ -54,7 +54,7 @@
 						<input type="text" name="cerdit" id="credit" value="${sessionScope.utilisateur.getCredit()}" disabled/>
 					</div>
 					
-			<form action="/ProjetENI_1_Encheres/ModifierProfil" method="get">
+			<form action="${pageContext.request.contextPath}/ModifierProfil" method="get">
 					<input type="submit" value="Modifier" />
 			</form>
 				</fieldset>

@@ -22,7 +22,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	private static final String INSERTUTILISATEURS = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,rue,code_postal, ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,100,0)";
 	private static final String SELECT_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
 	private static final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
-	private static final String MODIFIERUTILISATEURS = "UPDATE UTILISATEURS SET pseudo = ?, prenom = ?, nom = ?,email = ?, telephone = ?,rue = ?, code_postal = ?, ville = ?,mot_de_passe=?"; 
+	private static final String MODIFIERUTILISATEURS = "UPDATE UTILISATEURS SET pseudo = ?, prenom = ?, nom = ?,email = ?, telephone = ?,rue = ?, code_postal = ?, ville = ?,mot_de_passe=? WHERE no_utilisateur= ?"; 
 
 	//Selectionner l'ensemble des données - pour se connecter
 	public List<Utilisateurs> selectionner() {
@@ -148,7 +148,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	
 	
 	//AJOUT DE L'OPTION MODIFIER //
-	public void modifierUtilisateur(Utilisateurs utilisateur) throws DALException {
+	public void modifierUtilisateur(Utilisateurs utilisateur, int id) throws DALException {
  
         try (Connection cnx = ConnectionProvider.getConnection();
         		PreparedStatement pstmtUtilisateurs = cnx.prepareStatement(MODIFIERUTILISATEURS);)
@@ -162,6 +162,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 			pstmtUtilisateurs.setString(7, utilisateur.getCode_postal());
 			pstmtUtilisateurs.setString(8, utilisateur.getVille());
 			pstmtUtilisateurs.setString(9, utilisateur.getMot_de_passe());
+			pstmtUtilisateurs.setInt(10, id);
 			
 			pstmtUtilisateurs.executeUpdate();
 

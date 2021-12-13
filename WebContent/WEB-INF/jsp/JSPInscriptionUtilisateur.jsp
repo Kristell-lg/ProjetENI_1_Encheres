@@ -16,7 +16,9 @@
     
 	</head>
 	<body>
-		<form method="post" action="${pageContext.request.contextPath}/ServletInscriptionutilisateur">
+	<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
+	
+		<form method="post" action="${pageContext.request.contextPath}/Inscription">
 		<c:if test="${!empty requestScope.msgMdpCorrespondance}">
 			<p style="color:red">${requestScope.msgMdpCorrespondance}</p>
 		</c:if>
@@ -73,5 +75,8 @@
 				<input type="reset" value="Annuler"/>
 			</div>
 		</form>
+		
+		<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
+		
 	</body>
 </html>

@@ -85,10 +85,10 @@ public class UtilisateursManager {
 	
 	
 	//Modification du profil de l'utilisateur
- 	public void modifierUtilisateur (Utilisateurs utilisateur) throws BLLException, DALException{
- 		UtilisateurValidation(utilisateur);
- 		if (utilisateur!=null) {
-			this.utilisateursDAO.modifierUtilisateur(utilisateur);
+ 	public void modifierUtilisateur(Utilisateurs utilisateur, int id) throws BLLException, DALException{
+ 		//TODO VALIDATION
+ 		if (utilisateur!=null && id!=0) {
+ 			this.utilisateursDAO.modifierUtilisateur(utilisateur,id);
 		}
 		else {
 			System.out.println("Au moins un des champ requis est vide ou l'email/le téléphone ne respecte pas le format");

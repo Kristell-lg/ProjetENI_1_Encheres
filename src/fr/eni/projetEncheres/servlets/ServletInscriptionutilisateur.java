@@ -15,7 +15,7 @@ import fr.eni.projetEncheres.bo.Utilisateurs;
 /**@author Kristell Servlet implementation class ServletConnexionUtilisateurs
  * Servlet implementation class ServletInscriptionutilisateur
  */
-@WebServlet("/ServletInscriptionutilisateur")
+@WebServlet("/Inscription")
 public class ServletInscriptionutilisateur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
       
@@ -59,7 +59,6 @@ public class ServletInscriptionutilisateur extends HttpServlet {
 			catch(Exception e) {
 				request.setAttribute("msgMdpCorrespondance", "Erreur - l'inscription n'a pas pu aboutir");
 				erreurInscription.forward(request, response);
-				System.out.println("ServletUtilisateurInscription");
 				e.printStackTrace();
 			}
 		} else {

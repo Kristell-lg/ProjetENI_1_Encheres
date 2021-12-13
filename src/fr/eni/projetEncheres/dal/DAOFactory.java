@@ -5,7 +5,7 @@ public abstract class DAOFactory {
 	 * @author Kristell
 	 * @modif Clément
 	 * @update Luka CHOUVILLE
-	 * DAO Factory
+	 * DAO Factor
 	 *
 	 */
 	public static UtilisateursDAO getUtilisateursDAO()

@@ -54,6 +54,7 @@ public class Utilisateurs {
 		this.credit = credit;
 	}
 	
+	
 
 
 	//Méthodes GETTERS & SETTERS pour l'ensemble des variables

@@ -17,7 +17,7 @@
 <body>
 <%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 	<h1 id="titreConnexion">Connexion</h1>
-	<form action="${pageContext.request.contextPath}/ServletConnexionUtilisateurs" method="post">
+	<form action="${pageContext.request.contextPath}/Connexion" method="post">
 	
 	<c:choose>
 	
@@ -37,7 +37,6 @@
 			<input class="inputFormulaireConnexion" type="password" name="mot_de_passe" required>
 			<input class="inputFormulaireConnexion" type="submit" value="Se Connecter">
 		</c:otherwise>
-		
 	</c:choose>
 		
 	</form>

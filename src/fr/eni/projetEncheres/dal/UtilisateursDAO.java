@@ -14,5 +14,5 @@ public interface UtilisateursDAO {
 	public void ajoutUtilisateur(Utilisateurs utilisateur);
 	public Utilisateurs selectUtilisateur(int no_utilisateur) throws DALException;
 	public void supprimerUtilisateur(Utilisateurs utilisateur) throws Exception;
-	public void modifierUtilisateur(Utilisateurs utilisateur)throws DALException;
+	public void modifierUtilisateur(Utilisateurs utilisateur, int id)throws DALException;
 }
