@@ -53,7 +53,7 @@
 					</div>
 					<div>
 						<label for="tel">Téléphone : </label>
-						<input type="tel" name="tel" id="tel" maxlength="15"/>
+						<input type="tel" name="tel" id="tel" maxlength="10" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required/>
 					</div>
 					<div>
 						<label for="rue">*Rue : </label>
