@@ -38,7 +38,7 @@
 					</div>
 					<div>
 						<label for="mdp">*Mot de passe : </label>
-						<input type="password" name="mdp" id="mdp"maxlength="30" pattern="^((\+)33|0)[1-9](\d{2}){4}$" required/>
+						<input type="password" name="mdp" id="mdp"maxlength="30" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required/>
 						<p style="color:grey;font-size: 0.7em;" class="formatMdp">Au moins 8 caractères avec une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial</p>	
 					</div>
 					<div>			
@@ -53,7 +53,7 @@
 					</div>
 					<div>
 						<label for="tel">Téléphone : </label>
-						<input type="tel" name="tel" id="tel" maxlength="10" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required/>
+						<input type="tel" name="tel" id="tel" maxlength="10" pattern="^((\+)33|0)[1-9](\d{2}){4}$" required/>
 					</div>
 					<div>
 						<label for="rue">*Rue : </label>
