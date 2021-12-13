@@ -65,11 +65,11 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 							logIn = true;	
 							id = utilisateurs.getNo_utilisateur();
 						} else {
-							request.setAttribute("msgErreurConnexion", "Pseudo ou Mot de Passe erroné");
+							request.setAttribute("erreur", "Pseudo ou Mot de Passe erroné");
 							request.setAttribute("pseudoSaisi", pseudo);
 						}
 					} else {
-						request.setAttribute("msgErreurConnexion", "Pseudo ou Mot de Passe erroné");
+						request.setAttribute("erreur", "Pseudo ou Mot de Passe erroné");
 						request.setAttribute("pseudoSaisi", pseudo);
 					}
 				}
@@ -78,13 +78,12 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 				System.out.println("Liste utilisateur nulle!");
 			}
 		} catch (Exception e) {
-			request.setAttribute("msgErreurConnexion", "Erreur dans le chargement des données");
-			System.out.println("henlo3");
+			request.setAttribute("erreur", "Erreur dans le chargement des données");
 			erreurConnexion.forward(request, response);
 			e.printStackTrace();
 		}
 		
-		//DETERMINER SI LA RECHERCHE DANS BDD A MATCH LA SAISIE UTILISATEUR OU PAS
+		//Envoyer les informations de catalogue vers la JSP
 		if (logIn) {
 			
 			ArticlesManager articlesManager = new ArticlesManager();
@@ -112,8 +111,6 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 			erreurConnexion.forward(request, response);
 		}
 	        //TODO Réécriture du lien si le client n'accepte pas les cookies 						
-	   
-
 
 	}
 

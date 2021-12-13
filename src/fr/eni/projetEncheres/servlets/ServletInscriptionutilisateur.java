@@ -34,7 +34,7 @@ public class ServletInscriptionutilisateur extends HttpServlet {
 		RequestDispatcher erreurInscription = request.getRequestDispatcher("/WEB-INF/jsp/JSPInscriptionUtilisateur.jsp");
 		
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!TODO mettre la JSP accueil connecté!!!!!!!!!!!!!
-		RequestDispatcher succesInscription = request.getRequestDispatcher("/WEB-INF/jsp/JSPConnexionUtilisateurs.jsp");
+		RequestDispatcher succesInscription = request.getRequestDispatcher("/Connexion");
 		
 		UtilisateursManager utilisateursManager = new UtilisateursManager();
 		
@@ -55,6 +55,7 @@ public class ServletInscriptionutilisateur extends HttpServlet {
 			try {
 				Utilisateurs utilisateur = new Utilisateurs(pseudo, nom,prenom,email,tel,rue,codepostal,ville,mdp,0);
 				utilisateursManager.ajoutUtilisateur(utilisateur);
+				succesInscription.forward(request, response);
 			}
 			catch(Exception e) {
 				request.setAttribute("msgMdpCorrespondance", "Erreur - l'inscription n'a pas pu aboutir");

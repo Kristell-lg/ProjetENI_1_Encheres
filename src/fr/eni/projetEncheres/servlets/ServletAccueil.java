@@ -1,6 +1,7 @@
 package fr.eni.projetEncheres.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import fr.eni.projetEncheres.bll.ArticlesManager;
+import fr.eni.projetEncheres.bo.Articles;
 
 /**
  * Servlet implementation class ServletAccueil
@@ -22,8 +26,17 @@ public class ServletAccueil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/pageAccueil/pageAccueil.jsp");
-		rd.forward(request, response);
+		RequestDispatcher succesConnexion = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil/pageAccueil.jsp");
+		
+		try {
+			ArticlesManager articlesManager = new ArticlesManager();
+			List<Articles> articlesListe = articlesManager.selectionner();
+			request.setAttribute("articlesListe", articlesListe);	
+			succesConnexion.forward(request, response);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 
 	}
 

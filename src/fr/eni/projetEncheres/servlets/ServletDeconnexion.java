@@ -31,7 +31,7 @@ public class ServletDeconnexion extends HttpServlet {
         session.invalidate();
 
         // TODO Redirection vers l'accueil déconnecté
-        response.sendRedirect("/ProjetENI_1_Encheres/ServletConnexionUtilisateurs");
+        response.sendRedirect("/ProjetENI_1_Encheres/Connexion");
 	}
 
 	/**

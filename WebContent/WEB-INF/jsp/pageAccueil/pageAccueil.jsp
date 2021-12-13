@@ -21,14 +21,14 @@
 <%@ include file="header.html" %>
 
 <h3 style="text-align:center">Liste des enchères</h3>
-
+	
 <c:choose>
 			<c:when test="${!empty articlesListe}">
 				<c:forEach var="article" items="${articlesListe}">
-					<a class="affichageArticle" href="/ProjetENI_1_Encheres/">${article.getNom_article()}</a>
+					<a class="affichageArticle" href="${pageContext.request.contextPath}/Connexion">${article.getNom_article()}</a>
 					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres()}</p>
 					<p class="affichageArticle">Prix de vente :${article.getPrix_initial()}</p>
-					<p class="affichageArticle">Vendeur :</p><a href="/ProjetENI_1_Encheres/ServletConnexionUtilisateurs">${article.getUtilisateur().getPseudo()}</a>
+					<p class="affichageArticle">Vendeur :</p><a href="${pageContext.request.contextPath}/Connexion">${article.getUtilisateur().getPseudo()}</a>
 					<p class="affichageArticle">-----------------------------------------------</p>
 				</c:forEach>
 			</c:when>
@@ -39,36 +39,6 @@
 			</c:otherwise>
 		</c:choose>	
 
-
-<!-- A completer -->
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 <%@ include file="footer.html" %>
 </body>
