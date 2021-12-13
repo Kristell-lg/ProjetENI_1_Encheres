@@ -94,10 +94,6 @@
 					<label for="codepostal">Code Postal : </label>
 					<input type="text" name="codepostal" id="codepostal" value="<%=request.getAttribute("cp") %>" disabled/>
 				</div>
-				
-	<!-- 		<c:if test=""> -->
-					<input type="button" value="Modifier" />
-	<!-- 		</c:if> -->
 			</fieldset>
 		</c:otherwise>
 	</c:choose>

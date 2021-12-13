@@ -12,7 +12,7 @@
 <%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 	<c:choose>
 		<c:when test="${empty requestScope.erreur}">
-			<form action="/ProjetENI_1_Encheres/ServletAfficherArticle" method="post">
+			<form action="${pageContext.request.contextPath}/AfficherArticle" method="post">
 			<input type="number" name="idArticle" min="0">
 			<input type="submit">
 			</form>

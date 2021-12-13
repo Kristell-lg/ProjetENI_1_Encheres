@@ -12,10 +12,7 @@ CREATE TABLE UTILISATEURS (
     ville            VARCHAR(30) NOT NULL,
     mot_de_passe     VARCHAR(30) NOT NULL,
     credit           INTEGER NOT NULL,
-    administrateur   bit NOT NULL,
-	--UNIQUE pour le pseudo & l'email
-	CONSTRAINT UQ_PSEUDO UNIQUE (pseudo),
-	CONSTRAINT UQ_EMAIL UNIQUE (email)
+    administrateur   bit NOT NULL
 )
 
 --CHANGEMENT nom de contrainte pour être plus précise

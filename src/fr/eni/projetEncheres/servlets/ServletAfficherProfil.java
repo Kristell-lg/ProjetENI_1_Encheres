@@ -36,26 +36,27 @@ public class ServletAfficherProfil extends HttpServlet {
 		
 		//LE POST POUR LE DETAIL DES PROFILS EXTERIEURS
 		UtilisateursManager utilisateursManager = new UtilisateursManager();
+		try {
+			String pseudo= request.getParameter("idProfil");
+			System.out.println(pseudo);
+			//Utilisateurs u = utilisateursManager.selectUtilisateur(id);
+			/*
+			// mise en place des variable
+			request.setAttribute("pseudo",(String)u.getPseudo());
+			request.setAttribute("prenom",(String)u.getPrenom());
+			request.setAttribute("nom",(String)u.getNom());
+			request.setAttribute("email",(String)u.getEmail());
+			request.setAttribute("tel",(String)u.getTelephone());
+			request.setAttribute("rue",(String)u.getRue());
+			request.setAttribute("ville",(String)u.getVille());
+			request.setAttribute("cp",(String)u.getCode_postal());*/
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPAfficherProfil.jsp");
+			rd.forward(request, response);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		Utilisateurs u = null;
-		int id = 1;
-		
-		
-		id= Integer.parseInt(request.getParameter("no_utilisateur"));
-		u = utilisateursManager.selectUtilisateur(id);
-		
-		
-		// mise en place des variable
-		request.setAttribute("pseudo",(String)u.getPseudo());
-		request.setAttribute("prenom",(String)u.getPrenom());
-		request.setAttribute("nom",(String)u.getNom());
-		request.setAttribute("email",(String)u.getEmail());
-		request.setAttribute("tel",(String)u.getTelephone());
-		request.setAttribute("rue",(String)u.getRue());
-		request.setAttribute("ville",(String)u.getVille());
-		request.setAttribute("cp",(String)u.getCode_postal());
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPAfficherProfil.jsp");
-		rd.forward(request, response);
 	}
 }

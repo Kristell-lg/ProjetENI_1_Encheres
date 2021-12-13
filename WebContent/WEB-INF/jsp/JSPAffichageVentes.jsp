@@ -27,7 +27,12 @@
 		<c:choose>
 			<c:when test="${!empty articlesListe}">
 			<!-- insérer la liste des artciles avec un prix de vente et l'id de l'utilisateur connecté  -->
-				<c:forEach var="article" items="${articlesListe}">			
+				<c:forEach var="article" items="${articlesListe}">
+				
+				<form action="${pageContext.request.contextPath}/Profil" method="post">
+					<input type="hidden" name="idProfil" value="${article.getNo_article()}">
+					<button type="submit">${article.getNom_article()}</button>
+				</form>			
 					<a class="affichageArticle" href="${pageContext.request.contextPath}/Connexion">${article.getNom_article()}</a>
 					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres()}</p>
 					<p class="affichageArticle">Prix de vente :${article.getPrix_initial()}</p>

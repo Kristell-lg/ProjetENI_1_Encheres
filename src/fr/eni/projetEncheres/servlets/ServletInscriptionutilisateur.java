@@ -1,6 +1,8 @@
 package fr.eni.projetEncheres.servlets;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -53,9 +55,19 @@ public class ServletInscriptionutilisateur extends HttpServlet {
 		//Vérification que le mot de passe et la confirmation de mot de passe correspond sinon renvoie au formulaire inscription
 		if (mdp.equals(mdpVerif)) {
 			try {
-				Utilisateurs utilisateur = new Utilisateurs(pseudo, nom,prenom,email,tel,rue,codepostal,ville,mdp,0);
-				utilisateursManager.ajoutUtilisateur(utilisateur);
-				succesInscription.forward(request, response);
+				//UNICITE EMAIL & PSEUDO
+				List<Utilisateurs> listeUtilisateurs =   utilisateursManager.selectionner();
+				for (Utilisateurs utilisateurs : listeUtilisateurs) {
+					if (utilisateurs.getPseudo().trim().equalsIgnoreCase(pseudo) |utilisateurs.getEmail().trim().equalsIgnoreCase(pseudo)) {
+						throw new Exception();
+					}
+					else {
+						Utilisateurs utilisateur = new Utilisateurs(pseudo, nom,prenom,email,tel,rue,codepostal,ville,mdp,0);
+						utilisateursManager.ajoutUtilisateur(utilisateur);
+						succesInscription.forward(request, response);
+					}
+				}		
+				
 			}
 			catch(Exception e) {
 				request.setAttribute("msgMdpCorrespondance", "Erreur - l'inscription n'a pas pu aboutir");

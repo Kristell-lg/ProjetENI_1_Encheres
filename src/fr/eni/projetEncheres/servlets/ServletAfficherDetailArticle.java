@@ -18,7 +18,7 @@ import fr.eni.projetEncheres.bo.Articles;
 /**
  * Servlet implementation class ServletAfficherArticle
  */
-@WebServlet("/ServletAfficherArticle")
+@WebServlet("/AfficherArticle")
 public class ServletAfficherDetailArticle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

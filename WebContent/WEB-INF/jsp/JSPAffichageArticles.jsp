@@ -28,10 +28,18 @@
 		<c:choose>
 			<c:when test="${!empty articlesListe}">
 				<c:forEach var="article" items="${articlesListe}">
-					<a class="affichageArticle" href="/${pageContext.request.contextPath}/Connexion">${article.getNom_article()}</a>
+					<form action="${pageContext.request.contextPath}/AfficherArticle" method="post">
+						<input type="hidden" name="idArticle" value="${article.getNo_article()}">
+						<button type="submit">${article.getNom_article()}</button>
+					</form>	
 					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres()}</p>
 					<p class="affichageArticle">Prix de vente :${article.getPrix_initial()}</p>
-					<p class="affichageArticle">Vendeur :</p><a href="${pageContext.request.contextPath}/Connexion">${article.getUtilisateur().getPseudo()}</a>
+					<p class="affichageArticle">Vendeur :</p>
+					<p>${article.getUtilisateur().getNo_utilisateur()}</p>
+					<form action="${pageContext.request.contextPath}/Profil" method="post">
+						<input type="hidden" name="idProfil" value="${article.getUtilisateur().getPseudo()}">
+						<button type="submit">${article.getUtilisateur().getPseudo()}</button>
+					</form>	
 					<p class="affichageArticle">-----------------------------------------------</p>
 				</c:forEach>
 			</c:when>
