@@ -18,7 +18,8 @@ import fr.eni.projetEncheres.bo.Articles;
 import fr.eni.projetEncheres.bo.Utilisateurs;
 
 /**
- * @author Kristell Servlet implementation class ServletConnexionUtilisateurs
+ * @author Kristell
+	Servlet implementation class ServletConnexionUtilisateurs
  */
 @WebServlet("/Connexion")
 public class ServletConnexionUtilisateurs extends HttpServlet {
