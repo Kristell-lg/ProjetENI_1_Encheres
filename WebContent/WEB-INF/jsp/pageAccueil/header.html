@@ -10,11 +10,11 @@
 <div id="header">
       <!-- Bouton search a css-->
 
-      <form class="form-wrapper cf">
+     <!--  <form class="form-wrapper cf">
         <input type="text" placeholder="Je recherche" required>
         <button type="submit">Rechercher</button>
 
-      </form>
+      </form> -->
       <div id="bouton">
       
       <button> <a href="${pageContext.request.contextPath}/Connexion">Connexion</a></button>
@@ -24,9 +24,11 @@
 
 
       <button id="refresh" onclick="document.location.reload(false)"> Rafraichir </button>
-
-      <input type="button" value="Retour" onclick="history.go(-1)">
+<div id="input">
+      <button id="retour" onclick="history.go(-1)">Retour</button>
+       </div>
       <button><a href="${pageContext.request.contextPath}/Accueil">Acceuil</a></button>
+     
 </div>
 
   </header>

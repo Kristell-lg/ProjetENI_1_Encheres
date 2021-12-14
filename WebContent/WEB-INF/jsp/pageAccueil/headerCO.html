@@ -2,19 +2,19 @@
 <header>
 <!--Remplacement du H1 par l'image du site + lien vers l'accueil -->
     
-    <div id="header">
+    
     <a href="${pageContext.request.contextPath}/ServletAccueil"><img src="css/images/logofonce.png"alt="Les Objets Sont Nos Amis Marketplace (image)"></a>
 
 
     <div id="header">
       <!-- Bouton search a css-->
-
+<!--  
       <form class="form-wrapper cf">
         <input type="text" placeholder="Je recherche" required>
         <button type="submit">Rechercher</button>
 
-      </form>
-      <div id="bouton">
+      </form>-->
+      
       <button><a href="${pageContext.request.contextPath}/ServletAfficherProfil">Mon Compte</a></button>
       
       <!-- Lien de la déconnexion a mettre -->
@@ -25,9 +25,9 @@
 
 
       <button id="refresh" onclick="document.location.reload(false)"> Rafraichir </button>
-
-      <input type="button" value="Retour" onclick="history.go(-1)">
-
+<div id="input">
+      <input class="input" type="button" value="Retour" onclick="history.go(-1)">
+</div>
 </div>
 
   </header>
