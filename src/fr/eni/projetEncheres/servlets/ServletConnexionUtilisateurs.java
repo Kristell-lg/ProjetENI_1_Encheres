@@ -90,9 +90,7 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 			try {
 				List<Articles> articlesListe = articlesManager.selectionner();
 				request.setAttribute("articlesListe", articlesListe);
-				
-				List<Encheres> enchereListe = encheresManeger.selectionner_id(id); 
-				request.setAttribute("enchereListe", enchereListe);
+			
 				
 				
 				HttpSession session = request.getSession();
