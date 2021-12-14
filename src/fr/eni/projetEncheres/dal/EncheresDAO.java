@@ -1,7 +1,6 @@
 package fr.eni.projetEncheres.dal;
 
 import java.util.List;
-
 import fr.eni.projetEncheres.bo.Encheres;
 
 /**

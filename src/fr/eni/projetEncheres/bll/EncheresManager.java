@@ -17,6 +17,7 @@ public class EncheresManager {
 	
 	//CONSTRUCTEUR
 	public EncheresManager() {
+		System.out.println("2");
 			this.encheresDAO = DAOFactory.getEncheresDAO();
 	}
 	//METHODE

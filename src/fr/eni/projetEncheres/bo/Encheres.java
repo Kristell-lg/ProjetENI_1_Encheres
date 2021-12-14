@@ -14,7 +14,7 @@ public class Encheres {
 	private int no_utilisateur;
 	private int no_article;
 	private LocalDate date_enchere;
-	private int montant;
+	private int montant_enchere;
 	
 	// Constructeur
 	
@@ -22,7 +22,7 @@ public class Encheres {
 		this.no_utilisateur = pNo_utilisateur;
 		this.no_article = pNo_article;
 		this.date_enchere = pDate_enchere;
-		this.montant = pMontant;
+		this.montant_enchere = pMontant;
 	}
 	// Accesseur
 	
@@ -36,8 +36,8 @@ public class Encheres {
 	public LocalDate getDate_enchere() {
 		return this.date_enchere;
 	}
-	public int getMontant() {
-		return this.montant;
+	public int getMontant_enchere() {
+		return this.montant_enchere;
 	}
 	
 	// Methode
@@ -47,7 +47,7 @@ public class Encheres {
 		sb.append("no_utilisateur : ").append(this.no_utilisateur);
 		sb.append("no_article : ").append(this.no_article);
 		sb.append("date_enchere : ").append(this.date_enchere);
-		sb.append("montant : ").append(this.montant);
+		sb.append("montant : ").append(this.montant_enchere);
 		return sb.toString();
 	}
 }
