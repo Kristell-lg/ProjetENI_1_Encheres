@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,8 +14,8 @@
 <%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 	<c:choose>
 		<c:when test="${empty requestScope.erreur}">
-			<p class="affichageArticle">Hello ${sessionScope.utilisateur.getPseudo()}</p>
-			<p class="affichageArticle">Tu as ${sessionScope.utilisateur.getCredit()} points</p>
+			<p class="affichageArticle">Bonjour ${sessionScope.utilisateur.getPseudo()} !</p>
+			<p class="affichageArticle">Crédit : ${sessionScope.utilisateur.getCredit()} points</p>
 			<a class="affichageArticle" href="/ProjetENI_1_Encheres/ServletCreationArticles">Mettre en vente un article</a>
 			<a class="affichageArticle" href="/ProjetENI_1_Encheres/Profil">Mon Profil</a>
 			<a class="affichageArticle" href="/ProjetENI_1_Encheres/Deconnexion">Déconnexion</a>
@@ -72,7 +74,7 @@
 						<button type="submit">${article.getNom_article()}</button>
 					</form>	
 					
-					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres()}</p>
+					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))}</p>
 					<p class="affichageArticle">Prix de vente :${article.getPrix_initial()}</p>
 					<p class="affichageArticle">Vendeur :</p>
 					

@@ -7,6 +7,8 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
+<%@ page import="java.time.format.DateTimeFormatter" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +54,7 @@
 				
 				<c:forEach var="article" items="${articlesListe}">
 					<a class="affichageArticle" href="${pageContext.request.contextPath}/Connexion">${article.getNom_article()}</a>
-					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres()}</p>
+					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))}</p>
 					<p class="affichageArticle">Prix de vente :${article.getPrix_initial()}</p>
 					<p class="affichageArticle">Vendeur :</p><a href="${pageContext.request.contextPath}/Connexion">${article.getUtilisateur().getPseudo()}</a>
 					<p class="affichageArticle">-----------------------------------------------</p>
