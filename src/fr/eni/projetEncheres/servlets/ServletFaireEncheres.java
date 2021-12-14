@@ -48,7 +48,8 @@ public class ServletFaireEncheres extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-
+		session.setMaxInactiveInterval(300);
+		
 		ArticlesManager articlesManager = new ArticlesManager();
 		Utilisateurs utilisateur = null;
 		int articleId = 0;

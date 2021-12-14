@@ -88,6 +88,7 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 				request.setAttribute("articlesListe", articlesListe);
 				
 				HttpSession session = request.getSession();
+				session.setMaxInactiveInterval(300);
 				
 				if (session!=null) {
 					UtilisateursManager manager = new UtilisateursManager();

@@ -43,6 +43,8 @@ public class ServletModifierUtilisateur extends HttpServlet {
 
 		// TEMPORAIRE
 		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(300);
+		
 		Utilisateurs utilisateurConnecte = (Utilisateurs) session.getAttribute("utilisateur");
 		boolean Ok = true;
 
