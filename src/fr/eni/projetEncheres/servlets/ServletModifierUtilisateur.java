@@ -70,8 +70,9 @@ public class ServletModifierUtilisateur extends HttpServlet {
 		
 		if (Ok) {
 		if (request.getParameter("exmdp").equals(utilisateurConnecte.getMot_de_passe())) {
-			if (request.getParameter("mdp")==null) {
+			if (request.getParameter("mdp").isEmpty()) {
 				try {
+					System.out.println("sans mdp");
 					Utilisateurs utilisateur = new Utilisateurs(request.getParameter("pseudo"),
 							request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("email"),
 							request.getParameter("tel"), request.getParameter("rue"),
@@ -93,14 +94,13 @@ public class ServletModifierUtilisateur extends HttpServlet {
 			} else {
 				if (request.getParameter("mdp").equals(request.getParameter("mdpVerif"))) {
 					if (!request.getParameter("mdp").equals(request.getParameter("exmdp"))) {
-						System.out.println("sans mdp");
 						try {
+							System.out.println("avec mdp");
 							Utilisateurs utilisateur = new Utilisateurs(request.getParameter("pseudo"),
 									request.getParameter("nom"), request.getParameter("prenom"),
 									request.getParameter("email"), request.getParameter("tel"),
 									request.getParameter("rue"), request.getParameter("codepostal"),
 									request.getParameter("ville"), request.getParameter("mdp"), 0);
-							System.out.println(utilisateur);
 							int id = utilisateurConnecte.getNo_utilisateur();
 
 							utilisateursManager.modifierUtilisateur(utilisateur, id);
@@ -127,6 +127,7 @@ public class ServletModifierUtilisateur extends HttpServlet {
 		} else {
 			// Le mdp ne correspond pas à l'ancien mdp
 			request.setAttribute("erreur", "Mot de passe erroné !");
+			erreurConnexion.forward(request, response);
 		}
 
 	}
