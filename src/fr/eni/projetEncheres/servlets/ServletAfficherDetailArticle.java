@@ -40,7 +40,6 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 
 		
 		ArticlesManager articlesManager = new ArticlesManager();
-		
 		int idArticle = Integer.valueOf(request.getParameter("idArticle"));
 		
 		if (idArticle!=0) {

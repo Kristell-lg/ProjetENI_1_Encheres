@@ -51,44 +51,40 @@ public class ServletFaireEncheres extends HttpServlet {
 
 		ArticlesManager articlesManager = new ArticlesManager();
 		Utilisateurs utilisateur = null;
+		int articleId = 0;
 		Articles article = null;
 
 		if (session != null) {
 			utilisateur = (Utilisateurs) session.getAttribute("utilisateur");
-			article = (Articles) request.getAttribute("article");
+			articleId = Integer.valueOf(request.getParameter("articleId"));
 
 			try {
-				article = articlesManager.selectArticle(article.getNo_article());
+				article = articlesManager.selectArticle(articleId);
 				request.setAttribute("article", article);
 
 				int no_utilisateur = utilisateur.getNo_utilisateur();
-				int no_article = article.getNo_article();
+				int no_article = articleId;
 				LocalDate date_enchere = LocalDate.now();
-				;
-				int montant_enchere = Integer.valueOf(request.getParameter("ma_proposition"));
+				
+				int montant_enchere = Integer.valueOf(request.getParameter("enchere"));
 
 				EncheresManager EncheresManager = new EncheresManager();
 
-				try {
-					Encheres enchere = new Encheres(no_utilisateur, no_article, date_enchere, montant_enchere);
+				Encheres enchere = new Encheres(no_utilisateur, no_article, date_enchere, montant_enchere);
+				System.out.println(enchere);
 
-					EncheresManager.ajoutEnchere(enchere);
+				EncheresManager.ajoutEnchere(enchere);
 
-					if (utilisateur.getCredit() > enchere.getMontant_enchere()) {
+				if (utilisateur.getCredit() > enchere.getMontant_enchere()) {
 
-						request.setAttribute("retour", "enchère envoyée");
-						RequestDispatcher rd = request.getRequestDispatcher("/AfficherArticle");
-						rd.forward(request, response);
-					}
-				} catch (Exception e) {
-					System.err.println(e.getMessage());
-					request.setAttribute("retour", "échec de l'enchere");
+					request.setAttribute("retour", "enchère envoyée");
+					//request.setAttribute("idArticle", no_article);
+					RequestDispatcher rd = request.getRequestDispatcher("/AccueilLogIn");
+					rd.forward(request, response);
 
 				}
-
-				request.setAttribute("retour", "Solde insuffisant");
-
 			} catch (Exception e) {
+				e.printStackTrace();
 				System.err.println(e.getMessage());
 			}
 		} else {

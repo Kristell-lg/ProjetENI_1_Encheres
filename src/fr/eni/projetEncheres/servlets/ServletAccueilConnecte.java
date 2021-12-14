@@ -39,7 +39,6 @@ public class ServletAccueilConnecte extends HttpServlet {
 			UtilisateursManager manager = new UtilisateursManager();
 			Utilisateurs utilisateur = (Utilisateurs) session.getAttribute("utilisateur");
 			session.setAttribute("utilisateur", utilisateur); 
-			succesConnexion.forward(request, response);
 		}
 		
 		// SELECTION DE TOUS LES ARTICLES

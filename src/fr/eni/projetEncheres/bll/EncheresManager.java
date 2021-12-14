@@ -36,6 +36,9 @@ public class EncheresManager {
 	
 	public void ajoutEnchere(Encheres enchere) throws BLLException { //INSERT ENCHERE //
 		try {
+			
+			System.out.println("BLL "+enchere);
+			
 			encheresDAO.ajoutEnchere(enchere);
 		} catch (Exception e) {
 			throw new BLLException("Echec Insertion Enchere : ",e);
