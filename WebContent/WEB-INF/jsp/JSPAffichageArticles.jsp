@@ -15,7 +15,7 @@
 			<p class="affichageArticle">Tu as ${sessionScope.utilisateur.getCredit()} points</p>
 			<a class="affichageArticle" href="/ProjetENI_1_Encheres/ServletCreationArticles">Mettre en vente un article</a>
 			<a class="affichageArticle" href="/ProjetENI_1_Encheres/Profil">Mon Profil</a>
-			<a class="affichageArticle" href="/ProjetENI_1_Encheres/ServletDeconnexion">Déconnexion</a>
+			<a class="affichageArticle" href="/ProjetENI_1_Encheres/Deconnexion">Déconnexion</a>
 		</c:when>
 		
 		<c:otherwise>

@@ -19,22 +19,22 @@
 	<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 	
 		<form method="post" action="${pageContext.request.contextPath}/Inscription">
-		<c:if test="${!empty requestScope.msgMdpCorrespondance}">
-			<p style="color:red">${requestScope.msgMdpCorrespondance}</p>
+		<c:if test="${!empty requestScope.erreur}">
+			<p style="color:red">${requestScope.erreur}</p>
 		</c:if>
 			<fieldset class="inscription">
 				<div class="inscription-champs">
 					<div>
 						<label for="pseudo">*Pseudo : </label>
-						<input type="text" name="pseudo" id="pseudo" maxlength="30" required/>
+						<input type="text" name="pseudo" id="pseudo" value="${requestScope.pseudo}" maxlength="30" required/>
 					</div>
 					<div>		
 						<label for="prenom">*Prénom : </label>
-						<input type="text" name="prenom" id="prenom" maxlength="30" required/>
+						<input type="text" name="prenom" id="prenom" maxlength="30" value="${requestScope.prenom}" required/>
 					</div>
 					<div>	
 						<label for="nom">*Nom : </label>
-						<input type="text" name="nom" id="nom" maxlength="30" required/>
+						<input type="text" name="nom" id="nom" maxlength="30" value="${requestScope.nom}" required/>
 					</div>
 					<div>
 						<label for="mdp">*Mot de passe : </label>
@@ -49,23 +49,23 @@
 				<div class="inscription-champs">
 					<div>
 						<label for="email">*Email : </label>
-						<input type="email" pattern="+@+." name="email" id="email" maxlength="20" required/>
+						<input type="email" pattern="+@+." name="email" id="email" value="${requestScope.email}"maxlength="20" required/>
 					</div>
 					<div>
 						<label for="tel">Téléphone : </label>
-						<input type="tel" name="tel" id="tel" maxlength="10" pattern="^((\+)33|0)[1-9](\d{2}){4}$" required/>
+						<input type="tel" name="tel" id="tel" maxlength="10" pattern="^((\+)33|0)[1-9](\d{2}){4}$" value="${requestScope.tel}"required/>
 					</div>
 					<div>
 						<label for="rue">*Rue : </label>
-						<input type="text" name="rue" id="rue"maxlength="30" required/>
+						<input type="text" name="rue" id="rue"maxlength="30" value="${requestScope.rue}" required/>
 					</div>
 					<div>
 						<label for="ville">*Ville : </label>
-						<input type="text" name="ville" id="ville"maxlength="30" required/>
+						<input type="text" name="ville" id="ville"maxlength="30" value="${requestScope.ville}" required/>
 					</div>
 					<div>	
 						<label for="codepostal">*Code Postal : </label>
-						<input type="text" name="codepostal" id="codepostal" maxlength="5" required/>
+						<input type="text" name="codepostal" id="codepostal" pattern="^(([0-8][0-9])|(9[0-5]))[0-9]{3}$" value="${requestScope.codepostal}" maxlength="5" required/>
 					</div>
 				</div>
 			</fieldset>
