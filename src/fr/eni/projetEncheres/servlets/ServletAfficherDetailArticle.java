@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import fr.eni.projetEncheres.bll.ArticlesManager;
+import fr.eni.projetEncheres.bll.EncheresManager;
 import fr.eni.projetEncheres.bll.RetraitsManager;
 import fr.eni.projetEncheres.bo.Articles;
+import fr.eni.projetEncheres.bo.Encheres;
 import fr.eni.projetEncheres.bo.Retraits;
 
 
@@ -43,12 +45,17 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 		
 		ArticlesManager articlesManager = new ArticlesManager();
 		RetraitsManager retraitsManager = new RetraitsManager();
+		EncheresManager encheresManeger = new EncheresManager();
+
 		
 		int idArticle = Integer.valueOf(request.getParameter("idArticle"));
+		int idEnchere = Integer.valueOf(request.getParameter("idEnchere"));
 		if (idArticle!=0) {
 			try {
 				Articles article = articlesManager.selectArticle(idArticle);
 				Retraits retrait = retraitsManager.selectionnerArticleID(article);
+				Encheres encheres = (Encheres) encheresManeger.selectionner_id(idEnchere);
+				
 				request.setAttribute("article", article);
 				request.setAttribute("retrait", retrait);
 				

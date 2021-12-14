@@ -23,13 +23,15 @@
 				<h3>${requestScope.article.getNom_article()}</h3>
 				<p>Description : ${requestScope.article.getDescription()}</p>
 				<p>Catégorie : ${requestScope.article.getCategorie().getLibelle()}</p>
-				<p>Meilleur Offre : A REMPLIR AVEC ENCHERES</p>
+				
+				<p>Meilleur Offre :${requestScope.enchere.getMontant_enchere()}</p>
+				
 				<p>Mise à prix : ${requestScope.article.getPrix_initial()}</p>
 				<p>Retrait : ${requestScope.retrait.Afficher()}</p>
 				<p>Vendeur : ${requestScope.article.getUtilisateur().getPseudo()}</p>
 				
 				<form action="${pageContext.request.contextPath}/FaireEncheres" method="post">
-					<input type="hidden" name="articleId" value="${requestScope.article.getNo_article()}">					
+					<input type="hidden" name="articleId" value="${requestScope.article.getUtilisateur(no_utilisateur)}">					
 					<input type="number" name="enchere" min="0">
 					<input type="submit" value="Enchérir">
 				</form>

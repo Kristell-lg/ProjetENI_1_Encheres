@@ -10,17 +10,20 @@ import fr.eni.projetEncheres.dal.DAOFactory;
 import fr.eni.projetEncheres.dal.EncheresDAO;
 
 public class EncheresManager {
-	
+
 	// ATTRIBUE
-	
+
 	private EncheresDAO encheresDAO;
-	
-	//CONSTRUCTEUR
-	public EncheresManager() {
-		System.out.println("2");
-			this.encheresDAO = DAOFactory.getEncheresDAO();
+
+	// CONSTRUCTEUR
+	public EncheresManager()
+
+	{
+		this.encheresDAO = DAOFactory.getEncheresDAO();
+
 	}
-	//METHODE
+
+	// METHODE
 	public List<Encheres> selectionner() throws BLLException { // SELECT_TOUT ENCHERE //
 
 		List<Encheres> EncheresListe = new ArrayList<Encheres>();
@@ -28,20 +31,31 @@ public class EncheresManager {
 		try {
 			EncheresListe = encheresDAO.selectionner();
 		} catch (Exception e) {
-			throw new BLLException("Echec Recuperation Enchere : ",e);
+			throw new BLLException("Echec Recuperation Enchere 1  : ", e);
 		}
 
 		return EncheresListe;
 	}
-	
-	public void ajoutEnchere(Encheres enchere) throws BLLException { //INSERT ENCHERE //
+
+	public void ajoutEnchere(Encheres enchere) throws BLLException { // INSERT ENCHERE //
 		try {
-			
-			System.out.println("BLL "+enchere);
-			
+
 			encheresDAO.ajoutEnchere(enchere);
 		} catch (Exception e) {
-			throw new BLLException("Echec Insertion Enchere : ",e);
+			throw new BLLException("Echec Insertion Enchere : ", e);
 		}
+	}
+
+	public List<Encheres> selectionner_id(int no_utilisateur) throws BLLException { // SELECT_ENCHERES_id//
+
+		List<Encheres> EncheresListe = new ArrayList<Encheres>();
+
+		try {
+			EncheresListe = encheresDAO.selectionner_id(no_utilisateur);
+		} catch (Exception e) {
+			throw new BLLException("Echec Recuperation Enchere 2  : ", e);
+		}
+
+		return EncheresListe;
 	}
 }

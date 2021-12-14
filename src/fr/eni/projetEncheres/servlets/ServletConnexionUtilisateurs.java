@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.projetEncheres.bll.ArticlesManager;
+import fr.eni.projetEncheres.bll.EncheresManager;
 import fr.eni.projetEncheres.bll.UtilisateursManager;
 import fr.eni.projetEncheres.bo.Articles;
+import fr.eni.projetEncheres.bo.Encheres;
 import fr.eni.projetEncheres.bo.Utilisateurs;
 
 /**
@@ -65,6 +67,7 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 						if (utilisateurs.getMot_de_passe().trim().equals(mot_de_passe)) {
 							logIn = true;	
 							id = utilisateurs.getNo_utilisateur();
+							
 						}
 					}
 				}
@@ -82,10 +85,15 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 		if (logIn) {
 			
 			ArticlesManager articlesManager = new ArticlesManager();
+			EncheresManager encheresManeger = new EncheresManager();
 			
 			try {
 				List<Articles> articlesListe = articlesManager.selectionner();
 				request.setAttribute("articlesListe", articlesListe);
+				
+				List<Encheres> enchereListe = encheresManeger.selectionner_id(id); 
+				request.setAttribute("enchereListe", enchereListe);
+				
 				
 				HttpSession session = request.getSession();
 				session.setMaxInactiveInterval(300);
@@ -93,6 +101,7 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 				if (session!=null) {
 					UtilisateursManager manager = new UtilisateursManager();
 					Utilisateurs utilisateur = manager.selectUtilisateur(id);
+					
 					session.setAttribute("utilisateur", utilisateur); 
 					succesConnexion.forward(request, response);
 				}
@@ -108,7 +117,7 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 			erreurConnexion.forward(request, response);
 		}
 	        //TODO Réécriture du lien si le client n'accepte pas les cookies 						
-
+		
 	}
 
 }
