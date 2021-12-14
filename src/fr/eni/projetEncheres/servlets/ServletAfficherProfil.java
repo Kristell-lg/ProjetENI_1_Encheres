@@ -37,20 +37,11 @@ public class ServletAfficherProfil extends HttpServlet {
 		//LE POST POUR LE DETAIL DES PROFILS EXTERIEURS
 		UtilisateursManager utilisateursManager = new UtilisateursManager();
 		try {
-			String pseudo= request.getParameter("idProfil");
-			System.out.println(pseudo);
-			//Utilisateurs u = utilisateursManager.selectUtilisateur(id);
-			/*
-			// mise en place des variable
-			request.setAttribute("pseudo",(String)u.getPseudo());
-			request.setAttribute("prenom",(String)u.getPrenom());
-			request.setAttribute("nom",(String)u.getNom());
-			request.setAttribute("email",(String)u.getEmail());
-			request.setAttribute("tel",(String)u.getTelephone());
-			request.setAttribute("rue",(String)u.getRue());
-			request.setAttribute("ville",(String)u.getVille());
-			request.setAttribute("cp",(String)u.getCode_postal());*/
+			int id = Integer.valueOf(request.getParameter("idProfil"));
+			Utilisateurs utilisateur = utilisateursManager.selectUtilisateur(id);
 			
+			// mise en place des variable
+			request.setAttribute("utilisateur",utilisateur);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPAfficherProfil.jsp");
 			rd.forward(request, response);
 			

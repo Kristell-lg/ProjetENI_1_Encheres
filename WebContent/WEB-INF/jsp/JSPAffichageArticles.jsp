@@ -75,10 +75,9 @@
 					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres()}</p>
 					<p class="affichageArticle">Prix de vente :${article.getPrix_initial()}</p>
 					<p class="affichageArticle">Vendeur :</p>
-					<p>${article.getUtilisateur().getNo_utilisateur()}</p>
 					
 					<form action="${pageContext.request.contextPath}/Profil" method="post">
-						<input type="hidden" name="idProfil" value="${article.getUtilisateur().getPseudo()}">
+						<input type="hidden" name="idProfil" value="${article.getUtilisateur().getNo_utilisateur()}">
 						<button type="submit">${article.getUtilisateur().getPseudo()}</button>
 					</form>	
 					

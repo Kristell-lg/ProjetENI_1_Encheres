@@ -32,6 +32,7 @@ public class ServletAccueil extends HttpServlet {
 		try {
 			ArticlesManager articlesManager = new ArticlesManager();
 			List<Articles> articlesListe = articlesManager.selectionner();
+			System.out.println(articlesListe);
 			request.setAttribute("articlesListe", articlesListe);
 			succesConnexion.forward(request, response);
 		} catch (Exception e) {
