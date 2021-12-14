@@ -12,88 +12,100 @@ import java.util.List;
 import fr.eni.projetEncheres.bo.Encheres;
 
 /**
- * @author Luka CHOUVILLE
- * EncheresDAO JDBCImpl
- */
+*@authorLukaCHOUVILLE
+*EncheresDAOJDBCImpl
+*/
+
 public class EncheresDAOJdbcImpl implements EncheresDAO{
 
-    private static final String SELECT_TOUT = "SELECT * FROM ENCHERES";
-    private static final String INSERTENCHERE = "INSERT INTO ENCHERES(no_utilisateur,no_article,date_enchere,montant_enchere) VALUES (?,?,?,?)";
+private static final String SELECT_TOUT="SELECT*FROMENCHERES";
+private static final String INSERTENCHERE="INSERTINTOENCHERES(no_utilisateur,no_article,date_enchere,montant_enchere)VALUES(?,?,?,?)";
+private static final String SELECT_ENCHERES_id="SELECT*FROMENCHERESwhereno_utilisateur=?";
 
-    //Selectionner l'ensemble des encheres
-        public List<Encheres> selectionner() throws DALException {
+//Selectionnerl'ensembledesencheres
+public List<Encheres>selectionner()throws DALException{
 
-            List<Encheres> EncheresListe = new ArrayList<Encheres>();
-            Statement statementEncheres = null;
-            ResultSet resultEncheres = null;
+List<Encheres>EncheresListe=new ArrayList<Encheres>();
+Statement statementEncheres=null;
+ResultSet resultEncheres=null;
 
-            try (Connection cnx = ConnectionProvider.getConnection()) {
-                statementEncheres = cnx.createStatement();
-                resultEncheres = statementEncheres.executeQuery(SELECT_TOUT);
+try(Connection cnx=ConnectionProvider.getConnection()){
+statementEncheres=cnx.createStatement();
+resultEncheres=statementEncheres.executeQuery(SELECT_TOUT);
 
-                while (resultEncheres.next()) {
-                    Encheres enchere = new Encheres(resultEncheres.getInt("no_utilisateur"),resultEncheres.getInt("no_article"),
-                            LocalDate.parse(resultEncheres.getString("date_enchere")),resultEncheres.getInt("montant_enchere"));
-                    EncheresListe.add(enchere);
-                }
-            } catch (SQLException e) {
-                throw new DALException("Echec Connection/Requete : ",e);
-            }
-            finally {
+while(resultEncheres.next()){
+Encheres enchere=new Encheres(resultEncheres.getInt("no_utilisateur"),resultEncheres.getInt("no_article"),
+LocalDate.parse(resultEncheres.getString("date_enchere")),resultEncheres.getInt("montant_enchere"));
+EncheresListe.add(enchere);
+}
+}catch(SQLException e){
+throw new DALException("Echec Connection/Requete:",e);
+}
+finally{
 
-                try {
-                    statementEncheres.close();
-                    resultEncheres.close();
-                } catch (SQLException e) {
-                    throw new DALException("Echec Fermeture Connection : ",e);
-                }
-            }
+try{
+statementEncheres.close();
+resultEncheres.close();
+}catch(SQLException e){
+throw new DALException("Echec Fermeture Connection:",e);
+}
+}
 
-            return EncheresListe;
-        }
+return EncheresListe;
+}
 
-        // Inserer un Enchere
-		/*
-		 * public void ajoutEnchere(Encheres enchere) throws DALException{
-		 * PreparedStatement pstmtUtilisateurs = null;
-		 * 
-		 * try (Connection cnx = ConnectionProvider.getConnection()) { pstmtUtilisateurs
-		 * = cnx.prepareStatement(INSERTENCHERE);
-		 * 
-		 * pstmtUtilisateurs.setInt(1, enchere.getNo_utilisateur());
-		 * pstmtUtilisateurs.setInt(2, enchere.getNo_article());
-		 * pstmtUtilisateurs.setDate(3,
-		 * java.sql.Date.valueOf(enchere.getDate_enchere()));
-		 * pstmtUtilisateurs.setInt(4, enchere.getMontant_enchere());
-		 * 
-		 * pstmtUtilisateurs.executeUpdate();
-		 * 
-		 * 
-		 * } catch (SQLException e) { throw new
-		 * DALException("Echec Connection/Requete : ",e); } finally { try {
-		 * pstmtUtilisateurs.close(); } catch (SQLException e) { throw new
-		 * DALException("Echec Fermeture Connection : ",e); } }
-		 * 
-		 * }
-		 */
-        
-        public void ajoutEnchere (Encheres enchere) throws DALException {
-        	System.out.println("4");
-        	
-        	try (Connection c = ConnectionProvider.getConnection();
-    				PreparedStatement stmt = c.prepareStatement(INSERTENCHERE)) {
-        		
-        		
-    			stmt.setInt(1, enchere.getNo_utilisateur());
-    			stmt.setInt(2, enchere.getNo_article());
-        		stmt.setDate(3, java.sql.Date.valueOf(enchere.getDate_enchere()));
-    			stmt.setInt(4, enchere.getMontant_enchere());
-    			
-    			stmt.executeUpdate();
-        	
-        } catch (SQLException e) {
-			// TODO Auto-generated catch block
+
+public void ajoutEnchere(Encheres enchere)throws DALException{
+	System.out.println("4");
+	
+	try(Connection c=ConnectionProvider.getConnection();
+				PreparedStatement stmt=c.prepareStatement(INSERTENCHERE)){
+		
+		
+			stmt.setInt(1,enchere.getNo_utilisateur());
+			stmt.setInt(2,enchere.getNo_article());
+		stmt.setDate(3,java.sql.Date.valueOf(enchere.getDate_enchere()));
+			stmt.setInt(4,enchere.getMontant_enchere());
+			
+			stmt.executeUpdate();
+	
+}catch(SQLException e){
+			//TODOAuto-generatedcatchblock
 			e.printStackTrace();
 		}
+	
+	
+	
+}
+
+public List<Encheres>selectionner_id(int no_utilisateur)throws DALException{
+
+List<Encheres>EncheresListe=new ArrayList<Encheres>();
+Statement statementEncheres=null;
+ResultSet resultEncheres=null;
+
+try(Connection cnx=ConnectionProvider.getConnection()){
+statementEncheres=cnx.createStatement();
+resultEncheres=statementEncheres.executeQuery(SELECT_ENCHERES_id);
+
+while(resultEncheres.next()){
+Encheres enchere=new Encheres(resultEncheres.getInt("no_utilisateur"),resultEncheres.getInt("no_article"),
+LocalDate.parse(resultEncheres.getString("date_enchere")),resultEncheres.getInt("montant_enchere"));
+EncheresListe.add(enchere);
+}
+}catch(SQLException e){
+throw new DALException("EchecConnection/Requete:",e);
+}
+finally{
+
+try{
+statementEncheres.close();
+resultEncheres.close();
+}catch(SQLException e){
+throw new DALException("EchecFermetureConnection:",e);
+}
+}
+
+return EncheresListe;
 }
 }
