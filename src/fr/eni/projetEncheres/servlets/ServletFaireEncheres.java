@@ -25,7 +25,7 @@ import fr.eni.projetEncheres.dal.UtilisateursDAO;
 /**
  * Servlet implementation class ServletFaireEncheres
  */
-@WebServlet("/ServletFaireEncheres")
+@WebServlet("/FaireEncheres")
 public class ServletFaireEncheres extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -46,31 +46,34 @@ public class ServletFaireEncheres extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		
+		/*
+		 * DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		 */		
 		Utilisateurs utilisateur = null ;
 		
 		HttpSession session = request.getSession();
 		
 		if (session!=null) {
-			utilisateur = (Utilisateurs) session.getAttribute("utilisateur");
+			utilisateur = (Utilisateurs)session.getAttribute("utilisateur");
 			
 		int no_utilisateur = 1;
 		int no_article = 1;
-		LocalDate date_enchere = LocalDate.parse(request.getParameter("date_debut_encheres"), formatter);
+		LocalDate date_enchere = LocalDate.now();
 		;
-		int montant = Integer.valueOf(request.getParameter("ma_proposition"));
+		int montant_enchere = Integer.valueOf(request.getParameter("ma_proposition"));
 
-		
+			System.out.println("0");
 
 			EncheresManager EncheresManager = new EncheresManager();
+			
+			System.out.println("1");
 		
 			try {
-				Encheres enchere = new Encheres(no_utilisateur, no_article, date_enchere, montant);
+				Encheres enchere = new Encheres(no_utilisateur, no_article, date_enchere, montant_enchere);
 				
 				EncheresManager.ajoutEnchere(enchere);
 				
-				if (utilisateur.getCredit() > enchere.getMontant()) {
+				if (utilisateur.getCredit() > enchere.getMontant_enchere()) {
 
 
 				request.setAttribute("retour", "enchère envoyée");
