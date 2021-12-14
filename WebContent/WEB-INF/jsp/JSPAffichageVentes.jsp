@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="Shortcut Icon" href="css/images/iconeOsna.png">
 <title>Catalogue Vente</title>
 </head>
 <body>

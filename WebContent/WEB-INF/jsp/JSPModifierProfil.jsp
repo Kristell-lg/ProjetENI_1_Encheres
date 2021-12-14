@@ -10,6 +10,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Modifier mon profil</title>
+		<link rel="Shortcut Icon" href="css/images/iconeOsna.png">
 		<link rel="stylesheet" href="css/reset.css"> <!-- Reset le design css -->
         <link rel="stylesheet" href="css/inscription.css"> <!-- Applique le nouveau design -->
     

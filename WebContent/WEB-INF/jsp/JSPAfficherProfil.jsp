@@ -7,6 +7,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Profil</title>
+		<link rel="Shortcut Icon" href="css/images/iconeOsna.png">
 		<link rel="stylesheet" href="css/reset.css"> <!-- Reset le design css -->
         <link rel="stylesheet" href="css/profil.css"> <!-- Applique le nouveau design -->
 	</head>
