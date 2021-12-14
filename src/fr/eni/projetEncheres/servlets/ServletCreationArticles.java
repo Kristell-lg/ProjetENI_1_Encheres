@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.projetEncheres.bll.ArticlesManager;
+import fr.eni.projetEncheres.bll.RetraitsManager;
 import fr.eni.projetEncheres.bo.Articles;
 import fr.eni.projetEncheres.bo.Categories;
+import fr.eni.projetEncheres.bo.Retraits;
 import fr.eni.projetEncheres.bo.Utilisateurs;
 
 
@@ -50,6 +52,11 @@ public class ServletCreationArticles extends HttpServlet {
 		int prix_initial = Integer.parseInt(request.getParameter("prix_initial")); 
 		
 		int categorieSaisie = Integer.valueOf(request.getParameter("categorie"));
+		
+		String rue = request.getParameter("rue");
+		String code_postal = request.getParameter("codepostal");
+		String ville = request.getParameter("ville");
+		
 		Categories categorie = new Categories(categorieSaisie);
 		//TODO Changer utilisateurs et catégories
 		HttpSession session = request.getSession();
@@ -63,10 +70,13 @@ public class ServletCreationArticles extends HttpServlet {
 		}
 		
 		ArticlesManager articlesManager = new ArticlesManager();
+		RetraitsManager retraitsManager = new RetraitsManager();
 		
 		try {
 			Articles a = new Articles(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, utilisateur, categorie);
+			Retraits r = new Retraits(a, rue, code_postal, ville);
 			articlesManager.AjouterArticle(a);
+			retraitsManager.ajouter(r);
 			request.setAttribute("retour", "insertion de l'article à réussi");
 			List<Articles> articlesListe = articlesManager.selectionner();
 			request.setAttribute("articlesListe", articlesListe);

@@ -54,15 +54,15 @@
 				<p>Retrait</p>
 				<div>
 					<label for="rue">Rue : </label>
-					<input type="text" name="rue" id="rue"maxlength="30" value="${requestScope.rue}" required/>
+					<input type="text" name="rue" id="rue"maxlength="30" value="${sessionScope.utilisateur.getRue()}" required/>
 				</div>
 				<div>
 					<label for="ville">Ville : </label>
-					<input type="text" name="ville" id="ville"maxlength="30" value="${requestScope.ville}" required/>
+					<input type="text" name="ville" id="ville"maxlength="30" value="${sessionScope.utilisateur.getVille()}" required/>
 				</div>
 				<div>	
 					<label for="codepostal">Code Postal : </label>
-					<input type="text" name="codepostal" id="codepostal" maxlength="5" value="${requestScope.cp}" required/>
+					<input type="text" name="codepostal" id="codepostal" maxlength="5" value="${sessionScope.utilisateur.getCode_postal()}" required/>
 				</div>
 			</fieldset>
 			<input type="submit"> 

@@ -9,6 +9,7 @@ CREATE TABLE ENCHERES (
     no_article       INTEGER NOT NULL,
     date_enchere     datetime NOT NULL,
 	montant_enchere  INTEGER NOT NULL,
+	-- Peu etre changer pour une PK sur un ID Encheres
 	PRIMARY KEY PK_enchere (no_utilisateur, no_article, date_enchere)
 );
 

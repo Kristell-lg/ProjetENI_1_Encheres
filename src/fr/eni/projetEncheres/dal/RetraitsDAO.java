@@ -12,5 +12,6 @@ public interface RetraitsDAO {
 	
 	public List<Retraits> selectionner() throws DALException;
 	public Retraits selectionnerArticleID(Articles article) throws DALException;
+	public void ajouter(Retraits retrait) throws DALException;
 	public void modifier(Retraits retrait) throws DALException;
 }

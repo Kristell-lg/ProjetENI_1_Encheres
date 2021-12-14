@@ -44,6 +44,15 @@ public class RetraitsManager {
 
 			return Retrait;
 		}
+		public void ajouter(Retraits retrait) throws BLLException { // AJOUTER RETRAIT //
+
+			try {
+				retraitsDAO.ajouter(retrait);
+			} catch (Exception e) {
+				throw new BLLException("Echec insertion Retraits : ",e);
+			}
+
+		}
 		public void modifier(Retraits retrait) throws BLLException { // MODIFIER RETRAIT //
 
 			try {

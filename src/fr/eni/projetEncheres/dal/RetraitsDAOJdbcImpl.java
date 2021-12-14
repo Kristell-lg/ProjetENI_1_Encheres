@@ -16,9 +16,10 @@ import fr.eni.projetEncheres.bo.Retraits;
  */
 public class RetraitsDAOJdbcImpl implements RetraitsDAO {
 
-	private static final String SELECT_TOUT = "SELECT * FROM RETRAIT";
-	private static final String SELECT_ID = "SELECT * FROM RETRAIT WHERE no_article = ?";
-	private static final String MODIFIER =  "UPDATE RETRAIT SET rue = ?, code_postale = ?, ville = ? WHERE no_article = ?"; 
+	private static final String SELECT_TOUT = "SELECT * FROM RETRAITS";
+	private static final String SELECT_ID = "SELECT * FROM RETRAITS WHERE no_article = ?";
+	private static final String AJOUTER =  "INSERT INTO RETRAITS(no_article,rue,code_postale,ville) VALUES (?,?,?,?)"; 
+	private static final String MODIFIER =  "UPDATE RETRAITS SET rue = ?, code_postale = ?, ville = ? WHERE no_article = ?"; 
 	private ArticlesDAO articlesDAO;
 	
 	//Selectionner l'ensemble des encheres
@@ -37,9 +38,9 @@ public class RetraitsDAOJdbcImpl implements RetraitsDAO {
 						/* Recuperation de l'article*/
 						articlesDAO.selectArticle(resultRetrait .getInt("no_article")),
 						
-						resultRetrait .getString("rue"),
-						resultRetrait .getString("code_postal"),
-						resultRetrait .getString("ville"));
+						resultRetrait.getString("rue"),
+						resultRetrait.getString("code_postal"),
+						resultRetrait.getString("ville"));
 				RetraitListe.add(Retrait);
 			}
 
@@ -73,9 +74,9 @@ public class RetraitsDAOJdbcImpl implements RetraitsDAO {
 			resultRetrait .next();
 			retrait = new Retraits(
 				article,
-				resultRetrait .getString("rue"),
-				resultRetrait .getString("code_postal"),
-				resultRetrait .getString("ville"));
+				resultRetrait.getString("rue"),
+				resultRetrait.getString("code_postal"),
+				resultRetrait.getString("ville"));
 			
 
 		} catch (SQLException e) {
@@ -93,6 +94,31 @@ public class RetraitsDAOJdbcImpl implements RetraitsDAO {
 				
 		return retrait;
 	}
+	public void ajouter(Retraits retrait) throws DALException {
+		 
+		PreparedStatement pstmtRetrait= null;
+				
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			pstmtRetrait = cnx.prepareStatement(AJOUTER);
+        	pstmtRetrait.setInt(1, retrait.getArticle().getNo_article());
+        	pstmtRetrait.setString(2, retrait.getRue() );
+        	pstmtRetrait.setString(3, retrait.getCode_postal());
+        	pstmtRetrait.setString(4, retrait.getVille());
+			
+        	pstmtRetrait.executeQuery();
+
+		}  catch (SQLException e) {
+			throw new DALException("Echec Connection/Requete : ",e);
+		}
+		finally {
+					
+			try {
+				pstmtRetrait.close();
+			} catch (SQLException e) {
+				throw new DALException("Echec Fermeture Connection : ",e);
+			}
+		}
+	}
 	public void modifier(Retraits retrait) throws DALException {
 		 
 		PreparedStatement pstmtRetrait= null;
@@ -104,6 +130,7 @@ public class RetraitsDAOJdbcImpl implements RetraitsDAO {
         	pstmtRetrait.setString(3, retrait.getVille());
         	pstmtRetrait.setInt(4, retrait.getArticle().getNo_article());
 			
+        	
         	pstmtRetrait.executeUpdate();
 
 		}  catch (SQLException e) {
