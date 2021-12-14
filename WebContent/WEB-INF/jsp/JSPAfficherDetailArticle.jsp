@@ -27,7 +27,7 @@
 				<p>Mise à prix : ${requestScope.article.getPrix_initial()}</p>
 				<p>Retrait : A REMPLIR AVEC RETRAIT</p>
 				<p>Vendeur : ${requestScope.article.getUtilisateur().getPseudo()}</p>
-				<form action="" method="post">
+				<form action="${pageContext.request.contextPath}/FaireEncheres" method="post">
 					<input type="number" name="enchere" min="0">
 					<input type="submit" value="Enchérir">
 				</form>
