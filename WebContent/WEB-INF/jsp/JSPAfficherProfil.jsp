@@ -54,9 +54,6 @@
 						<input type="text" name="cerdit" id="credit" value="${requestScope.utilisateur.getCredit()}" disabled/>
 					</div>
 					
-			<form action="${pageContext.request.contextPath}/ModifierProfil" method="get">
-					<input type="submit" value="Modifier" />
-			</form>
 				</fieldset>
 		</c:when>
 		

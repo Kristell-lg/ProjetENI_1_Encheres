@@ -75,7 +75,7 @@
 					</form>	
 					
 					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))}</p>
-					<p class="affichageArticle">Prix de vente :${article.getPrix_initial()}</p>
+					<p class="affichageArticle">Prix initial :${article.getPrix_initial()}</p>
 					<p class="affichageArticle">Vendeur :</p>
 					
 					<form action="${pageContext.request.contextPath}/Profil" method="post">

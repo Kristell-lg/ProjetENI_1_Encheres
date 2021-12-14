@@ -27,7 +27,7 @@
 				<div class="inscription-champs">
 					<div>
 						<label for="pseudo">*Pseudo : </label>
-						<input type="text" name="pseudo" id="pseudo" value="${requestScope.pseudo}" maxlength="30" required/>
+						<input type="text" name="pseudo" id="pseudo" pattern="^[a-zA-Z0-9_]*$" value="${requestScope.pseudo}" maxlength="30" required/>
 					</div>
 					<div>		
 						<label for="prenom">*Prénom : </label>

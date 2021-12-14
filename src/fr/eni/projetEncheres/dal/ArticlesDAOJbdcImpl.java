@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import fr.eni.projetEncheres.bo.Articles;
@@ -36,8 +37,9 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 				Statement statementArticles = cnx.createStatement();
 				ResultSet resultArticles = statementArticles.executeQuery(SELECT_TOUT);
 			) {
-
+			
 			while (resultArticles.next()) {
+				
 				Categories categorie = new Categories(resultArticles.getString("libelle"));
 				
 				Utilisateurs utilisateur = new Utilisateurs(resultArticles.getInt("no_utilisateur"),resultArticles.getString("pseudo"),
@@ -47,7 +49,7 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 				
 				Articles Article = new Articles(resultArticles.getInt("no_article"),
 						resultArticles.getString("nom_article"), resultArticles.getString("description"),
-						LocalDate.parse(resultArticles.getString("date_debut_encheres")), LocalDate.parse(resultArticles.getString("date_fin_encheres")),
+						resultArticles.getDate("date_debut_encheres").toLocalDate(), resultArticles.getDate("date_fin_encheres").toLocalDate(),
 						resultArticles.getInt("prix_initial"), resultArticles.getInt("prix_vente"),utilisateur, categorie);
 				ArticlesListe.add(Article);
 			}
@@ -71,8 +73,9 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 				statementArticles.setInt(1, cat);
 				resultArticles = statementArticles.executeQuery();
 				
-			
+						
 			while (resultArticles.next()) {
+				
 				Categories categorie = new Categories(resultArticles.getString("libelle"));
 				
 				Utilisateurs utilisateur = new Utilisateurs(resultArticles.getInt("no_utilisateur"),resultArticles.getString("pseudo"),

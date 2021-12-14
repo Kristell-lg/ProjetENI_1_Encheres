@@ -151,7 +151,7 @@ public class Articles {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Utilisateurs [no_article=");
+		sb.append("Articles [no_article=");
 		sb.append(no_article);
 		sb.append(", nom_article=");
 		sb.append(nom_article);

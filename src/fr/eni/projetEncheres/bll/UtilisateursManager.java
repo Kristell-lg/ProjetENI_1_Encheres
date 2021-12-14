@@ -105,8 +105,13 @@ public class UtilisateursManager {
 		StringBuffer sb = new StringBuffer();
 
 		// Validation du Pseudo
-		
-		if (utilisateur.getPseudo() == null || utilisateur.getPseudo().trim().isEmpty()) {
+		Pattern validPseudo =
+				  Pattern.compile("^[a-zA-Z0-9_]*$",
+				  Pattern.CASE_INSENSITIVE); 
+		Matcher matcherPseudo = validPseudo.matcher(utilisateur.getPseudo()); 
+				 
+		if (utilisateur.getPseudo() == null || utilisateur.getPseudo().trim().isEmpty()|| !matcherPseudo.find()) {
+			
 			sb.append("Le pseudo est obligatoire\n");
 			dataValid = false;
 		}
@@ -131,7 +136,8 @@ public class UtilisateursManager {
 		  Pattern validEmail =
 		  Pattern.compile("^[A-Z0-9._-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
 		  Pattern.CASE_INSENSITIVE); Matcher matcherEmail =
-		  validEmail.matcher(utilisateur.getEmail()); if (!matcherEmail.find()) {
+		  validEmail.matcher(utilisateur.getEmail()); 
+		  if (!matcherEmail.find()) {
 		  sb.append("L'email n'est pas au format attendu !\n"); dataValid = false; }
 		 
 
