@@ -72,8 +72,11 @@
 			<!-- Bouton -->
 			<div class="inscription-Bouton">
 				<input type="submit" value="Créer"/>
-				<input type="reset" value="Annuler"/>
 			</div>
+		</form>
+		
+		<form action="${pageContext.request.contextPath}/Accueil">
+			<input type="submit" value="Annuler"/>
 		</form>
 		
 		<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
