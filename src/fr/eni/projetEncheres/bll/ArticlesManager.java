@@ -48,6 +48,18 @@ public class ArticlesManager {
 
 	}
 	
+	public List<Articles> selectionnerCategorie(int categorie) {
+		List<Articles> ArticlesListe = new ArrayList<Articles>();
+
+		try {
+			ArticlesListe = articlesDAO.selectionnerCategorie(categorie);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return ArticlesListe;
+	}
+	
 	public Articles selectArticle(int no_article) throws BLLException {
 
 		Articles article = null;
@@ -120,6 +132,8 @@ public class ArticlesManager {
 
 		
 	}
+
+
 
 }
 

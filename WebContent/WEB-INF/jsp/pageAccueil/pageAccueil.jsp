@@ -24,6 +24,32 @@
 	
 <c:choose>
 			<c:when test="${!empty articlesListe}">
+			
+					<c:if test="${!empty requestScope.erreur}">
+						<p style="color:red">${requestScope.erreur}</p>
+					</c:if>
+				
+				<div>
+					<form action="${pageContext.request.contextPath}/Accueil" method="post">
+						<label for="categorie">Catégorie:</label>
+			
+						<select name="categorie" id="categorie">
+						    <option value=0>--Choisir une catégorie--</option>
+						    <option value=1>Informatique</option>
+						    <option value=2>Ameublement</option>
+						    <option value=3>Vêtement</option>
+						    <option value=4>Sport et Loisirs</option>
+						</select>
+						
+						<label for="recherche">Recherche par titre d'annonce :</label>
+						<input type="text" name="recherche">
+						
+						<input type="submit" value="Valider">
+					</form>
+				</div>
+				
+				<h2>${requestScope.titre}</h2>
+				
 				<c:forEach var="article" items="${articlesListe}">
 					<a class="affichageArticle" href="${pageContext.request.contextPath}/Connexion">${article.getNom_article()}</a>
 					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres()}</p>
@@ -33,6 +59,28 @@
 				</c:forEach>
 			</c:when>
 			<c:otherwise>
+				<c:if test="${!empty requestScope.erreur}">
+							<p style="color:red">${requestScope.erreur}</p>
+						</c:if>
+					
+					<div>
+						<form action="${pageContext.request.contextPath}/Accueil" method="post">
+							<label for="categorie">Catégorie:</label>
+				
+							<select name="categorie" id="categorie">
+							    <option value=0>--Choisir une catégorie--</option>
+							    <option value=1>Informatique</option>
+							    <option value=2>Ameublement</option>
+							    <option value=3>Vêtement</option>
+							    <option value=4>Sport et Loisirs</option>
+							</select>
+							
+							<label for="recherche">Recherche par titre d'annonce :</label>
+							<input type="text" name="recherche">
+						
+							<input type="submit" value="Valider">
+						</form>
+					</div>
 				<p class="affichageArticle">
 					Aucun article n'est disponible
 				</p>

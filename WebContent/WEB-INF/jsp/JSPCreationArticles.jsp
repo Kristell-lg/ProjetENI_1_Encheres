@@ -43,7 +43,7 @@
 				<label for="categorie">Catégorie:</label>
 	
 				<select name="categorie" id="categorie">
-				    <option value="">--Choisir une catégorie--</option>
+				    <option value=0>--Choisir une catégorie--</option>
 				    <option value=1>Informatique</option>
 				    <option value=2>Ameublement</option>
 				    <option value=3>Vêtement</option>

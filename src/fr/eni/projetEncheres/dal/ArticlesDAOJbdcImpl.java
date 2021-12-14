@@ -21,6 +21,7 @@ import fr.eni.projetEncheres.bo.Utilisateurs;
 public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 
 	private static final String SELECT_TOUT = "SELECT * FROM (ARTICLES_VENDUS a  INNER JOIN UTILISATEURS u ON a.no_utilisateur=u.no_utilisateur) INNER JOIN CATEGORIES c ON a.no_categorie =c.no_categorie";
+	private static final String SELECT_TOUT_CATEGORIE = "SELECT * FROM (ARTICLES_VENDUS a  INNER JOIN UTILISATEURS u ON a.no_utilisateur=u.no_utilisateur) INNER JOIN CATEGORIES c ON c.no_categorie =? AND a.no_categorie =c.no_categorie";
 	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie)VALUES(?,?,?,?,?,?,?,?)";
 	private static final String SELECT_ID = "SELECT * FROM (ARTICLES_VENDUS a  INNER JOIN UTILISATEURS u ON a.no_utilisateur=u.no_utilisateur AND a.no_article=?) INNER JOIN CATEGORIES c ON a.no_categorie =c.no_categorie";
 	// select by encheres 
@@ -58,6 +59,46 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 
 		return ArticlesListe;
 	}
+	
+	
+	public List<Articles> selectionnerCategorie(int cat) throws SQLException {
+		List<Articles> ArticlesListe = new ArrayList<Articles>();
+		ResultSet resultArticles = null;
+		
+		try (Connection cnx = ConnectionProvider.getConnection();
+				PreparedStatement statementArticles = cnx.prepareStatement(SELECT_TOUT_CATEGORIE);
+			) {
+				statementArticles.setInt(1, cat);
+				resultArticles = statementArticles.executeQuery();
+				
+			
+			while (resultArticles.next()) {
+				Categories categorie = new Categories(resultArticles.getString("libelle"));
+				
+				Utilisateurs utilisateur = new Utilisateurs(resultArticles.getInt("no_utilisateur"),resultArticles.getString("pseudo"),
+						resultArticles.getString("nom"),resultArticles.getString("prenom"),resultArticles.getString("email"),
+						resultArticles.getString("telephone"),resultArticles.getString("rue"),resultArticles.getString("code_postal"),
+						resultArticles.getString("ville"),resultArticles.getString("mot_de_passe"),resultArticles.getInt("credit"),resultArticles.getBoolean("administrateur"));
+				
+				Articles Article = new Articles(resultArticles.getInt("no_article"),
+						resultArticles.getString("nom_article"), resultArticles.getString("description"),
+						LocalDate.parse(resultArticles.getString("date_debut_encheres")), LocalDate.parse(resultArticles.getString("date_fin_encheres")),
+						resultArticles.getInt("prix_initial"), resultArticles.getInt("prix_vente"),utilisateur, categorie);
+				ArticlesListe.add(Article);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Méthode selectionner Categorie - ArticlesDAOJdbcImpl.java ");
+			e.printStackTrace();
+		}
+		finally {
+			resultArticles.close();
+		}
+
+		return ArticlesListe;
+	}
+	
+	
 
 	public void insert(Articles a) {
 
@@ -120,4 +161,6 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 			
 			return article;
 		}
+
+	
 }
