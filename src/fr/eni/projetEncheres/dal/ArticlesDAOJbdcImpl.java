@@ -120,8 +120,11 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 			
 			// Execution de la requete
 			stmt.executeUpdate();
-
-		
+			
+			// Recup ID
+			ResultSet rs = stmt.getGeneratedKeys();
+			rs.next();
+			a.setNo_article(rs.getInt(1));
 
 			
 		} catch (SQLException e) {

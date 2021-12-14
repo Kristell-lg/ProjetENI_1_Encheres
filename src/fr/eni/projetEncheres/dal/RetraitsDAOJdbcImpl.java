@@ -100,12 +100,14 @@ public class RetraitsDAOJdbcImpl implements RetraitsDAO {
 				
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			pstmtRetrait = cnx.prepareStatement(AJOUTER);
-        	pstmtRetrait.setInt(1, retrait.getArticle().getNo_article());
+			System.out.println(retrait.getArticle().getNo_article());
+			int no_article = retrait.getArticle().getNo_article();
+        	pstmtRetrait.setInt(1, no_article);
         	pstmtRetrait.setString(2, retrait.getRue() );
         	pstmtRetrait.setString(3, retrait.getCode_postal());
         	pstmtRetrait.setString(4, retrait.getVille());
 			
-        	pstmtRetrait.executeQuery();
+        	pstmtRetrait.execute();
 
 		}  catch (SQLException e) {
 			throw new DALException("Echec Connection/Requete : ",e);

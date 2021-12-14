@@ -74,8 +74,8 @@ public class ServletCreationArticles extends HttpServlet {
 		
 		try {
 			Articles a = new Articles(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, utilisateur, categorie);
-			Retraits r = new Retraits(a, rue, code_postal, ville);
 			articlesManager.AjouterArticle(a);
+			Retraits r = new Retraits(a, rue, code_postal, ville);
 			retraitsManager.ajouter(r);
 			request.setAttribute("retour", "insertion de l'article à réussi");
 			List<Articles> articlesListe = articlesManager.selectionner();
