@@ -25,7 +25,7 @@
 				<p>Catégorie : ${requestScope.article.getCategorie().getLibelle()}</p>
 				<p>Meilleur Offre : A REMPLIR AVEC ENCHERES</p>
 				<p>Mise à prix : ${requestScope.article.getPrix_initial()}</p>
-				<p>Retrait : A REMPLIR AVEC RETRAIT</p>
+				<p>Retrait : ${requestScope.retrait.Afficher()}</p>
 				<p>Vendeur : ${requestScope.article.getUtilisateur().getPseudo()}</p>
 				
 				<form action="${pageContext.request.contextPath}/FaireEncheres" method="post">

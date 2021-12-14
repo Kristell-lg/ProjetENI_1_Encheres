@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import fr.eni.projetEncheres.bll.ArticlesManager;
+import fr.eni.projetEncheres.bll.RetraitsManager;
 import fr.eni.projetEncheres.bo.Articles;
+import fr.eni.projetEncheres.bo.Retraits;
 
 
 /**
@@ -40,12 +42,16 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 
 		
 		ArticlesManager articlesManager = new ArticlesManager();
-		int idArticle = Integer.valueOf(request.getParameter("idArticle"));
+		RetraitsManager retraitsManager = new RetraitsManager();
 		
+		int idArticle = Integer.valueOf(request.getParameter("idArticle"));
 		if (idArticle!=0) {
 			try {
 				Articles article = articlesManager.selectArticle(idArticle);
+				Retraits retrait = retraitsManager.selectionnerArticleID(article);
 				request.setAttribute("article", article);
+				request.setAttribute("retrait", retrait);
+				
 				succesConnexion.forward(request, response);
 				
 			} catch (Exception e) {

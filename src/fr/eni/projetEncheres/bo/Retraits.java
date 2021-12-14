@@ -45,11 +45,27 @@ public class Retraits {
 		this.code_postal = code_postal;
 		this.ville = ville;
 	}
-
+	
+	public String Afficher() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(this.rue);
+		sb.append(" ");
+		sb.append(this.ville);
+		sb.append(" ");
+		sb.append(this.code_postal);
+		return sb.toString();
+	}
 	@Override
 	public String toString() {
-		return "Retraits [no_article=" + article.getNo_article() + ", rue=" + rue + ", code_postal=" + code_postal + ", ville=" + ville
-				+ "]";
+		StringBuffer sb = new StringBuffer("Retraits [no_article= ");
+		sb.append(this.article.getNo_article());
+		sb.append(", rue= ");
+		sb.append(this.rue);
+		sb.append(", ville= ");
+		sb.append(this.ville);
+		sb.append(", code_postal= ");
+		sb.append(this.code_postal);
+		return sb.toString();
 	}
 	
 }
