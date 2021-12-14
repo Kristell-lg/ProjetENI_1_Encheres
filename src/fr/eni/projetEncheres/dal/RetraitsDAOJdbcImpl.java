@@ -18,7 +18,7 @@ public class RetraitsDAOJdbcImpl implements RetraitsDAO {
 
 	private static final String SELECT_TOUT = "SELECT * FROM RETRAITS";
 	private static final String SELECT_ID = "SELECT * FROM RETRAITS WHERE no_article = ?";
-	private static final String AJOUTER =  "INSERT INTO RETRAITS(no_article,rue,code_postale,ville) VALUES (?,?,?,?)"; 
+	private static final String AJOUTER =  "INSERT INTO RETRAITS(no_article,rue,code_postal,ville) VALUES (?,?,?,?)"; 
 	private static final String MODIFIER =  "UPDATE RETRAITS SET rue = ?, code_postale = ?, ville = ? WHERE no_article = ?"; 
 	private ArticlesDAO articlesDAO;
 	
@@ -95,12 +95,10 @@ public class RetraitsDAOJdbcImpl implements RetraitsDAO {
 		return retrait;
 	}
 	public void ajouter(Retraits retrait) throws DALException {
-		 
-		PreparedStatement pstmtRetrait= null;
-				
+		 		
 		try (Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement pstmtRetrait= null;
 			pstmtRetrait = cnx.prepareStatement(AJOUTER);
-			System.out.println(retrait.getArticle().getNo_article());
 			int no_article = retrait.getArticle().getNo_article();
         	pstmtRetrait.setInt(1, no_article);
         	pstmtRetrait.setString(2, retrait.getRue() );
@@ -111,14 +109,6 @@ public class RetraitsDAOJdbcImpl implements RetraitsDAO {
 
 		}  catch (SQLException e) {
 			throw new DALException("Echec Connection/Requete : ",e);
-		}
-		finally {
-					
-			try {
-				pstmtRetrait.close();
-			} catch (SQLException e) {
-				throw new DALException("Echec Fermeture Connection : ",e);
-			}
 		}
 	}
 	public void modifier(Retraits retrait) throws DALException {
