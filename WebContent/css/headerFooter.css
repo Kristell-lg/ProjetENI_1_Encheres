@@ -1,8 +1,26 @@
+*{
+
+margin:0;
+
+padding:0;
+
+}
+body, html , {height:100%;}
 body {
     margin: auto;
 }
 
+#main{
 
+max-width:auto;
+
+min-height:100%;
+
+margin:0 auto;
+
+position:relative;
+
+}
 header {
     background-color: aliceblue;
     font-family: 'Economica',
@@ -22,13 +40,14 @@ footer {
     background-color: #00475E;
     font-family: 'Economica', sans-serif;
     color: #F3BDA1;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding-top: 10px;
+    
+    width: 100%; 
     height: 50px;
+    bottom: auto;
+    padding-top: 10px;
+    marging-top : 100px;
+    
 }
-
 
 
 button {
@@ -66,6 +85,7 @@ input {
         sans-serif;
 
 }
+
 
 
 #bouton {
@@ -106,7 +126,7 @@ a {
     padding: 5px;
 
     background: #F3BDA1;
-
+	
 
     border-radius: 5px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, .4) inset,

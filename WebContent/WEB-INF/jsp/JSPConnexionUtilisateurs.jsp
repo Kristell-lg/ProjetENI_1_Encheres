@@ -6,16 +6,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- CSS  -->
 
+
+<link rel="stylesheet" href="css/headerFooter.css"/>
+<link rel="stylesheet" href="css/ConnexionUser.css" />
+<!-- FONT ECONOMICA -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
+<link href="https://fonts.googleapis.com/css2?family=Economica&display=swap" rel="stylesheet">
+<!-- ICONE DE PAGE -->
 <link rel="Shortcut Icon" href="css/images/iconeOsna.png">
-<link rel="stylesheet" href="css/reset.css"> <!-- Reset le design css -->
-<link rel="stylesheet" href="css/inscription.css"> <!-- Applique le nouveau design -->
+
 
 <title>Connexion</title>
 </head>
 
 <body>
+<div id="main">
 <%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
+<div id="container">
 	<h1 id="titreConnexion">Connexion</h1>
 	<form action="${pageContext.request.contextPath}/Connexion" method="post">
 	
@@ -38,9 +48,13 @@
 			<input class="inputFormulaireConnexion" type="submit" value="Se Connecter">
 		</c:otherwise>
 	</c:choose>
-		<p>Si vous n'êtes pas encore inscrit c'est par ici ►<button><a href="${pageContext.request.contextPath}/Inscription">S'inscrire</a></button>
+	<div id="Inscrire">
+		<p>Si vous n'êtes pas encore inscrit c'est par ici ►
+		<button><a href="${pageContext.request.contextPath}/Inscription">S'inscrire</a></button>
+		 </div>
 	</form>
-	
+	</div>
 	<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
+	</div>
 </body>
 </html>
