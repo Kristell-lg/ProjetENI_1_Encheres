@@ -51,6 +51,8 @@ public class ServletFaireEncheres extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		RequestDispatcher erreurEnchere = request.getRequestDispatcher("/AfficherArticle");
+		
 		HttpSession session = request.getSession();
 		session.setMaxInactiveInterval(300);
 
@@ -77,10 +79,9 @@ public class ServletFaireEncheres extends HttpServlet {
 				Encheres enchere = new Encheres(no_utilisateur, articleId, date_enchere, montant_enchere);
 
 				List<Encheres> enchereliste = EncheresManager.selectionner();
-				System.out.println("servlet"+enchereliste);
 
 				if (enchereliste.isEmpty()) {
-					System.out.println("encher liste nulle");
+					request.setAttribute("erreur", "Erreur- la liste des enchères n'a pas pu être chargée");
 				} else {
 					for (Encheres encheres : enchereliste) {
 						
@@ -93,29 +94,23 @@ public class ServletFaireEncheres extends HttpServlet {
 				// PRIMARY KEY A GERER
 				if (ok) {
 					System.out.println("pas d'enchère déjà");
-					/*
-					 * if (utilisateur.getCredit() >= enchere.getMontant_enchere()) {
-					 * EncheresManager.ajoutEnchere(enchere); request.setAttribute("retour",
-					 * "enchère envoyée"); request.setAttribute("idArticle", articleId);
-					 * RequestDispatcher succesEncheres =
-					 * request.getRequestDispatcher("/AccueilLogIn");
-					 * succesEncheres.forward(request, response);
-					 * 
-					 * } else { request.setAttribute("idArticle", articleId);
-					 * request.setAttribute("article", article); request.setAttribute("erreur",
-					 * "Vous n'avez pas assez de crédit pour faire cette enchère");
-					 * RequestDispatcher erreurEnchere =
-					 * request.getRequestDispatcher("/AfficherArticle");
-					 * erreurEnchere.forward(request, response); }
-					 */
+					
+					 if (utilisateur.getCredit() >= enchere.getMontant_enchere()) {
+					 EncheresManager.ajoutEnchere(enchere); request.setAttribute("retour",
+					 "enchère envoyée"); request.setAttribute("idArticle", articleId);
+					 RequestDispatcher succesEncheres = request.getRequestDispatcher("/AccueilLogIn");
+					 succesEncheres.forward(request, response);
+					  
+					 } else { request.setAttribute("idArticle", articleId);
+					 request.setAttribute("article", article); request.setAttribute("erreur",
+					 "Vous n'avez pas assez de crédit pour faire cette enchère");
+					 }
+					 
 				} else {
 					System.out.println("enchère déjà");
 					request.setAttribute("idArticle", articleId);
 					request.setAttribute("article", article);
-					request.setAttribute("erreur",
-							"Vous ne pouvez pas faire une enchère si vous êtes le dernier à avoir encheri");
-					RequestDispatcher erreurEnchere = request.getRequestDispatcher("/AfficherArticle");
-					erreurEnchere.forward(request, response);
+					request.setAttribute("erreur", "Vous ne pouvez pas faire une enchère si vous êtes le dernier à avoir encheri");
 				}
 
 			} catch (Exception e) {
@@ -123,7 +118,9 @@ public class ServletFaireEncheres extends HttpServlet {
 				request.setAttribute("idArticle", articleId);
 				request.setAttribute("article", article);
 				request.setAttribute("erreur", "Erreur pendant la création de l'enchère est survenue");
-				RequestDispatcher erreurEnchere = request.getRequestDispatcher("/AfficherArticle");
+			}
+			
+			if(request.getAttribute("erreur") != null) {
 				erreurEnchere.forward(request, response);
 			}
 		}

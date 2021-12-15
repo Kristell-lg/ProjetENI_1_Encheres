@@ -98,12 +98,7 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 				
 				if (session!=null) {
 					UtilisateursManager manager = new UtilisateursManager();
-					Utilisateurs utilisateur = manager.selectUtilisateur(id);
-					
-					//TODO ENCHERES
-					Encheres enchereListe = encheresManeger.selectionnerEnchereByIdUtilisateur(id); 
-					request.setAttribute("enchereListe", enchereListe);
-					
+					Utilisateurs utilisateur = manager.selectUtilisateur(id);					
 					
 					session.setAttribute("utilisateur", utilisateur); 
 					succesConnexion.forward(request, response);

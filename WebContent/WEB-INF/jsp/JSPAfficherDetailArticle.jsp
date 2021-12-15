@@ -61,7 +61,25 @@
 		</c:when>
 		
 		<c:otherwise>
-			<p>Erreur - veuillez réessayer</p>
+			<p>${requestScope.erreur}</p>
+			
+			<h2>Détail Vente</h2>
+				<h3>${requestScope.article.getNom_article()}</h3>
+				<p>Description : ${requestScope.article.getDescription()}</p>
+				<p>Catégorie : ${requestScope.article.getCategorie().getLibelle()}</p>
+				
+				<p>Meilleur Offre :</p>
+				
+				<p>Mise à prix : ${requestScope.article.getPrix_initial()}</p>
+				<p>Retrait : ${requestScope.retrait.Afficher()}</p>
+				<p>Vendeur : ${requestScope.article.getUtilisateur().getPseudo()}</p>
+				
+				<form action="${pageContext.request.contextPath}/FaireEncheres" method="post">
+					<input type="hidden" name="articleId" value="${requestScope.article.getNo_article()}">					
+					<input type="number" name="enchere" min="0">
+					<input type="submit" value="Enchérir">
+				</form>
+			
 		</c:otherwise>
 		
 	</c:choose>
