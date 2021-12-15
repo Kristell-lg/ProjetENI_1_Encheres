@@ -23,6 +23,8 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 	private static final String INSERTENCHERE = "INSERT INTO ENCHERES(no_utilisateur,no_article,date_enchere,montant_enchere)VALUES(?,?,?,?)";
 	private static final String SELECT_ENCHERES_id = "SELECT * FROM ENCHERES e INNER JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article AND e.no_utilisateur=? ";
 	private static final String DELETE = "DELETE FROM ENCHERES WHERE enchere.No_utilisateur = ?";
+	private static final String SELECT_DERNIER_ENCHERES_ARTICLE = "SELECT no_utilisateur,no_article,date_enchere,MAX(montant_enchere) FROM ENCHERES WHERE no_article=?";
+
 //Selectionnerl'ensembledesencheres
 	public List<Encheres> selectionner() throws DALException {
 
@@ -120,5 +122,35 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 
 		return encheres;
 	}
+	public Encheres selectionnerDernierEnchereArticle(int no_article) throws Exception {
 
+		Encheres encheres = null;
+		PreparedStatement stmt = null;
+
+		ResultSet rs = null;
+
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			stmt = cnx.prepareStatement(SELECT_DERNIER_ENCHERES_ARTICLE);
+
+			stmt.setInt(1, no_article);
+
+			rs = stmt.executeQuery();
+			if(rs.next()) {
+				encheres = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"),
+						LocalDateTime.parse(rs.getString("date_enchere")), rs.getInt("montant_enchere"));
+			}	
+
+		} catch (SQLException e) {
+			throw new DALException("EchecConnection/Requete:", e);
+		} finally {
+
+			try {
+				stmt.close();
+				rs.close();
+			} catch (SQLException e) {
+				throw new DALException(e);
+			}
+		}
+		return encheres;
+	}
 }
