@@ -20,13 +20,15 @@
 <title>Enchère terminée</title>
 </head>
   <body>
+  	<div id="main">
+  
   <%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
         <!--Cette JSP est une notification a déstination du vendeur pour avoir les informations concernant le détail de la vente réalisée-->
 
 <!--USER a remporter la vente (TITRE)-->
 <!-- <p class="affichageArticle">${article.getUtilisateur().getPseudo()}</p>-->
 <!--Nom du produit (TEXTE) -->
-<h3> ${requestScope.article.getNom_article()} </h3>
+<h3 id="titre"> ${requestScope.article.getNom_article()} </h3>
 <!--DESCRIPTION DU PRODUIT -->
 <p class="affichageArticle">Description : ${requestScope.article.getDescription()}</p>
 <!--MEILLEUR OFFRE-->
@@ -47,5 +49,6 @@
 <!--IMAGE DU PRODUIT -->
 <img src="" alt="Image de l'enchere remportée">
 <%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
+</div>
 </body>
 </html>

@@ -22,6 +22,8 @@
 <title>Catalogue Articles</title>
 </head>
 <body>
+	<div id="main">
+
 <%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 	<c:choose>
 		<c:when test="${empty requestScope.erreur}">
@@ -38,7 +40,7 @@
 		
 	</c:choose>	
 	
-	<h1>Catalogue des articles</h1> <!-- à modifier selon selection voulu par l'utilisateur -->
+	<h1 id="titre">Catalogue des articles</h1> <!-- à modifier selon selection voulu par l'utilisateur -->
 	
 		<c:choose>
 		
@@ -103,5 +105,7 @@
 
 
 <%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
+	</div>
+
 </body>
 </html>

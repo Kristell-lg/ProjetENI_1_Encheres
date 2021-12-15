@@ -20,8 +20,10 @@
 <title>Bravo ! Vous avez remporté une enchères</title>
 </head>
 <body>
+	<div id="main">
+
 <%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
-	<h1>Vous avez remporté la vente</h1>
+	<h1 id="titre">Vous avez remporté la vente</h1>
 
 
 	<p class="affichageArticle" href="/ProjetENI_1_Encheres/">${article.getNom_article()}</p>
@@ -42,5 +44,6 @@
 	<a class="affichageArticle" href="/ProjetENI_1_Encheres/ServletAfficherProfil">retour</a>
 
 <%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
+</div>
 </body>
 </html>

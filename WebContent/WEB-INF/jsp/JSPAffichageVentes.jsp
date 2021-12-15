@@ -19,6 +19,8 @@
 <title>Catalogue Vente</title>
 </head>
 <body>
+	<div id="main">
+
 <%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 	<c:choose>
 		<c:when test="${empty requestScope.erreur}">
@@ -34,7 +36,7 @@
 		
 	</c:choose>	
 	
-	<h1>Catalogue des ventes</h1>
+	<h1 id ="titre">Catalogue des ventes</h1>
 		<c:choose>
 			<c:when test="${!empty articlesListe}">
 			<!-- insérer la liste des artciles avec un prix de vente et l'id de l'utilisateur connecté  -->
@@ -58,5 +60,6 @@
 			</c:otherwise>
 		</c:choose>	
 <%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
+</div>
 </body>
 </html>

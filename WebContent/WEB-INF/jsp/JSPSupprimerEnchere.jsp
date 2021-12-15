@@ -47,10 +47,10 @@
 			<p>Attention cette suppression sera définitive</p>
 				<input type="submit" value="Supprimer Enchere"/>
 				<input type="reset" value="Annuler"/>
-			
+			</div>
 		</form>
 		
-		</div>
+			
 		<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
 		</div>
 	</body>

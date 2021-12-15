@@ -21,6 +21,8 @@
 <title>Détail Article</title>
 </head>
 <body>
+	<div id="main">
+
 <%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 	
 	<c:choose>
@@ -32,8 +34,8 @@
 			
 			<c:if test="${!empty requestScope.article and sessionScope.utilisateur.getNo_utilisateur()==requestScope.article.getUtilisateur().getNo_utilisateur()}">
 				
-				<h2>Détail Vente</h2>
-				<h3>${requestScope.article.getNom_article()}</h3>
+				<h2 id="titre">Détail Vente</h2>
+				<h3 id="titre">${requestScope.article.getNom_article()}</h3>
 				<p>Description : ${requestScope.article.getDescription()}</p>
 				<p>Catégorie : ${requestScope.article.getCategorie().getLibelle()}</p>
 				
@@ -47,8 +49,8 @@
 			
 			<c:if test="${!empty requestScope.article and sessionScope.utilisateur.getNo_utilisateur()!=requestScope.article.getUtilisateur().getNo_utilisateur()}">
 				
-				<h2>Détail Vente</h2>
-				<h3>${requestScope.article.getNom_article()}</h3>
+				<h2 id="titre">Détail Vente</h2>
+				<h3 id="titre">${requestScope.article.getNom_article()}</h3>
 				<p>Description : ${requestScope.article.getDescription()}</p>
 				<p>Catégorie : ${requestScope.article.getCategorie().getLibelle()}</p>
 				
@@ -74,8 +76,8 @@
 		<c:otherwise>
 			<p>${requestScope.erreur}</p>
 			
-			<h2>Détail Vente</h2>
-				<h3>${requestScope.article.getNom_article()}</h3>
+			<h2 id="titre">Détail Vente</h2>
+				<h3 id="titre">${requestScope.article.getNom_article()}</h3>
 				<p>Description : ${requestScope.article.getDescription()}</p>
 				<p>Catégorie : ${requestScope.article.getCategorie().getLibelle()}</p>
 				
@@ -96,5 +98,6 @@
 	</c:choose>
 	
 	<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
+	</div>
 </body>
 </html>
