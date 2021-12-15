@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.projetEncheres.bo.Encheres;
+import fr.eni.projetEncheres.bo.Utilisateurs;
+import fr.eni.projetEncheres.dal.DALException;
 import fr.eni.projetEncheres.dal.DAOFactory;
 import fr.eni.projetEncheres.dal.EncheresDAO;
 
@@ -38,10 +40,22 @@ public class EncheresManager {
 	}
 
 	public void ajoutEnchere(Encheres enchere) throws BLLException { // INSERT ENCHERE //
+		Encheres derEnchere = null;
 		try {
-
+			UtilisateursManager utilisateursManager = new UtilisateursManager(); // Recup la dernier enchere
+			int no_article = enchere.getNo_article();
+			if(VerfiEnchereArticle(no_article)) {
+				derEnchere = selectionnerDernierEnchereArticle(no_article);
+			}
 			encheresDAO.ajoutEnchere(enchere);
+			utilisateursManager.crediter(utilisateursManager.selectUtilisateur(enchere.getNo_utilisateur()), enchere.getMontant_enchere());
+			/* Remboursser */
+			if(derEnchere != null) {
+				Utilisateurs utilremboursse = utilisateursManager.selectUtilisateur(derEnchere.getNo_utilisateur()); // Recup l'utilisateur a remboursser
+				utilisateursManager.remboursser(utilremboursse, derEnchere.getMontant_enchere()); // Remboursser l'utilisateur
+			}
 		} catch (Exception e) {
+			System.out.println(derEnchere);
 			throw new BLLException("Echec Insertion Enchere : ", e);
 		}
 	}
@@ -59,6 +73,35 @@ public class EncheresManager {
 			System.out.println(encheres);
 			if (encheres==null) {
 				System.out.println("EncheresListe n'existe pas");
+			}
+		} catch (Exception e) {
+			throw new BLLException("Echec Recuperation Enchere 2.1  : ", e);
+		}
+
+		return encheres;
+	}
+	public Boolean VerfiEnchereArticle(int no_article) throws BLLException{
+		int nbEncheres = 0;
+		try {
+			nbEncheres = encheresDAO.selectionnerEnchereArticle(no_article);
+		} catch (Exception e) {
+			throw new BLLException("Echec Recuperation Enchere Sur Article  : ", e);
+		}
+		if(nbEncheres>0) {
+			return true;
+		}
+		return false;
+	}
+	// /!\ Doit etre dans un test !! Verifier qu'il y a au moin déja un enchere pour eviter le null pointer //
+	public Encheres selectionnerDernierEnchereArticle(int no_article) throws BLLException { // SELECT_DERNIER_ENCHERES_ARTICLE_// 
+
+		Encheres encheres =null; 
+
+		try {
+			encheres = encheresDAO.selectionnerDernierEnchereArticle(no_article);
+			System.out.println(encheres);
+			if (encheres==null) {
+				System.out.println("aucun Enchere sur cette article");
 			}
 		} catch (Exception e) {
 			throw new BLLException("Echec Recuperation Enchere 2.1  : ", e);

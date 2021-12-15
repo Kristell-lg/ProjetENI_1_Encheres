@@ -178,10 +178,10 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	public void modifierCredit(Utilisateurs utilisateur) throws DALException {
 		 
         try (Connection cnx = ConnectionProvider.getConnection();
-        		PreparedStatement pstmtUtilisateurs = cnx.prepareStatement(MODIFIERUTILISATEURS);)
+        		PreparedStatement pstmtUtilisateurs = cnx.prepareStatement(MODIFIER_CREDIT);)
         		{
         	pstmtUtilisateurs.setInt(1, utilisateur.getCredit());
-			pstmtUtilisateurs.setInt(10, utilisateur.getNo_utilisateur());
+			pstmtUtilisateurs.setInt(2, utilisateur.getNo_utilisateur());
 			
 			pstmtUtilisateurs.executeUpdate();
 

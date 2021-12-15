@@ -20,11 +20,14 @@ import fr.eni.projetEncheres.bo.Encheres;
 public class EncheresDAOJdbcImpl implements EncheresDAO {
 
 	private static final String SELECT_TOUT = "SELECT * FROM ENCHERES";
-	private static final String INSERTENCHERE = "INSERT INTO ENCHERES(no_utilisateur,no_article,date_enchere,montant_enchere)VALUES(?,?,?,?)";
 	private static final String SELECT_ENCHERES_id = "SELECT * FROM ENCHERES e INNER JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article AND e.no_utilisateur=? ";
-	private static final String DELETE = "DELETE FROM ENCHERES WHERE enchere.No_utilisateur = ?";
-	private static final String SELECT_DERNIER_ENCHERES_ARTICLE = "SELECT no_utilisateur,no_article,date_enchere,MAX(montant_enchere) FROM ENCHERES WHERE no_article=?";
+	private static final String SELECT_NBENCHERES_Article = "SELECT COUNT(no_utilisateur)as nbEnchere FROM ENCHERES WHERE no_article = ?";
+	
+	private static final String SELECT_DERNIER_ENCHERES_ARTICLE = "SELECT no_utilisateur,no_article,date_enchere,MAX(montant_enchere) as montant_enchere FROM ENCHERES WHERE no_article=?";
 
+	private static final String INSERTENCHERE = "INSERT INTO ENCHERES(no_utilisateur,no_article,date_enchere,montant_enchere)VALUES(?,?,?,?)";
+	private static final String DELETE = "DELETE FROM ENCHERES WHERE enchere.No_utilisateur = ?";
+	
 //Selectionnerl'ensembledesencheres
 	public List<Encheres> selectionner() throws DALException {
 
@@ -104,7 +107,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 			if(rs.next()) {
 				System.out.println("1");
 				encheres = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"),
-						LocalDateTime.parse(rs.getString("date_enchere")), rs.getInt("montant_enchere"));
+						(rs.getTimestamp("date_enchere")).toLocalDateTime(), rs.getInt("montant_enchere"));
 				System.out.println("2");
 			}	
 
@@ -122,34 +125,70 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 
 		return encheres;
 	}
+	
+	public int selectionnerEnchereArticle(int no_article) throws DALException {
+
+		List<Encheres> EncheresListe = new ArrayList<Encheres>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int nbEnchere = 0;
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			pstmt = cnx.prepareStatement(SELECT_NBENCHERES_Article);
+			pstmt.setInt(1, no_article);
+			
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				nbEnchere = rs.getInt("nbEnchere");
+			}	
+			
+		} catch (SQLException e) {
+			throw new DALException("Echec Connection/Requete:", e);
+		} finally {
+
+			try {
+				pstmt.close();
+				rs.close();
+			} catch (SQLException e) {
+				throw new DALException("Echec Fermeture Connection:", e);
+			}
+		}
+		
+		return nbEnchere;
+	}
+	
 	public Encheres selectionnerDernierEnchereArticle(int no_article) throws Exception {
 
 		Encheres encheres = null;
-		PreparedStatement stmt = null;
+		PreparedStatement pstmt = null;
 
 		ResultSet rs = null;
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			stmt = cnx.prepareStatement(SELECT_DERNIER_ENCHERES_ARTICLE);
+			pstmt = cnx.prepareStatement(SELECT_DERNIER_ENCHERES_ARTICLE);
 
-			stmt.setInt(1, no_article);
+			pstmt.setInt(1, no_article);
 
-			rs = stmt.executeQuery();
+			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				encheres = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"),
-						LocalDateTime.parse(rs.getString("date_enchere")), rs.getInt("montant_enchere"));
+						(rs.getTimestamp("date_enchere")).toLocalDateTime(), rs.getInt("montant_enchere"));
 			}	
 
 		} catch (SQLException e) {
+			System.out.println(e);
 			throw new DALException("EchecConnection/Requete:", e);
 		} finally {
 
 			try {
-				stmt.close();
+				pstmt.close();
 				rs.close();
 			} catch (SQLException e) {
 				throw new DALException(e);
 			}
+		}
+		if (encheres == null) {
+			encheres = new Encheres(-1,-1,LocalDateTime.now(),0);
 		}
 		return encheres;
 	}

@@ -107,11 +107,12 @@ public class UtilisateursManager {
  			}
  		}
  	}
- 	public void remboursser(Utilisateurs utilisateur,int credits)throws BLLException{
+ 	public boolean remboursser(Utilisateurs utilisateur,int credits)throws BLLException{
 		try {
  			int creditRestant = utilisateur.getCredit() + credits;
  			utilisateur.setCredit(creditRestant);
  			modifierCredit(utilisateur);
+ 			return true;
  		}catch (Exception e) {
  	 	 	throw new BLLException("BLL UtilisateursManager -remboursser()- : ", e);
  		}
