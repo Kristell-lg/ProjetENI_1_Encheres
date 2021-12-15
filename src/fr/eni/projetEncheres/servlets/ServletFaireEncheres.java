@@ -61,7 +61,7 @@ public class ServletFaireEncheres extends HttpServlet {
 		int articleId = 0;
 		Articles article = null;
 
-		Boolean ok = false;
+		Boolean ok = true;
 
 		if (session != null) {
 			utilisateur = (Utilisateurs) session.getAttribute("utilisateur");
@@ -81,12 +81,23 @@ public class ServletFaireEncheres extends HttpServlet {
 				List<Encheres> enchereliste = EncheresManager.selectionner();
 
 				if (enchereliste.isEmpty()) {
-					request.setAttribute("erreur", "Erreur- la liste des enchères n'a pas pu être chargée");
+					if (utilisateur.getCredit() >= enchere.getMontant_enchere()) {
+						 
+						 EncheresManager.ajoutEnchere(enchere); request.setAttribute("retour","enchère envoyée"); 
+						 request.setAttribute("idArticle", articleId);
+						 
+						 RequestDispatcher succesEncheres = request.getRequestDispatcher("/AccueilLogIn");
+						 succesEncheres.forward(request, response);
+						  
+						 } else { 
+						 request.setAttribute("idArticle", articleId);
+						 request.setAttribute("article", article); request.setAttribute("erreur", "Vous n'avez pas assez de crédit pour faire cette enchère");
+						 }
 				} else {
-					for (Encheres encheres : enchereliste) {
-						
-						if (encheres.getNo_article() == articleId && encheres.getNo_utilisateur() != no_utilisateur) {
-							ok = true;
+					for (Encheres encheres : enchereliste) {	
+						if (encheres.getNo_article() == articleId && encheres.getNo_utilisateur() == no_utilisateur) {
+							//TODO AJouter test du dernier encherisseur
+							ok = false;
 						}
 					}
 				}
@@ -96,8 +107,8 @@ public class ServletFaireEncheres extends HttpServlet {
 					System.out.println("pas d'enchère déjà");
 					
 					 if (utilisateur.getCredit() >= enchere.getMontant_enchere()) {
-					 EncheresManager.ajoutEnchere(enchere); request.setAttribute("retour",
-					 "enchère envoyée"); request.setAttribute("idArticle", articleId);
+					 EncheresManager.ajoutEnchere(enchere); request.setAttribute("retour","enchère envoyée");
+					 request.setAttribute("idArticle", articleId);
 					 RequestDispatcher succesEncheres = request.getRequestDispatcher("/AccueilLogIn");
 					 succesEncheres.forward(request, response);
 					  

@@ -84,9 +84,6 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 		if (logIn) {
 			
 			ArticlesManager articlesManager = new ArticlesManager();
-			EncheresManager encheresManeger = new EncheresManager();
-
-			
 			
 			try {
 				List<Articles> articlesListe = articlesManager.selectionner();
