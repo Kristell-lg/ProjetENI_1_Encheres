@@ -36,7 +36,7 @@ public class ServletFaireEncheres extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/JSPFaireEncheres.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/JSPAffichageArticles.jsp");
 		rd.forward(request, response);
 	}
 
