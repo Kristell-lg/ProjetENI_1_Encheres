@@ -20,9 +20,11 @@
 	<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 	
 		<form method="post" action="${pageContext.request.contextPath}/Inscription">
+		
 		<c:if test="${!empty requestScope.erreur}">
 			<p style="color:red">${requestScope.erreur}</p>
 		</c:if>
+		
 			<fieldset class="inscription">
 				<div class="inscription-champs">
 					<div>

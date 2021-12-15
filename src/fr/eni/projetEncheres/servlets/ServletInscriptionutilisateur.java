@@ -50,37 +50,46 @@ public class ServletInscriptionutilisateur extends HttpServlet {
 		String ville = request.getParameter("ville");
 		String codepostal = request.getParameter("codepostal");
 	
+		request.setAttribute("pseudo", pseudo);
+		request.setAttribute("prenom", prenom);
+		request.setAttribute("nom", nom);
+		request.setAttribute("email", email);
+		request.setAttribute("tel", tel);
+		request.setAttribute("rue", rue);
+		request.setAttribute("ville", ville);
+		request.setAttribute("codepostal", codepostal);
 		
 		//Vérification que le mot de passe et la confirmation de mot de passe correspond sinon renvoie au formulaire inscription
 		if (mdp.equals(mdpVerif)) {
 			try {
 				//UNICITE EMAIL & PSEUDO
 				List<Utilisateurs> listeUtilisateurs =   utilisateursManager.selectionner();
+				
 				Boolean ok = false;
 				
-				request.setAttribute("pseudo", pseudo);
-				request.setAttribute("prenom", prenom);
-				request.setAttribute("nom", nom);
-				request.setAttribute("email", email);
-				request.setAttribute("tel", tel);
-				request.setAttribute("rue", rue);
-				request.setAttribute("ville", ville);
-				request.setAttribute("codepostal", codepostal);
-				
-				for (Utilisateurs utilisateurs : listeUtilisateurs) {
-					if (utilisateurs.getPseudo().trim().equalsIgnoreCase(pseudo) |utilisateurs.getEmail().trim().equalsIgnoreCase(pseudo)) {
-						throw new Exception();
+				if (!listeUtilisateurs.isEmpty()) {
+					for (Utilisateurs utilisateurs : listeUtilisateurs) {
+						if (utilisateurs.getPseudo().trim().equalsIgnoreCase(pseudo) |utilisateurs.getEmail().trim().equalsIgnoreCase(pseudo)) {
+							throw new Exception();
+						}
+						else {
+							ok = true;
+						}
 					}
-					else {
-						ok = true;
+					
+					if (ok) {
+						Utilisateurs utilisateur = new Utilisateurs(pseudo, nom,prenom,email,tel,rue,codepostal,ville,mdp,0);
+						utilisateursManager.ajoutUtilisateur(utilisateur);
+						response.sendRedirect(request.getContextPath()+"/Connexion");
 					}
 				}
-				
-				if (ok) {
+				else {
+					
 					Utilisateurs utilisateur = new Utilisateurs(pseudo, nom,prenom,email,tel,rue,codepostal,ville,mdp,0);
 					utilisateursManager.ajoutUtilisateur(utilisateur);
 					response.sendRedirect(request.getContextPath()+"/Connexion");
 				}
+				
 				
 			}
 			catch(Exception e) {

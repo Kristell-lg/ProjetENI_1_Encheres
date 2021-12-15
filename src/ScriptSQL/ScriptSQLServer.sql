@@ -60,3 +60,42 @@ INSERT INTO CATEGORIES(libelle) VALUES ('Informatique')
 INSERT INTO CATEGORIES(libelle) VALUES ('Ameublement')
 INSERT INTO CATEGORIES(libelle) VALUES ('Vêtement')
 INSERT INTO CATEGORIES(libelle) VALUES ('Sport&Loisirs')
+
+
+CREATE TABLE ENCHERES (
+    no_utilisateur   INTEGER NOT NULL,
+    no_article       INTEGER NOT NULL,
+    date_enchere     datetime NOT NULL,
+	montant_enchere  INTEGER NOT NULL
+
+)
+
+ALTER TABLE ENCHERES ADD constraint enchere_pk PRIMARY KEY (no_utilisateur, no_article)
+
+ALTER TABLE ENCHERES
+    ADD CONSTRAINT encheres_articles_vendus_fk FOREIGN KEY ( no_article )
+        REFERENCES ARTICLES_VENDUS ( no_article )
+ON DELETE NO ACTION 
+    ON UPDATE no action 
+    
+ALTER TABLE ENCHERES
+    ADD CONSTRAINT encheres_articles_vendus_fk FOREIGN KEY ( no_article )
+        REFERENCES ARTICLES_VENDUS ( no_article )
+ON DELETE NO ACTION 
+    ON UPDATE no action
+
+
+CREATE TABLE RETRAITS (
+	no_article         INTEGER NOT NULL,
+    rue              VARCHAR(30) NOT NULL,
+    code_postal      VARCHAR(15) NOT NULL,
+    ville            VARCHAR(30) NOT NULL
+)
+
+ALTER TABLE RETRAITS ADD constraint retrait_pk PRIMARY KEY  (no_article)
+
+ALTER TABLE RETRAITS
+    ADD CONSTRAINT retraits_articles_vendus_fk FOREIGN KEY ( no_article )
+        REFERENCES ARTICLES_VENDUS ( no_article )
+ON DELETE NO ACTION 
+    ON UPDATE no action 
