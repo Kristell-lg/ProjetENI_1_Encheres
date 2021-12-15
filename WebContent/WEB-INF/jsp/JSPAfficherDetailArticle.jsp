@@ -19,7 +19,23 @@
 			<input type="submit">
 			</form>
 			
-			<c:if test="${!empty requestScope.article}">
+			<c:if test="${!empty requestScope.article and sessionScope.utilisateur.getNo_utilisateur()==requestScope.article.getUtilisateur().getNo_utilisateur()}">
+				
+				<h2>Détail Vente</h2>
+				<h3>${requestScope.article.getNom_article()}</h3>
+				<p>Description : ${requestScope.article.getDescription()}</p>
+				<p>Catégorie : ${requestScope.article.getCategorie().getLibelle()}</p>
+				
+				<p>Meilleur Offre :</p>
+				
+				<p>Mise à prix : ${requestScope.article.getPrix_initial()}</p>
+				<p>Retrait : ${requestScope.retrait.Afficher()}</p>
+				<p>Vendeur : ${requestScope.article.getUtilisateur().getPseudo()}</p>
+				
+			</c:if>
+			
+			<c:if test="${!empty requestScope.article and sessionScope.utilisateur.getNo_utilisateur()!=requestScope.article.getUtilisateur().getNo_utilisateur()}">
+				
 				<h2>Détail Vente</h2>
 				<h3>${requestScope.article.getNom_article()}</h3>
 				<p>Description : ${requestScope.article.getDescription()}</p>
@@ -38,29 +54,14 @@
 				</form>
 				
 			</c:if>
+			<c:if test="${empty requestScope.article}">
+				<p>Erreur - veuillez réessayer</p>
+			</c:if>
 			
 		</c:when>
 		
 		<c:otherwise>
-			<p>${requestScope.erreur}</p>
-			<c:if test="${!empty requestScope.article}">
-				<h2>Détail Vente</h2>
-				<h3>${requestScope.article.getNom_article()}</h3>
-				<p>Description : ${requestScope.article.getDescription()}</p>
-				<p>Catégorie : ${requestScope.article.getCategorie().getLibelle()}</p>
-				
-				<p>Meilleur Offre :</p>
-				
-				<p>Mise à prix : ${requestScope.article.getPrix_initial()}</p>
-				<p>Retrait : ${requestScope.retrait.Afficher()}</p>
-				<p>Vendeur : ${requestScope.article.getUtilisateur().getPseudo()}</p>
-				
-				<form action="${pageContext.request.contextPath}/FaireEncheres" method="post">
-					<input type="hidden" name="articleId" value="${requestScope.article.getNo_article()}">					
-					<input type="number" name="enchere" min="0">
-					<input type="submit" value="Enchérir">
-				</form>		
-			</c:if>
+			<p>Erreur - veuillez réessayer</p>
 		</c:otherwise>
 		
 	</c:choose>

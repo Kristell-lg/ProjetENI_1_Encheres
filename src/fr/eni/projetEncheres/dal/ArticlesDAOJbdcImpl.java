@@ -149,10 +149,10 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 				while (resultArticles.next()) {
 					Categories categorie = new Categories(resultArticles.getString("libelle"));
 					
-					Utilisateurs utilisateur = new Utilisateurs(resultArticles.getString("pseudo"),
+					Utilisateurs utilisateur = new Utilisateurs(resultArticles.getInt("no_utilisateur"),resultArticles.getString("pseudo"),
 							resultArticles.getString("nom"),resultArticles.getString("prenom"),resultArticles.getString("email"),
 							resultArticles.getString("telephone"),resultArticles.getString("rue"),resultArticles.getString("code_postal"),
-							resultArticles.getString("ville"),resultArticles.getString("mot_de_passe"),resultArticles.getInt("credit"));
+							resultArticles.getString("ville"),resultArticles.getString("mot_de_passe"),resultArticles.getInt("credit"),resultArticles.getBoolean("administrateur"));
 					
 					article = new Articles(resultArticles.getInt("no_article"),
 							resultArticles.getString("nom_article"), resultArticles.getString("description"),
