@@ -69,7 +69,6 @@ public class EncheresManager {
 		try {
 			encheres = encheresDAO.selectionnerEnchereByIdUtilisateur(no_utilisateur);
 			System.out.println(encheres);
-			System.out.println("1");
 			if (encheres==null) {
 				System.out.println("EncheresListe n'existe pas");
 			}
