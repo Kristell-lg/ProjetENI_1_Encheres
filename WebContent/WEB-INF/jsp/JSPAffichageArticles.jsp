@@ -26,7 +26,7 @@
 <body>
 	<div id="main">
 
-<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
+<%@ include file="/WEB-INF/jsp/pageAccueil/headerCO.html" %>
 	<c:choose>
 		<c:when test="${empty requestScope.erreur}">
 		
@@ -85,7 +85,10 @@
 						<input type="submit" value="Valider">
 					</form>
 			
-			
+				<c:if test="${!empty titre}">
+					<p>${titre}</p>
+				</c:if>
+				
 				<c:forEach var="article" items="${articlesListe}">
 				
 					<form action="${pageContext.request.contextPath}/AfficherArticle" method="get">

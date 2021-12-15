@@ -35,6 +35,7 @@ public class ServletCreationArticles extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPCreationArticles.jsp");
+		request.setAttribute("now", LocalDate.now());
 		rd.forward(request, response);
 	}
 
