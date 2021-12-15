@@ -1,6 +1,6 @@
 package fr.eni.projetEncheres.bo;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * @author Luka CHOUVILLE
@@ -13,12 +13,12 @@ public class Encheres {
 	
 	private int no_utilisateur;
 	private int no_article;
-	private LocalDate date_enchere;
+	private LocalDateTime date_enchere;
 	private int montant_enchere;
 	
 	// Constructeur
 	
-	public Encheres(int pNo_utilisateur,int pNo_article, LocalDate pDate_enchere,int pMontant) {
+	public Encheres(int pNo_utilisateur,int pNo_article, LocalDateTime pDate_enchere,int pMontant) {
 		this.no_utilisateur = pNo_utilisateur;
 		this.no_article = pNo_article;
 		this.date_enchere = pDate_enchere;
@@ -33,7 +33,7 @@ public class Encheres {
 	public int getNo_article() {
 		return this.no_article;
 	}
-	public LocalDate getDate_enchere() {
+	public LocalDateTime getDate_enchere() {
 		return this.date_enchere;
 	}
 	public int getMontant_enchere() {

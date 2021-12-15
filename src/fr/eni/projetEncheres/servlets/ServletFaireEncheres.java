@@ -7,7 +7,11 @@ package fr.eni.projetEncheres.servlets;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,11 +53,13 @@ public class ServletFaireEncheres extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		session.setMaxInactiveInterval(300);
-		
+
 		ArticlesManager articlesManager = new ArticlesManager();
 		Utilisateurs utilisateur = null;
 		int articleId = 0;
 		Articles article = null;
+
+		Boolean ok = false;
 
 		if (session != null) {
 			utilisateur = (Utilisateurs) session.getAttribute("utilisateur");
@@ -64,44 +70,61 @@ public class ServletFaireEncheres extends HttpServlet {
 				request.setAttribute("article", article);
 
 				int no_utilisateur = utilisateur.getNo_utilisateur();
-				LocalDate date_enchere = LocalDate.now();
-				
+				LocalDateTime date_enchere = LocalDateTime.now();
 				int montant_enchere = Integer.valueOf(request.getParameter("enchere"));
 
 				EncheresManager EncheresManager = new EncheresManager();
-
 				Encheres enchere = new Encheres(no_utilisateur, articleId, date_enchere, montant_enchere);
 
-				
+				List<Encheres> enchereliste = EncheresManager.selectionner();
+				System.out.println("servlet"+enchereliste);
 
-				//PRIMARY KEY A GERER
-				
-				if (utilisateur.getCredit() >= enchere.getMontant_enchere()) {
-					EncheresManager.ajoutEnchere(enchere);
-					request.setAttribute("retour", "enchère envoyée");
-					request.setAttribute("idArticle", articleId);
-					RequestDispatcher succesEncheres = request.getRequestDispatcher("/AccueilLogIn");
-					succesEncheres.forward(request, response);
-
+				if (enchereliste.isEmpty()) {
+					System.out.println("encher liste nulle");
+				} else {
+					for (Encheres encheres : enchereliste) {
+						
+						if (encheres.getNo_article() == articleId && encheres.getNo_utilisateur() != no_utilisateur) {
+							ok = true;
+						}
+					}
 				}
-				else {
+
+				// PRIMARY KEY A GERER
+				if (ok) {
+					System.out.println("pas d'enchère déjà");
+					/*
+					 * if (utilisateur.getCredit() >= enchere.getMontant_enchere()) {
+					 * EncheresManager.ajoutEnchere(enchere); request.setAttribute("retour",
+					 * "enchère envoyée"); request.setAttribute("idArticle", articleId);
+					 * RequestDispatcher succesEncheres =
+					 * request.getRequestDispatcher("/AccueilLogIn");
+					 * succesEncheres.forward(request, response);
+					 * 
+					 * } else { request.setAttribute("idArticle", articleId);
+					 * request.setAttribute("article", article); request.setAttribute("erreur",
+					 * "Vous n'avez pas assez de crédit pour faire cette enchère");
+					 * RequestDispatcher erreurEnchere =
+					 * request.getRequestDispatcher("/AfficherArticle");
+					 * erreurEnchere.forward(request, response); }
+					 */
+				} else {
+					System.out.println("enchère déjà");
 					request.setAttribute("idArticle", articleId);
 					request.setAttribute("article", article);
-					request.setAttribute("erreur", "Vous n'avez pas assez de crédit pour faire cette enchère");
+					request.setAttribute("erreur",
+							"Vous ne pouvez pas faire une enchère si vous êtes le dernier à avoir encheri");
 					RequestDispatcher erreurEnchere = request.getRequestDispatcher("/AfficherArticle");
 					erreurEnchere.forward(request, response);
 				}
+
 			} catch (Exception e) {
 				System.err.println(e.getMessage());
-				if (e.getMessage().contains("SQL")) {
-					System.out.println("henlo1");
-					request.setAttribute("idArticle", articleId);
-					request.setAttribute("article", article);
-					request.setAttribute("erreur", "Vous ne pouvez pas faire d'enchère sur l'article si vous êtes le dernier à avoir enchéri !");
-					RequestDispatcher erreurEnchere = request.getRequestDispatcher("/AfficherArticle");
-					erreurEnchere.forward(request, response);
-					
-				}
+				request.setAttribute("idArticle", articleId);
+				request.setAttribute("article", article);
+				request.setAttribute("erreur", "Erreur pendant la création de l'enchère est survenue");
+				RequestDispatcher erreurEnchere = request.getRequestDispatcher("/AfficherArticle");
+				erreurEnchere.forward(request, response);
 			}
 		}
 	}

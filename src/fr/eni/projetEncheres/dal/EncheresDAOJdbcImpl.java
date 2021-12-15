@@ -5,12 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.projetEncheres.bo.Encheres;
-import fr.eni.projetEncheres.bo.Utilisateurs;
 
 /**
  * @authorLukaCHOUVILLE EncheresDAOJDBCImpl
@@ -35,9 +34,10 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 
 			while (resultEncheres.next()) {
 				Encheres enchere = new Encheres(resultEncheres.getInt("no_utilisateur"),
-						resultEncheres.getInt("no_article"), LocalDate.parse(resultEncheres.getString("date_enchere")),
+						resultEncheres.getInt("no_article"), LocalDateTime.parse(resultEncheres.getString("date_enchere")),
 						resultEncheres.getInt("montant_enchere"));
 				EncheresListe.add(enchere);
+				System.out.println("DAL"+EncheresListe);
 			}
 		} catch (SQLException e) {
 			throw new DALException("Echec Connection/Requete:", e);
@@ -50,7 +50,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 				throw new DALException("Echec Fermeture Connection:", e);
 			}
 		}
-
+		
 		return EncheresListe;
 	}
 
@@ -62,7 +62,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 
 			stmt.setInt(1, enchere.getNo_utilisateur());
 			stmt.setInt(2, enchere.getNo_article());
-			stmt.setDate(3, java.sql.Date.valueOf(enchere.getDate_enchere()));
+			stmt.setObject(3, java.sql.Timestamp.valueOf(enchere.getDate_enchere()));
 			stmt.setInt(4, enchere.getMontant_enchere());
 
 			stmt.executeUpdate();
@@ -90,7 +90,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 			if(rs.next()) {
 				System.out.println("1");
 				encheres = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"),
-						rs.getDate("date_enchere").toLocalDate(), rs.getInt("montant_enchere"));
+						LocalDateTime.parse(rs.getString("date_enchere")), rs.getInt("montant_enchere"));
 				System.out.println("2");
 			}	
 

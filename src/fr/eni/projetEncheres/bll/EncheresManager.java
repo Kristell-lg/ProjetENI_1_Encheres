@@ -3,8 +3,6 @@ package fr.eni.projetEncheres.bll;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.projetEncheres.bll.BLLException;
-
 import fr.eni.projetEncheres.bo.Encheres;
 import fr.eni.projetEncheres.dal.DAOFactory;
 import fr.eni.projetEncheres.dal.EncheresDAO;
@@ -30,7 +28,9 @@ public class EncheresManager {
 
 		try {
 			EncheresListe = encheresDAO.selectionner();
+			System.out.println("BLL"+EncheresListe);
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new BLLException("Echec Recuperation Enchere 1  : ", e);
 		}
 
@@ -46,20 +46,6 @@ public class EncheresManager {
 		}
 	}
 
-	/*
-	 * public List<Encheres> selectionnerEnchereByIdUtilisateur(int no_utilisateur)
-	 * throws BLLException { // SELECT_ENCHERES_id//
-	 * 
-	 * List<Encheres> EncheresListe = new ArrayList<Encheres>();
-	 * 
-	 * try { System.out.println(); EncheresListe =
-	 * this.encheresDAO.selectionnerEnchereByIdUtilisateur(no_utilisateur);
-	 * System.out.println("1"); if (EncheresListe==null) {
-	 * System.out.println("EncheresListe n'existe pas"); } } catch (Exception e) {
-	 * throw new BLLException("Echec Recuperation Enchere 2  : ", e); }
-	 * 
-	 * return EncheresListe; }
-	 */
 	
 	
 	public Encheres selectionnerEnchereByIdUtilisateur(int no_utilisateur) throws BLLException { // SELECT_ENCHERES_id_id//
