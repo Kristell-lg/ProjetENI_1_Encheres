@@ -44,23 +44,16 @@
 						    <option value=4>Sport et Loisirs</option>
 						</select>
 						
-						<label for="categorie">Achats :</label>
-			
-						<select name="categorie" id="categorie">
+						<label for="filtre">Filtrer</label>
+						<select name="filtre" id="filtre">
 						    <option value=0>--Choisir dans mes achats--</option>
 						    <option value=1>Enchères ouvertes</option>
 						    <option value=2>Mes enchères en cours</option>
 						    <option value=3>Mes enchères remportées</option>
-						</select>
-						
-						<label>  OU  </label>
-						<label for="categorie">Mes ventes :</label>
-			
-						<select name="categorie" id="categorie">
 						    <option value=0>--Choisir dans mes ventes--</option>
-						    <option value=1>Mes vente en cours</option>
-						    <option value=2>Ventes non débutées</option>
-						    <option value=3>Mes ventes terminées</option>
+						    <option value=4>Mes vente en cours</option>
+						    <option value=5>Ventes non débutées</option>
+						    <option value=6>Mes ventes terminées</option>
 						</select>
 						<input type="submit" value="Valider">
 					</form>
@@ -69,7 +62,7 @@
 			
 				<c:forEach var="article" items="${articlesListe}">
 				
-					<form action="${pageContext.request.contextPath}/AfficherArticle" method="post">
+					<form action="${pageContext.request.contextPath}/AfficherArticle" method="get">
 						<input type="hidden" name="idArticle" value="${article.getNo_article()}">
 						<button type="submit">${article.getNom_article()}</button>
 					</form>	

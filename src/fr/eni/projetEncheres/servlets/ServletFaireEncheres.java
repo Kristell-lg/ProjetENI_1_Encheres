@@ -64,32 +64,45 @@ public class ServletFaireEncheres extends HttpServlet {
 				request.setAttribute("article", article);
 
 				int no_utilisateur = utilisateur.getNo_utilisateur();
-				int no_article = articleId;
 				LocalDate date_enchere = LocalDate.now();
 				
 				int montant_enchere = Integer.valueOf(request.getParameter("enchere"));
 
 				EncheresManager EncheresManager = new EncheresManager();
 
-				Encheres enchere = new Encheres(no_utilisateur, no_article, date_enchere, montant_enchere);
-				System.out.println(enchere);
+				Encheres enchere = new Encheres(no_utilisateur, articleId, date_enchere, montant_enchere);
 
-				EncheresManager.ajoutEnchere(enchere);
+				
 
-				if (utilisateur.getCredit() > enchere.getMontant_enchere()) {
-
+				//PRIMARY KEY A GERER
+				
+				if (utilisateur.getCredit() >= enchere.getMontant_enchere()) {
+					EncheresManager.ajoutEnchere(enchere);
 					request.setAttribute("retour", "enchère envoyée");
-					//request.setAttribute("idArticle", no_article);
-					RequestDispatcher rd = request.getRequestDispatcher("/AccueilLogIn");
-					rd.forward(request, response);
+					request.setAttribute("idArticle", articleId);
+					RequestDispatcher succesEncheres = request.getRequestDispatcher("/AccueilLogIn");
+					succesEncheres.forward(request, response);
 
 				}
+				else {
+					request.setAttribute("idArticle", articleId);
+					request.setAttribute("article", article);
+					request.setAttribute("erreur", "Vous n'avez pas assez de crédit pour faire cette enchère");
+					RequestDispatcher erreurEnchere = request.getRequestDispatcher("/AfficherArticle");
+					erreurEnchere.forward(request, response);
+				}
 			} catch (Exception e) {
-				e.printStackTrace();
 				System.err.println(e.getMessage());
+				if (e.getMessage().contains("SQL")) {
+					System.out.println("henlo1");
+					request.setAttribute("idArticle", articleId);
+					request.setAttribute("article", article);
+					request.setAttribute("erreur", "Vous ne pouvez pas faire d'enchère sur l'article si vous êtes le dernier à avoir enchéri !");
+					RequestDispatcher erreurEnchere = request.getRequestDispatcher("/AfficherArticle");
+					erreurEnchere.forward(request, response);
+					
+				}
 			}
-		} else {
-			request.setAttribute("erreur", "accès à l'article à échoué!");
 		}
 	}
 

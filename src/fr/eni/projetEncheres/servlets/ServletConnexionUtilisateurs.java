@@ -80,7 +80,7 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		//Envoyer les informations de catalogue vers la JSP
+		//Envoyer les informations de catalogue vers la  JSP
 		if (logIn) {
 			
 			ArticlesManager articlesManager = new ArticlesManager();

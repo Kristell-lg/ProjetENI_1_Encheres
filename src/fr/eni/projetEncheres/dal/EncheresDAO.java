@@ -5,6 +5,7 @@ import fr.eni.projetEncheres.bo.Encheres;
 
 /**
  * @author Luka CHOUVILLE
+ * 
  * EncheresDAO
  */
 

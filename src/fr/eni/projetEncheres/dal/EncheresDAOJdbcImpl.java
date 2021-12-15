@@ -20,7 +20,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 
 	private static final String SELECT_TOUT = "SELECT*FROM ENCHERES";
 	private static final String INSERTENCHERE = "INSERT INTO ENCHERES(no_utilisateur,no_article,date_enchere,montant_enchere)VALUES(?,?,?,?)";
-	private static final String SELECT_ENCHERES_id = "SELECT*FROM ENCHERES WHERE no_utilisateur=?";
+	private static final String SELECT_ENCHERES_id = "SELECT * FROM ENCHERES WHERE no_utilisateur=?";
 
 //Selectionnerl'ensembledesencheres
 	public List<Encheres> selectionner() throws DALException {

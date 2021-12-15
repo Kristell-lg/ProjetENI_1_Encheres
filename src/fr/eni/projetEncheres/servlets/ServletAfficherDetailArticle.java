@@ -32,7 +32,32 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher succesConnexion = request.getRequestDispatcher("/WEB-INF/jsp/JSPAfficherDetailArticle.jsp");	
-		succesConnexion.forward(request, response);
+		RequestDispatcher erreurConnexion = request.getRequestDispatcher("/WEB-INF/jsp/JSPAfficherDetailArticle.jsp");
+
+		
+		ArticlesManager articlesManager = new ArticlesManager();
+		RetraitsManager retraitsManager = new RetraitsManager();
+
+		
+		int idArticle = Integer.valueOf(request.getParameter("idArticle"));
+		if (idArticle!=0) {
+			try {
+				Articles article = articlesManager.selectArticle(idArticle);
+				Retraits retrait = retraitsManager.selectionnerArticleID(article);
+				
+				request.setAttribute("article", article);
+				request.setAttribute("retrait", retrait);
+				
+				succesConnexion.forward(request, response);
+				
+			} catch (Exception e) {
+				System.err.println(e.getMessage());	
+			}
+		}
+		else {
+			request.setAttribute("erreur", "accès au détail de l'article à échoué!");
+			erreurConnexion.forward(request, response);
+		}
 	}
 
 	/**
@@ -47,7 +72,7 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 		RetraitsManager retraitsManager = new RetraitsManager();
 
 		
-		int idArticle = Integer.valueOf(request.getParameter("idArticle"));
+		int idArticle = (int) request.getAttribute("idArticle");
 		if (idArticle!=0) {
 			try {
 				Articles article = articlesManager.selectArticle(idArticle);

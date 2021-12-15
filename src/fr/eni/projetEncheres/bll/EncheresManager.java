@@ -62,13 +62,13 @@ public class EncheresManager {
 	 */
 	
 	
-	public Encheres selectionnerEnchereByIdUtilisateur(int no_utilisateur) throws BLLException { // SELECT_ENCHERES_id//
+	public Encheres selectionnerEnchereByIdUtilisateur(int no_utilisateur) throws BLLException { // SELECT_ENCHERES_id_id//
 
 		Encheres encheres =null; 
 
 		try {
-			System.out.println(encheres);
 			encheres = encheresDAO.selectionnerEnchereByIdUtilisateur(no_utilisateur);
+			System.out.println(encheres);
 			System.out.println("1");
 			if (encheres==null) {
 				System.out.println("EncheresListe n'existe pas");

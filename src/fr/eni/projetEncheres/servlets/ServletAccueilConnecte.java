@@ -35,10 +35,10 @@ public class ServletAccueilConnecte extends HttpServlet {
 			throws ServletException, IOException {
 		RequestDispatcher erreurConnexion = request.getRequestDispatcher("/WEB-INF/jsp/JSPConnexionUtilisateurs.jsp");
 		RequestDispatcher succesConnexion = request.getRequestDispatcher("/WEB-INF/jsp/JSPAffichageArticles.jsp");
-		
+
 		String pseudo = request.getParameter("pseudo");
 		String mot_de_passe = request.getParameter("mot_de_passe");
-	
+
 		int id = 0;
 
 		List<Utilisateurs> listeUtilisateursBDD = new ArrayList<>();
@@ -46,16 +46,16 @@ public class ServletAccueilConnecte extends HttpServlet {
 
 		try {
 			listeUtilisateursBDD = utilisateursManager.selectionner();
-			
+
 			if (listeUtilisateursBDD != null) {
 				for (Utilisateurs utilisateurs : listeUtilisateursBDD) {
-					//CHERCHER DANS LA BDD - si un pseudo correpond à celui entré par l'utilisateur
+					// CHERCHER DANS LA BDD - si un pseudo correpond à celui entré par l'utilisateur
 					if (utilisateurs.getPseudo().trim().equals(pseudo)) {
-						//CHERCHER DANS LA BDD - si le mot de passe correspond à ce pseudo
+						// CHERCHER DANS LA BDD - si le mot de passe correspond à ce pseudo
 						if (utilisateurs.getMot_de_passe().trim().equals(mot_de_passe)) {
-							
+
 							id = utilisateurs.getNo_utilisateur();
-							
+
 						}
 					}
 				}
@@ -68,15 +68,14 @@ public class ServletAccueilConnecte extends HttpServlet {
 			erreurConnexion.forward(request, response);
 			e.printStackTrace();
 		}
-		
 
 		HttpSession session = request.getSession();
-		
-		if (session!=null) {
+
+		if (session != null) {
 			Utilisateurs utilisateur = (Utilisateurs) session.getAttribute("utilisateur");
-			session.setAttribute("utilisateur", utilisateur); 
+			session.setAttribute("utilisateur", utilisateur);
 		}
-		
+
 		// SELECTION DE TOUS LES ARTICLES
 		try {
 			ArticlesManager articlesManager = new ArticlesManager();
@@ -86,18 +85,19 @@ public class ServletAccueilConnecte extends HttpServlet {
 			succesConnexion.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-		
 
-		// SELECTION DE TOUTES LES ENCHERES EN COURS POUR CET UTILISATEUR
-		try {
-			EncheresManager encheresManager = new EncheresManager();
-			Encheres EncheresListe = encheresManager.selectionnerEnchereByIdUtilisateur(id);
-			request.setAttribute("articlesListe", EncheresListe);
-			succesConnexion.forward(request, response);
-		} catch (Exception e2) {
-			e2.printStackTrace();
+			// SELECTION DE TOUTES LES ENCHERES EN COURS POUR CET UTILISATEUR
+			try {
+				EncheresManager encheresManager = new EncheresManager();
+				Encheres EncheresListe = encheresManager.selectionnerEnchereByIdUtilisateur(id);
+				request.setAttribute("articlesListe", EncheresListe);
+				succesConnexion.forward(request, response);
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+
 		}
-	}
+
 	}
 
 	/**
