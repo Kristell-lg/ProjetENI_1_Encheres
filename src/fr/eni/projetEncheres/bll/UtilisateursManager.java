@@ -100,7 +100,7 @@ public class UtilisateursManager {
  		if(credits <= utilisateur.getCredit()) {
  			try {
  				int creditRestant = utilisateur.getCredit() - credits;
- 				utilisateur.setCredit(credits);
+ 				utilisateur.setCredit(creditRestant);
  				modifierCredit(utilisateur);
  			}catch (Exception e) {
  	 	 		throw new BLLException("BLL UtilisateursManager -crediter()- : ", e);
@@ -108,13 +108,12 @@ public class UtilisateursManager {
  		}
  	}
  	public void remboursser(Utilisateurs utilisateur,int credits)throws BLLException{
- 		if(credits <= utilisateur.getCredit()) {
- 			try {
- 				utilisateur.setCredit(credits);
- 				modifierCredit(utilisateur);
- 			}catch (Exception e) {
- 	 	 		throw new BLLException("BLL UtilisateursManager -crediter()- : ", e);
- 			}
+		try {
+ 			int creditRestant = utilisateur.getCredit() + credits;
+ 			utilisateur.setCredit(creditRestant);
+ 			modifierCredit(utilisateur);
+ 		}catch (Exception e) {
+ 	 	 	throw new BLLException("BLL UtilisateursManager -remboursser()- : ", e);
  		}
  	}
  	//Modification des credits
