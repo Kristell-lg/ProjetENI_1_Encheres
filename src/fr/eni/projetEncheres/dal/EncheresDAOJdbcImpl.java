@@ -32,9 +32,10 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 			statementEncheres = cnx.createStatement();
 			resultEncheres = statementEncheres.executeQuery(SELECT_TOUT);
 
+			
 			while (resultEncheres.next()) {
 				Encheres enchere = new Encheres(resultEncheres.getInt("no_utilisateur"),
-						resultEncheres.getInt("no_article"), LocalDateTime.parse(resultEncheres.getString("date_enchere")),
+						resultEncheres.getInt("no_article"), (resultEncheres.getTimestamp("date_enchere")).toLocalDateTime(),
 						resultEncheres.getInt("montant_enchere"));
 				EncheresListe.add(enchere);
 				System.out.println("DAL"+EncheresListe);
