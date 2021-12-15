@@ -14,24 +14,29 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/headerFooter.css"/>
+<link rel="stylesheet" href="css/pageAccueil.css"/>
+ 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
 <link href="https://fonts.googleapis.com/css2?family=Economica&display=swap" rel="stylesheet">
 <title>Accueil</title>
 </head>
 <body>
+<div id="main">
 <%@ include file="header.html" %>
+					<h1>Liste des enchères</h1>
 
-<h3 style="text-align:center">Liste des enchères</h3>
+
 	
 <c:choose>
+
 			<c:when test="${!empty articlesListe}">
 			
 					<c:if test="${!empty requestScope.erreur}">
 						<p style="color:red">${requestScope.erreur}</p>
 					</c:if>
 				
-				<div>
+			
 					<form action="${pageContext.request.contextPath}/Accueil" method="post">
 						<label for="categorie">Catégorie:</label>
 			
@@ -50,23 +55,30 @@
 					</form>
 				</div>
 				
-				<h2>${requestScope.titre}</h2>
-				
+				<h2 id="nomArticle">${requestScope.titre}</h2>
+				<div id="position">
 				<c:forEach var="article" items="${articlesListe}">
+				<div id="container">
 					<a class="affichageArticle" href="${pageContext.request.contextPath}/Connexion">${article.getNom_article()}</a>
 					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))}</p>
-					<p class="affichageArticle">Prix initial :${article.getPrix_initial()}</p>
+					<p class="affichageArticle">Prix de vente :${article.getPrix_initial()}</p>
 					<p class="affichageArticle">Vendeur :</p><a href="${pageContext.request.contextPath}/Connexion">${article.getUtilisateur().getPseudo()}</a>
-					<p class="affichageArticle">-----------------------------------------------</p>
+					<br>
+					<br>
+					</div>
 				</c:forEach>
+				</div>
+				
 			</c:when>
+			
 			<c:otherwise>
 				<c:if test="${!empty requestScope.erreur}">
 							<p style="color:red">${requestScope.erreur}</p>
 						</c:if>
 					
-					<div>
+					
 						<form action="${pageContext.request.contextPath}/Accueil" method="post">
+						<div id="containeurs">
 							<label for="categorie">Catégorie:</label>
 				
 							<select name="categorie" id="categorie">
@@ -81,8 +93,12 @@
 							<input type="text" name="recherche">
 						
 							<input type="submit" value="Valider">
-						</form>
+								
+						
+					
+					
 					</div>
+					
 				<p class="affichageArticle">
 					Aucun article n'est disponible
 				</p>
@@ -90,6 +106,8 @@
 		</c:choose>	
 
 
-<%@ include file="footer.html" %>
+
+</div>
 </body>
+
 </html>
