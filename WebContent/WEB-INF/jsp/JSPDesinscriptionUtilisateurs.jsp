@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="css/headerFooter.css"/>
 <link rel="stylesheet" href="css/AfficherProfil.css"> <!-- Applique le nouveau design -->
 
-		<!-- FONT ECONOMICA -->
+		<!-- FONT ECONOMICAA -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
 <link href="https://fonts.googleapis.com/css2?family=Economica&display=swap" rel="stylesheet">
