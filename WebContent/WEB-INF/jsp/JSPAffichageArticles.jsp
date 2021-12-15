@@ -7,7 +7,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<!-- CSS -->
+
+<link rel="stylesheet" href="css/headerFooter.css"/>
+<link rel="stylesheet" href="css/ConnexionUser.css" />
+<!-- FONT ECONOMICA -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
+<link href="https://fonts.googleapis.com/css2?family=Economica&display=swap" rel="stylesheet">
+<!-- ICONE DE PAGE -->
 <link rel="Shortcut Icon" href="css/images/iconeOsna.png">
+
 <title>Catalogue Articles</title>
 </head>
 <body>
@@ -27,13 +38,13 @@
 		
 	</c:choose>	
 	
-	<h1>Catalogue des articles</h1>
+	<h1>Catalogue des articles</h1> <!-- à modifier selon selection voulu par l'utilisateur -->
 	
 		<c:choose>
 		
 			<c:when test="${!empty articlesListe}">
 				
-				<form action="${pageContext.request.contextPath}/Accueil" method="post">
+				<form action="${pageContext.request.contextPath}/AccueilLogIn" method="post">
 						<label for="categorie">Catégorie:</label>
 			
 						<select name="categorie" id="categorie">
@@ -89,39 +100,7 @@
 			</c:otherwise>
 			
 		</c:choose>	
-		
-		<h1>Catalogue des enchères</h1>
-		
-		<c:choose>
-			<c:when test="${!empty EncheresListe}">
-				<c:forEach var="enchereListe" items="${EncheresListe}">
-					
-						<form action="${pageContext.request.contextPath}/AfficherArticle" method="post">
-							<input type="hidden" name="idArticle" value="${article.getNo_article()}">
-							<button type="submit">${article.getNom_article()}</button>
-						</form>	
-						
-						<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))}</p>
-						<p class="affichageArticle">Prix initial :${article.getPrix_initial()}</p>
-						<p class="affichageArticle">Vendeur :${article.getUtilisateur().getPseudo()}</p>
-						
-						<form action="${pageContext.request.contextPath}/Profil" method="post">
-							<input type="hidden" name="idProfil" value="${article.getUtilisateur().getNo_utilisateur()}">
-							<button type="submit">${article.getUtilisateur().getPseudo()}</button>
-						</form>	
-						
-						<p class="affichageArticle">-----------------------------------------------</p>
-						
-				</c:forEach>
-			</c:when>
-			
-			<c:otherwise>
-				<p class="affichageArticle">
-					Aucune enchère n'est disponible
-				</p>
-			</c:otherwise>
-			
-		</c:choose>	
+
 
 <%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
 </body>
