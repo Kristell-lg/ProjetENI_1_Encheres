@@ -30,15 +30,28 @@
 	<h1 id="titre">Inscription</h1>
 			 		<div id="container">
 		<form method="post" action="${pageContext.request.contextPath}/Inscription">
+		
 		<c:if test="${!empty requestScope.erreur}">
 			<p style="color:red">${requestScope.erreur}</p>
 		</c:if>
 		
+<<<<<<< HEAD
 			
 					
+=======
+			<fieldset class="inscription">
+				<div class="inscription-champs">
+					<div>
+>>>>>>> branch 'dev' of https://github.com/Kristell-lg/ProjetENI_1_Encheres.git
 						<label for="pseudo">*Pseudo : </label>
+<<<<<<< HEAD
 						<input type="text" name="pseudo" id="pseudo" value="${requestScope.pseudo}" maxlength="30" required/>
 							
+=======
+						<input type="text" name="pseudo" id="pseudo" pattern="^[a-zA-Z0-9_]*$" value="${requestScope.pseudo}" maxlength="30" required/>
+					</div>
+					<div>		
+>>>>>>> branch 'dev' of https://github.com/Kristell-lg/ProjetENI_1_Encheres.git
 						<label for="prenom">*Prénom : </label>
 						<input type="text" name="prenom" id="prenom" maxlength="30" value="${requestScope.prenom}" required/>
 					
