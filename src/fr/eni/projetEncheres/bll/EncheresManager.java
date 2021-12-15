@@ -46,7 +46,9 @@ public class EncheresManager {
 		}
 	}
 
-	
+	public void supprimerEnchere(Encheres enchere) throws Exception{
+	    this.encheresDAO.supprimerEnchere(enchere); 
+	}
 	
 	public Encheres selectionnerEnchereByIdUtilisateur(int no_utilisateur) throws BLLException { // SELECT_ENCHERES_id_id//
 

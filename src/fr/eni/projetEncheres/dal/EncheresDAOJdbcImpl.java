@@ -20,7 +20,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 	private static final String SELECT_TOUT = "SELECT * FROM ENCHERES";
 	private static final String INSERTENCHERE = "INSERT INTO ENCHERES(no_utilisateur,no_article,date_enchere,montant_enchere)VALUES(?,?,?,?)";
 	private static final String SELECT_ENCHERES_id = "SELECT * FROM ENCHERES e INNER JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article AND e.no_utilisateur=? ";
-
+	private static final String DELETE = "DELETE FROM ENCHERES WHERE enchere.No_utilisateur = ?";
 //Selectionnerl'ensembledesencheres
 	public List<Encheres> selectionner() throws DALException {
 
@@ -74,7 +74,16 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 		}
 
 	}
-
+	public void supprimerEnchere(Encheres enchere) throws Exception {
+		
+	    try (Connection connection = ConnectionProvider.getConnection();
+	    		PreparedStatement stmt = connection.prepareStatement(DELETE);) {
+	    				stmt.setInt(1,  enchere.getNo_utilisateur());
+	    				stmt.execute();
+	    				} catch (SQLException e) {
+	    				throw new Exception(e);
+	    }
+	} 
 	public Encheres selectionnerEnchereByIdUtilisateur(int no_utilisateur) throws Exception {
 
 		Encheres encheres = null;

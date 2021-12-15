@@ -13,4 +13,6 @@ public interface EncheresDAO {
 	public List<Encheres> selectionner() throws DALException;
 	public void ajoutEnchere(Encheres enchere) throws DALException;
 	public Encheres selectionnerEnchereByIdUtilisateur(int no_utilisateur) throws Exception;
+	public void supprimerEnchere(Encheres enchere) throws Exception;
+
 }
