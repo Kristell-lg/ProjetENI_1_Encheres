@@ -1,0 +1,109 @@
+body {
+    background: #00937C;
+}
+
+#container {
+	
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 10%;
+    font-family: 'Economica',
+    sans-serif;
+    font-size: 20px;
+}
+
+
+form {
+    
+    width: 100%;
+    padding: 30px;
+    border: 1px solid #f1f1f1;
+    background: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#container h1 {
+    width: 38%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+
+input[type=text],
+input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+
+input[type=submit] {
+    background-color: #00937C;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+input[type=submit]:hover {
+    background-color: white;
+    color: #00937C;
+    border: 1px solid #00937C;
+}
+
+
+
+input{
+background-color: #e4dcd8;
+;
+border-radius: 8px;
+color: #00475E;
+border: 2px solid;
+padding: 10px 22px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 20px;
+font-family: 'Economica',
+sans-serif;
+
+}
+
+#titreConnexion {
+    text-align: center;
+    font-size: 50px;
+}
+
+#Inscrire {
+    
+    color: #00475E;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+#Inscriptionbutton{
+
+   background-color: #00937C;
+   border-radius: 8px;
+   color: #e4dcd8;
+   border: 2px solid;
+   padding: 10px 22px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 15px;
+   color: #e4dcd8;
+   text-decoration: none;
+   font-family: 'Economica',
+   sans-serif;
+   
+}
+
