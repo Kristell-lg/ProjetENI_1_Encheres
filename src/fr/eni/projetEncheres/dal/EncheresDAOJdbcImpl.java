@@ -13,6 +13,8 @@ import fr.eni.projetEncheres.bo.Encheres;
 
 /**
  * @authorLukaCHOUVILLE EncheresDAOJDBCImpl
+ * 
+ * @modif  Clement
  */
 
 public class EncheresDAOJdbcImpl implements EncheresDAO {
