@@ -1,4 +1,5 @@
 <!-- @author: Luka CHOUVILLE -->
+<!-- @update MAXENCE -->
 <%@ page language="java" 
 			contentType="text/html; charset=UTF-8"
     		pageEncoding="UTF-8"
@@ -10,12 +11,22 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Modifier mon profil</title>
-		<link rel="Shortcut Icon" href="css/images/iconeOsna.png">
-		<link rel="stylesheet" href="css/reset.css"> <!-- Reset le design css -->
-        <link rel="stylesheet" href="css/inscription.css"> <!-- Applique le nouveau design -->
+	<!-- CSS -->
+
+<link rel="stylesheet" href="css/headerFooter.css"/>
+<link rel="stylesheet" href="css/AfficherProfil.css"> <!-- Applique le nouveau design -->
+
+	<!-- FONT ECONOMICA -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
+<link href="https://fonts.googleapis.com/css2?family=Economica&display=swap" rel="stylesheet">
+	<!-- ICONE DE PAGE -->
+<link rel="Shortcut Icon" href="css/images/iconeOsna.png">
+		
     
 	</head>
 	<body>
+	<div id="main">
 	<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 		<form method="post" action="${pageContext.request.contextPath}/ModifierProfil">
 		<c:if test="${!empty requestScope.erreur}">
@@ -25,7 +36,8 @@
 		
 		<c:choose>
 			 <c:when test="${!empty sessionScope.utilisateur}">
-			 		<fieldset class="inscription">
+			 		<h1 id="titre">Modification du profil</h1>
+			 		<div id="container">
 				<div class="inscription-champs">
 					<div>
 						<label for="pseudo">Pseudo : </label>
@@ -55,28 +67,22 @@
 					</div>
 				</div>
 				<div class="inscription-champs">
-					<div>
+					
 						<label for="email">Email : </label>
 						<input type="email" pattern="+@+." name="email" id="email" value="${sessionScope.utilisateur.getEmail()}" maxlength="20" />
-					</div>
-					<div>
+					
 						<label for="tel">Téléphone : </label>
 						<input type="tel" name="tel" id="tel" value="${sessionScope.utilisateur.getTelephone()}" maxlength="15"/>
-					</div>
-					<div>
+					
 						<label for="rue">*Rue : </label>
 						<input type="text" name="rue" id="rue" value="${sessionScope.utilisateur.getRue()}" maxlength="30" />
-					</div>
-					<div>
+					
 						<label for="ville">*Ville : </label>
 						<input type="text" name="ville" id="ville" value="${sessionScope.utilisateur.getVille()}" maxlength="30" />
-					</div>
-					<div>	
+					
 						<label for="codepostal">*Code Postal : </label>
 						<input type="text" name="codepostal" id="codepostal" value="${sessionScope.utilisateur.getCode_postal()}" maxlength="5" />
-					</div>
-				</div>
-			</fieldset>
+					
 			 </c:when>
 			 
 			 <c:otherwise>
@@ -85,14 +91,15 @@
 		</c:choose>
 		
 			<!-- Bouton -->
-			<div class="inscription-Bouton">
+			
 				<input type="submit" value="Enregistrer"/>
-			</div>
+			
 		</form>
 		
 			<form action="${pageContext.request.contextPath}/Desinscription">
 				<input type="submit" value="Supprimer le compte"/>
 			</form>
-		<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
+		
 	</body>
+	
 </html>
