@@ -87,11 +87,12 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 			stmt.setInt(1, no_utilisateur);
 
 			rs = stmt.executeQuery();
-			rs.next();
-			System.out.println("1");
-			encheres = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"),
-					rs.getDate("date_enchere").toLocalDate(), rs.getInt("montant_enchere"));
-			System.out.println("2");
+			if(rs.next()) {
+				System.out.println("1");
+				encheres = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"),
+						rs.getDate("date_enchere").toLocalDate(), rs.getInt("montant_enchere"));
+				System.out.println("2");
+			}	
 
 		} catch (SQLException e) {
 			throw new DALException("EchecConnection/Requete:", e);

@@ -94,35 +94,34 @@
 		
 		<c:choose>
 			<c:when test="${!empty EncheresListe}">
-			<c:forEach var="enchereListe" items="${articlesListe}">
-				
-					<form action="${pageContext.request.contextPath}/AfficherArticle" method="post">
-						<input type="hidden" name="idArticle" value="${article.getNo_article()}">
-						<button type="submit">${article.getNom_article()}</button>
-					</form>	
+				<c:forEach var="enchereListe" items="${EncheresListe}">
 					
-					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))}</p>
-					<p class="affichageArticle">Prix initial :${article.getPrix_initial()}</p>
-					<p class="affichageArticle">Vendeur :${article.getUtilisateur().getPseudo()}</p>
-					
-					<form action="${pageContext.request.contextPath}/Profil" method="post">
-						<input type="hidden" name="idProfil" value="${article.getUtilisateur().getNo_utilisateur()}">
-						<button type="submit">${article.getUtilisateur().getPseudo()}</button>
-					</form>	
-					
-					<p class="affichageArticle">-----------------------------------------------</p>
-					
+						<form action="${pageContext.request.contextPath}/AfficherArticle" method="post">
+							<input type="hidden" name="idArticle" value="${article.getNo_article()}">
+							<button type="submit">${article.getNom_article()}</button>
+						</form>	
+						
+						<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))}</p>
+						<p class="affichageArticle">Prix initial :${article.getPrix_initial()}</p>
+						<p class="affichageArticle">Vendeur :${article.getUtilisateur().getPseudo()}</p>
+						
+						<form action="${pageContext.request.contextPath}/Profil" method="post">
+							<input type="hidden" name="idProfil" value="${article.getUtilisateur().getNo_utilisateur()}">
+							<button type="submit">${article.getUtilisateur().getPseudo()}</button>
+						</form>	
+						
+						<p class="affichageArticle">-----------------------------------------------</p>
+						
 				</c:forEach>
-				
+			</c:when>
 			
 			<c:otherwise>
 				<p class="affichageArticle">
 					Aucune enchère n'est disponible
 				</p>
 			</c:otherwise>
-			</c:when>
 			
-			</c:choose>	
+		</c:choose>	
 
 <%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
 </body>
