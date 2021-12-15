@@ -53,7 +53,6 @@ public class ServletAccueilConnecte extends HttpServlet {
 					if (utilisateurs.getPseudo().trim().equals(pseudo)) {
 						// CHERCHER DANS LA BDD - si le mot de passe correspond à ce pseudo
 						if (utilisateurs.getMot_de_passe().trim().equals(mot_de_passe)) {
-
 							id = utilisateurs.getNo_utilisateur();
 
 						}
@@ -80,21 +79,10 @@ public class ServletAccueilConnecte extends HttpServlet {
 		try {
 			ArticlesManager articlesManager = new ArticlesManager();
 			List<Articles> articlesListe = articlesManager.selectionner();
-			System.out.println(articlesListe);
 			request.setAttribute("articlesListe", articlesListe);
 			succesConnexion.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-
-			// SELECTION DE TOUTES LES ENCHERES EN COURS POUR CET UTILISATEUR
-			try {
-				EncheresManager encheresManager = new EncheresManager();
-				Encheres EncheresListe = encheresManager.selectionnerEnchereByIdUtilisateur(id);
-				request.setAttribute("articlesListe", EncheresListe);
-				succesConnexion.forward(request, response);
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
 
 		}
 
@@ -108,6 +96,65 @@ public class ServletAccueilConnecte extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request, response);
 
-	}
+		
+		String pseudo = request.getParameter("pseudo");
+		String mot_de_passe = request.getParameter("mot_de_passe");
 
+		int id = 0;
+
+		List<Utilisateurs> listeUtilisateursBDD = new ArrayList<>();
+		UtilisateursManager utilisateursManager = new UtilisateursManager();
+		listeUtilisateursBDD = utilisateursManager.selectionner();
+
+		if (listeUtilisateursBDD != null) {
+			for (Utilisateurs utilisateurs : listeUtilisateursBDD) {
+				// CHERCHER DANS LA BDD - si un pseudo correpond à celui entré par l'utilisateur
+				if (utilisateurs.getPseudo().trim().equals(pseudo)) {
+					// CHERCHER DANS LA BDD - si le mot de passe correspond à ce pseudo
+					if (utilisateurs.getMot_de_passe().trim().equals(mot_de_passe)) {
+						id = utilisateurs.getNo_utilisateur();
+
+					}
+				}
+			}
+
+			int categorie = Integer.valueOf(request.getParameter("categorie"));
+			String recherche = request.getParameter("recherche");
+
+			if (categorie == 0) {
+				if (!recherche.equals(null)) {
+					request.setAttribute("titre", "Articles - Recherche : " + recherche);
+
+					// SELECTION DE TOUTES LES ENCHERES EN COURS POUR CET UTILISATEUR
+					try {
+						EncheresManager encheresManager = new EncheresManager();
+						ArticlesManager articleManager = new ArticlesManager();
+						List<Encheres> enchereListe  = encheresManager.selectionner();
+						List<Articles> articleListe=  articleManager.selectionner();
+						List<Encheres> enchereListeByID= new ArrayList<Encheres>();
+						List<Articles> 
+
+
+						
+						for (Encheres encheres : enchereListe) {
+							if (encheres.getNo_utilisateur()==id) {
+								enchereListeByID.add(encheres);
+							}
+						}
+						for (Encheres encheres : enchereListeByID) {
+							for (Articles article : articleListe) {
+							}
+							
+						}
+						}
+
+						request.setAttribute("articlesListe", enchereListe);
+						/* succesConnexion.forward(request, response); */
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+				}
+			}
+		}
+	}
 }
