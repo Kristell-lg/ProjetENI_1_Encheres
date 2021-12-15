@@ -32,20 +32,24 @@
 	<c:choose>
 	
 		<c:when test="${!empty requestScope.erreur}">
+		<div id="container">
 			<p id="msgErreurConnexionUtilisateur">${requestScope.erreur}</p>
 			<label class="LabelFormulaireConnexion" for="pseudo">Pseudo : </label>
 			<input class="inputFormulaireConnexion" type=text name="pseudo" value="${requestScope.pseudoSaisi}" required>
 			<label class="LabelFormulaireConnexion" for="mot_de_passe">Mot de passe : </label>
 			<input class="inputFormulaireConnexion" type="password" name="mot_de_passe" required>
 			<input class="inputFormulaireConnexion" type="submit" value="Se Connecter">
+			</div>
 		</c:when>
 		
 		<c:otherwise>
+		<div id="container">
 			<label class="LabelFormulaireConnexion" for="pseudo">Pseudo : </label>
 			<input class="inputFormulaireConnexion" type=text name="pseudo" required>
 			<label class="LabelFormulaireConnexion" for="mot_de_passe">Mot de passe : </label>
 			<input class="inputFormulaireConnexion" type="password" name="mot_de_passe" required>
 			<input class="inputFormulaireConnexion" type="submit" value="Se Connecter">
+			</div>
 		</c:otherwise>
 	</c:choose>
 	<div id="Inscrire">

@@ -12,6 +12,8 @@
 
 <link rel="stylesheet" href="css/headerFooter.css"/>
 <link rel="stylesheet" href="css/ConnexionUser.css" />
+<link rel="stylesheet" href="css/AfficherProfil.css" />
+
 <!-- FONT ECONOMICA -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
@@ -27,11 +29,13 @@
 <%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 	<c:choose>
 		<c:when test="${empty requestScope.erreur}">
+		
 			<p class="affichageArticle">Bonjour ${sessionScope.utilisateur.getPseudo()} !</p>
 			<p class="affichageArticle">Crédit : ${sessionScope.utilisateur.getCredit()} points</p>
 			<a class="affichageArticle" href="/ProjetENI_1_Encheres/ServletCreationArticles">Mettre en vente un article</a>
 			<a class="affichageArticle" href="/ProjetENI_1_Encheres/Profil">Mon Profil</a>
 			<a class="affichageArticle" href="/ProjetENI_1_Encheres/Deconnexion">Déconnexion</a>
+			
 		</c:when>
 		
 		<c:otherwise>
@@ -39,7 +43,6 @@
 		</c:otherwise>
 		
 	</c:choose>	
-	
 	<h1 id="titre">Catalogue des articles</h1> <!-- à modifier selon selection voulu par l'utilisateur -->
 	
 		<c:choose>
@@ -83,7 +86,6 @@
 					</form>
 			
 			
-			
 				<c:forEach var="article" items="${articlesListe}">
 				
 					<form action="${pageContext.request.contextPath}/AfficherArticle" method="get">
@@ -91,10 +93,10 @@
 						<button type="submit">${article.getNom_article()}</button>
 					</form>	
 					
+					
 					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))}</p>
 					<p class="affichageArticle">Prix initial :${article.getPrix_initial()}</p>
 					<p class="affichageArticle">Vendeur :</p>
-					
 					<form action="${pageContext.request.contextPath}/Profil" method="post">
 						<input type="hidden" name="idProfil" value="${article.getUtilisateur().getNo_utilisateur()}">
 						<button type="submit">${article.getUtilisateur().getPseudo()}</button>
@@ -103,6 +105,7 @@
 					<p class="affichageArticle">-----------------------------------------------</p>
 					
 				</c:forEach>
+		
 				
 			</c:when>
 			
