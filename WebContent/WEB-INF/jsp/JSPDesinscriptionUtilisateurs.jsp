@@ -31,7 +31,7 @@
 		<c:if test="${!empty requestScope.msgMdpCorrespondance}">
 			<p style="color:red">${requestScope.msgMdpCorrespondance}</p>
 		</c:if><h1 id="titre">Désinscription</h1>
-			 		<div id="container">
+			 	<div id="container">
 			
 				<p>Veuillez saisir votre pseudo et mot de passe pour effectuer la suppression de votre compte</p>
 				<br>
@@ -48,10 +48,10 @@
 			<p>Attention cette suppression sera définitive</p>
 				<input type="submit" value="Se désinscrire"/>
 				<input type="reset" value="Annuler"/>
+					</div>
 			
 		</form>
 		
-		</div>
 		<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
 		</div>
 	</body>

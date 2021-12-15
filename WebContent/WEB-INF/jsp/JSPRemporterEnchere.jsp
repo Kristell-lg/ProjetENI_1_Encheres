@@ -28,6 +28,7 @@
 <!--USER a remporter la vente (TITRE)-->
 <!-- <p class="affichageArticle">${article.getUtilisateur().getPseudo()}</p>-->
 <!--Nom du produit (TEXTE) -->
+<div id ="containe">
 <h3 id="titre"> ${requestScope.article.getNom_article()} </h3>
 <!--DESCRIPTION DU PRODUIT -->
 <p class="affichageArticle">Description : ${requestScope.article.getDescription()}</p>
@@ -48,6 +49,7 @@
 <button><a href="#">Retrait effectué</a></button>
 <!--IMAGE DU PRODUIT -->
 <img src="" alt="Image de l'enchere remportée">
+</div>
 <%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
 </div>
 </body>

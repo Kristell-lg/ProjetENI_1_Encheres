@@ -25,6 +25,7 @@
 <%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 	<h1 id="titre">Vous avez remporté la vente</h1>
 
+<div id=containe>
 
 	<p class="affichageArticle" href="/ProjetENI_1_Encheres/">${article.getNom_article()}</p>
 		<p class="affichageArticle">Description :${article.getDescription()}</p>
@@ -42,7 +43,7 @@
 	<p class="affichageArticle">-----------------------------------------------</p>
 
 	<a class="affichageArticle" href="/ProjetENI_1_Encheres/ServletAfficherProfil">retour</a>
-
+</div>
 <%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
 </div>
 </body>

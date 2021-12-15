@@ -66,6 +66,7 @@
 						<input type="password" name="mdpVerif" id="mdpVerif" maxlength="30" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" />
 					</div>
 				</div>
+				
 				<div class="inscription-champs">
 					
 						<label for="email">Email : </label>
@@ -82,7 +83,8 @@
 					
 						<label for="codepostal">*Code Postal : </label>
 						<input type="text" name="codepostal" id="codepostal" value="${sessionScope.utilisateur.getCode_postal()}" maxlength="5" />
-					
+				</div>
+				</div>
 			 </c:when>
 			 
 			 <c:otherwise>
@@ -94,12 +96,14 @@
 			
 				<input type="submit" value="Enregistrer"/>
 			
+			
+			
 		</form>
 		
 			<form action="${pageContext.request.contextPath}/Desinscription">
 				<input type="submit" value="Supprimer le compte"/>
 			</form>
-		
+		</div>
 	</body>
 	
 </html>

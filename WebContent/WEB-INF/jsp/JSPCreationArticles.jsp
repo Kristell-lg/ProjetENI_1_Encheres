@@ -28,10 +28,12 @@
 	
 		<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
 		<h1 id="titre">Gestion Article</h1>
-		<h2 id="titre">Ajout Article</h2>
+		<h2 >Ajout Article</h2>
 	
+		<div id="container">
 		<c:if test="${!empty sessionScope.pseudoSession}"> <p>Création article : ${sessionScope.pseudoSession}</p> </c:if>
-		<form method="post" action="/ProjetENI_1_Encheres/ServletCreationArticles">
+	<form method="post" action="/ProjetENI_1_Encheres/ServletCreationArticles">
+	
 			<div>
 				<label for="nom_article"> Nom :</label> 
 				<input type="text" id="nom_article" name="nom_article" placeholder="Article"> 
@@ -64,7 +66,7 @@
 				</select>
 			</div>
 			<fieldset>
-				<p id="titre">Retrait</p>
+				<p>Retrait</p>
 				<div>
 					<label for="rue">Rue : </label>
 					<input type="text" name="rue" id="rue"maxlength="30" value="${sessionScope.utilisateur.getRue()}" required/>
@@ -80,7 +82,10 @@
 			</fieldset>
 			<input type="submit"> 
 			<input type="reset">
-		</form>
+			</div>
+			
+	</form>
+		
 		<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
 		</div>
 	</body>

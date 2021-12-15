@@ -24,7 +24,8 @@
 <body>
 		<form method="post" action="${pageContext.request.contextPath}/FaireEncheres">
 
-<h1>Détail vente</h1>
+<h1 id = "titre">Détail vente</h1>
+<div id = containe>
 
 		<p class="afficherEnchere" >${article.getNom_article()}</p>
 		<p class="afficherEnchere">Description :${article.getDescription()}</p>
@@ -45,6 +46,7 @@
 		
 		<div class="enchere-Bouton">
 				<input type="submit" value="Enchérir"/>
+		</div>
 		</div>
 	</form>
 </body>
