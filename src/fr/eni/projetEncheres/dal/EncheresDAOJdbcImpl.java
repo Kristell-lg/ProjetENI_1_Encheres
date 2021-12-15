@@ -17,7 +17,7 @@ import fr.eni.projetEncheres.bo.Encheres;
 
 public class EncheresDAOJdbcImpl implements EncheresDAO {
 
-	private static final String SELECT_TOUT = "SELECT*FROM ENCHERES";
+	private static final String SELECT_TOUT = "SELECT * FROM ENCHERES";
 	private static final String INSERTENCHERE = "INSERT INTO ENCHERES(no_utilisateur,no_article,date_enchere,montant_enchere)VALUES(?,?,?,?)";
 	private static final String SELECT_ENCHERES_id = "SELECT * FROM ENCHERES e INNER JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article AND e.no_utilisateur=? ";
 
