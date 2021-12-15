@@ -74,53 +74,29 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 
 	}
 
-	/*
-	 * public List<Encheres>selectionnerEnchereByIdUtilisateur(int
-	 * no_utilisateur)throws DALException{ List<Encheres>EncheresListe=new
-	 * ArrayList<Encheres>(); try(Connection cnx=ConnectionProvider.getConnection();
-	 * PreparedStatement stmt = cnx.prepareStatement(SELECT_ENCHERES_id); ResultSet
-	 * rs = stmt.executeQuery()) {
-	 * 
-	 * while(rs.next()){ Encheres enchere=new
-	 * Encheres(rs.getInt("no_utilisateur"),rs.getInt("no_article"),
-	 * LocalDate.parse(rs.getString("date_enchere")),rs.getInt("montant_enchere"));
-	 * EncheresListe.add(enchere); System.out.println("2"); } return EncheresListe;
-	 * 
-	 * 
-	 * }catch(SQLException e){ throw new DALException("EchecConnection/Requete:",e);
-	 * }
-	 * 
-	 * }
-	 */
-	
+	public Encheres selectionnerEnchereByIdUtilisateur(int no_utilisateur) throws Exception {
 
-	
-	public Encheres selectionnerEnchereByIdUtilisateur(int no_utilisateur)throws Exception{
-		
-		Encheres encheres =null; 
-		PreparedStatement stmt = null; 
+		Encheres encheres = null;
+		PreparedStatement stmt = null;
 
-		ResultSet rs =null; 
-		
-		try(Connection cnx=ConnectionProvider.getConnection()){
-		stmt = cnx.prepareStatement(SELECT_ENCHERES_id);
-		
-		stmt.setInt(1,  no_utilisateur);
-		
-		rs = stmt.executeQuery();
-		rs.next();
-		System.out.println("1");
-		encheres = new Encheres(rs.getInt("no_utilisateur"),rs.getInt("no_article"),rs.getDate("date_enchere").toLocalDate(),
-				rs.getInt("montant_enchere"));
-		System.out.println("2");
-	
+		ResultSet rs = null;
 
-			
-		}catch(SQLException e){
-		throw new DALException("EchecConnection/Requete:",e);
-		}
-		finally {
-			
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			stmt = cnx.prepareStatement(SELECT_ENCHERES_id);
+
+			stmt.setInt(1, no_utilisateur);
+
+			rs = stmt.executeQuery();
+			rs.next();
+			System.out.println("1");
+			encheres = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"),
+					rs.getDate("date_enchere").toLocalDate(), rs.getInt("montant_enchere"));
+			System.out.println("2");
+
+		} catch (SQLException e) {
+			throw new DALException("EchecConnection/Requete:", e);
+		} finally {
+
 			try {
 				stmt.close();
 				rs.close();
@@ -130,7 +106,6 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 		}
 
 		return encheres;
-}
-		
-	
+	}
+
 }
