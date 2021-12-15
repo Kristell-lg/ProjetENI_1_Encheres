@@ -46,16 +46,37 @@ public class EncheresManager {
 		}
 	}
 
-	public List<Encheres> selectionner_id(int no_utilisateur) throws BLLException { // SELECT_ENCHERES_id//
+	/*
+	 * public List<Encheres> selectionnerEnchereByIdUtilisateur(int no_utilisateur)
+	 * throws BLLException { // SELECT_ENCHERES_id//
+	 * 
+	 * List<Encheres> EncheresListe = new ArrayList<Encheres>();
+	 * 
+	 * try { System.out.println(); EncheresListe =
+	 * this.encheresDAO.selectionnerEnchereByIdUtilisateur(no_utilisateur);
+	 * System.out.println("1"); if (EncheresListe==null) {
+	 * System.out.println("EncheresListe n'existe pas"); } } catch (Exception e) {
+	 * throw new BLLException("Echec Recuperation Enchere 2  : ", e); }
+	 * 
+	 * return EncheresListe; }
+	 */
+	
+	
+	public Encheres selectionnerEnchereByIdUtilisateur(int no_utilisateur) throws BLLException { // SELECT_ENCHERES_id//
 
-		List<Encheres> EncheresListe = new ArrayList<Encheres>();
+		Encheres encheres =null; 
 
 		try {
-			EncheresListe = encheresDAO.selectionner_id(no_utilisateur);
+			System.out.println(encheres);
+			encheres = encheresDAO.selectionnerEnchereByIdUtilisateur(no_utilisateur);
+			System.out.println("1");
+			if (encheres==null) {
+				System.out.println("EncheresListe n'existe pas");
+			}
 		} catch (Exception e) {
-			throw new BLLException("Echec Recuperation Enchere 2  : ", e);
+			throw new BLLException("Echec Recuperation Enchere 2.1  : ", e);
 		}
 
-		return EncheresListe;
+		return encheres;
 	}
 }

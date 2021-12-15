@@ -91,8 +91,7 @@ public class ServletAccueilConnecte extends HttpServlet {
 		// SELECTION DE TOUTES LES ENCHERES EN COURS POUR CET UTILISATEUR
 		try {
 			EncheresManager encheresManager = new EncheresManager();
-			List<Encheres> EncheresListe = encheresManager.selectionner_id(id);
-			System.out.println(EncheresListe);
+			Encheres EncheresListe = encheresManager.selectionnerEnchereByIdUtilisateur(id);
 			request.setAttribute("articlesListe", EncheresListe);
 			succesConnexion.forward(request, response);
 		} catch (Exception e2) {

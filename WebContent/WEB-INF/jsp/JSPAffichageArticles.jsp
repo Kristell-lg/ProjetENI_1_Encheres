@@ -100,11 +100,8 @@
 		<h1>Catalogue des enchères</h1>
 		
 		<c:choose>
-		
-			<c:when test="${!empty enchereListe}">
-	
-		
-				<c:forEach var="enchere" items="${enchereListe}">
+			<c:when test="${!empty EncheresListe}">
+			<c:forEach var="enchereListe" items="${articlesListe}">
 				
 					<form action="${pageContext.request.contextPath}/AfficherArticle" method="post">
 						<input type="hidden" name="idArticle" value="${article.getNo_article()}">
@@ -113,7 +110,7 @@
 					
 					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))}</p>
 					<p class="affichageArticle">Prix initial :${article.getPrix_initial()}</p>
-					<p class="affichageArticle">Vendeur :</p>
+					<p class="affichageArticle">Vendeur :${article.getUtilisateur().getPseudo()}</p>
 					
 					<form action="${pageContext.request.contextPath}/Profil" method="post">
 						<input type="hidden" name="idProfil" value="${article.getUtilisateur().getNo_utilisateur()}">

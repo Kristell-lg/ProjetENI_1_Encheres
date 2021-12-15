@@ -67,7 +67,6 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 						if (utilisateurs.getMot_de_passe().trim().equals(mot_de_passe)) {
 							logIn = true;	
 							id = utilisateurs.getNo_utilisateur();
-							
 						}
 					}
 				}
@@ -86,12 +85,13 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 			
 			ArticlesManager articlesManager = new ArticlesManager();
 			EncheresManager encheresManeger = new EncheresManager();
+
+			
 			
 			try {
 				List<Articles> articlesListe = articlesManager.selectionner();
 				request.setAttribute("articlesListe", articlesListe);
 			
-				
 				
 				HttpSession session = request.getSession();
 				session.setMaxInactiveInterval(300);
@@ -99,6 +99,10 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 				if (session!=null) {
 					UtilisateursManager manager = new UtilisateursManager();
 					Utilisateurs utilisateur = manager.selectUtilisateur(id);
+					
+					Encheres enchereListe = encheresManeger.selectionnerEnchereByIdUtilisateur(id); 
+					request.setAttribute("enchereListe", enchereListe);
+					
 					
 					session.setAttribute("utilisateur", utilisateur); 
 					succesConnexion.forward(request, response);
