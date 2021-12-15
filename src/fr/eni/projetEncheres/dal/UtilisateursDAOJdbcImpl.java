@@ -23,7 +23,8 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 	private static final String SELECT_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
 	private static final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
 	private static final String MODIFIERUTILISATEURS = "UPDATE UTILISATEURS SET pseudo = ?, prenom = ?, nom = ?,email = ?, telephone = ?,rue = ?, code_postal = ?, ville = ?,mot_de_passe=? WHERE no_utilisateur= ?"; 
-
+	private static final String MODIFIER_CREDIT = "UPDATE UTILISATEURS SET credit = ? WHERE no_utilisateur= ?";
+	
 	//Selectionner l'ensemble des données - pour se connecter
 	public List<Utilisateurs> selectionner() {
 		
@@ -69,7 +70,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 			PreparedStatement pstmtUtilisateurs = null;
 			
 			try (Connection cnx = ConnectionProvider.getConnection()) {
-				pstmtUtilisateurs = cnx.prepareStatement(INSERTUTILISATEURS);
+				pstmtUtilisateurs = cnx.prepareStatement(INSERTUTILISATEURS,Statement.RETURN_GENERATED_KEYS);
 				
 				pstmtUtilisateurs.setString(1, utilisateur.getPseudo());
 				pstmtUtilisateurs.setString(2, utilisateur.getNom());
@@ -83,6 +84,9 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 				
 				pstmtUtilisateurs.executeUpdate();
 				
+				ResultSet rs = pstmtUtilisateurs.getGeneratedKeys();
+				rs.next();
+				utilisateur.setNo_utilisateur(rs.getInt(1));
 
 			} catch (SQLException e) {
 				//TODO GERER ERREUR UNICITE EMAIL & PSEUDO
@@ -163,6 +167,21 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 			pstmtUtilisateurs.setString(8, utilisateur.getVille());
 			pstmtUtilisateurs.setString(9, utilisateur.getMot_de_passe());
 			pstmtUtilisateurs.setInt(10, id);
+			
+			pstmtUtilisateurs.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DALException(e);
+		}
+	}
+	
+	public void modifierCredit(Utilisateurs utilisateur) throws DALException {
+		 
+        try (Connection cnx = ConnectionProvider.getConnection();
+        		PreparedStatement pstmtUtilisateurs = cnx.prepareStatement(MODIFIERUTILISATEURS);)
+        		{
+        	pstmtUtilisateurs.setInt(1, utilisateur.getCredit());
+			pstmtUtilisateurs.setInt(10, utilisateur.getNo_utilisateur());
 			
 			pstmtUtilisateurs.executeUpdate();
 

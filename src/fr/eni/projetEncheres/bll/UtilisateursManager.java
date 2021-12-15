@@ -95,7 +95,38 @@ public class UtilisateursManager {
 		}
  		
  	}
-	
+ 	//Crediter
+ 	public void crediter(Utilisateurs utilisateur,int credits)throws BLLException{
+ 		if(credits <= utilisateur.getCredit()) {
+ 			try {
+ 				int creditRestant = utilisateur.getCredit() - credits;
+ 				utilisateur.setCredit(credits);
+ 				modifierCredit(utilisateur);
+ 			}catch (Exception e) {
+ 	 	 		throw new BLLException("BLL UtilisateursManager -crediter()- : ", e);
+ 			}
+ 		}
+ 	}
+ 	public void remboursser(Utilisateurs utilisateur,int credits)throws BLLException{
+ 		if(credits <= utilisateur.getCredit()) {
+ 			try {
+ 				utilisateur.setCredit(credits);
+ 				modifierCredit(utilisateur);
+ 			}catch (Exception e) {
+ 	 	 		throw new BLLException("BLL UtilisateursManager -crediter()- : ", e);
+ 			}
+ 		}
+ 	}
+ 	//Modification des credits
+ 	 private void modifierCredit(Utilisateurs utilisateur) throws BLLException{
+ 	 	try {
+ 	 		this.utilisateursDAO.modifierCredit(utilisateur);
+ 	 	} catch (Exception e) {
+ 	 		throw new BLLException("BLL UtilisateursManager -modifierCredit()- : ", e);
+		}
+ 	 		
+ 	 }
+ 	 	
 		// vérification des données Utilisateur
 		// rajout du statut d'admin ?
 	private void UtilisateurValidation(Utilisateurs utilisateur) throws BLLException {
