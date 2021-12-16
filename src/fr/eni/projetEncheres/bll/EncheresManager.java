@@ -47,11 +47,24 @@ public class EncheresManager {
 			UtilisateursManager utilisateursManager = new UtilisateursManager(); // Recup la dernier enchere
 			ArticlesManager articleManager = new ArticlesManager();
 			int no_article = enchere.getNo_article();
-			if(VerfiEnchereArticle(no_article)) {
-				derEnchere = selectionnerDernierEnchereArticle(no_article);
-			}
 			
-			encheresDAO.ajoutEnchere(enchere);
+			Boolean dejaEncherie = false;
+			
+			if(VerfiEnchereArticle(no_article)) { // Verif Qu'il y ai des Encheres sur l'article
+				derEnchere = selectionnerDernierEnchereArticle(no_article);
+				List<Encheres> enchereliste = selectionner();
+				for (Encheres encheres : enchereliste) {
+					if (encheres.getNo_article() == enchere.getNo_article() && encheres.getNo_utilisateur() == enchere.getNo_utilisateur()) {
+						dejaEncherie = true;
+					}
+				}
+			}
+			if(dejaEncherie) {
+				encheresDAO.modifier(enchere);
+			}
+			else {
+				encheresDAO.ajoutEnchere(enchere);
+			}
 			
 			articles = articleManager.selectArticle(enchere.getNo_article());
 			articles.setPrix_vente(enchere.getMontant_enchere());
