@@ -1,0 +1,38 @@
+/* @author: Luka CHOUVILLE */
+body {
+  	display: block;
+	justify-content: center;
+}
+fieldset{
+	display: block;
+	justify-content: center;
+}
+
+/* Design Graphique*/
+
+body {
+	max-width: 1000px;
+	margin: auto;
+	padding: 1em;
+	background:rgba(0,0,0,.1);
+	color: #333;
+}
+
+fieldset {
+	padding: 1em;
+	background: #fff;
+	border: 1px solid gray;
+	border-radius: 4px;
+}
+input,
+textarea {
+	padding: .3em;
+	border: 1px solid #555;
+	border-radius: 4px;
+  background: rgba(0,0,0,.02);
+}
+label {
+	display: inline-block;
+	width: 9em;
+	text-align: left;
+}

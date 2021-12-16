@@ -12,8 +12,8 @@
 		<meta charset="UTF-8">
 		<title>Désinscription</title>
 		<!-- CSS -->
-<link rel="stylesheet" href="css/headerFooter.css"/>
-<link rel="stylesheet" href="css/AfficherProfil.css"> <!-- Applique le nouveau design -->
+<link rel="stylesheet" href="css/headerFooterS.css"/>
+<link rel="stylesheet" href="css/AfficherProfils.css"> <!-- Applique le nouveau design -->
 
 		<!-- FONT ECONOMICA -->
 <link rel="preconnect" href="https://fonts.googleapis.com">

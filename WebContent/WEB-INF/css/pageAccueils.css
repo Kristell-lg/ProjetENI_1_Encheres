@@ -1,0 +1,19 @@
+body{
+        background: #00937C;
+    }
+
+    #container {
+        width: 500px;
+        margin: 0 auto;
+        padding-bottom: 70px;
+        padding: 20px;
+        font-family: 'Economica',
+            sans-serif;
+        font-size: 20px;
+        margin-bottom: 100px;
+
+        background: white;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),
+            0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+    }

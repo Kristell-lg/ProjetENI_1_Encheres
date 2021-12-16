@@ -9,8 +9,8 @@
 		<meta charset="UTF-8">
 		<title>Profil</title>
 		<!-- CSS -->
-<link rel="stylesheet" href="css/headerFooter.css"/>
-<link rel="stylesheet" href="css/AfficherProfil.css" />
+<link rel="stylesheet" href="css/headerFooterS.css"/>
+<link rel="stylesheet" href="css/AfficherProfils.css" />
 
 <!-- FONT ECONOMICAAAS -->
 <link rel="preconnect" href="https://fonts.googleapis.com">

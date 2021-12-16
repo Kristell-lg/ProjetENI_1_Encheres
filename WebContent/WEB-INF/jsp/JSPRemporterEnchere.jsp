@@ -8,8 +8,8 @@
 
 <!-- CSS -->
 
-<link rel="stylesheet" href="css/headerFooter.css"/>
-<link rel="stylesheet" href="css/AfficherProfil.css" />
+<link rel="stylesheet" href="css/headerFooterS.css"/>
+<link rel="stylesheet" href="css/AfficherProfils.css" />
 <!-- FONT ECONOMICA -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
