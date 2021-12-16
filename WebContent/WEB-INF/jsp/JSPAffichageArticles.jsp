@@ -98,6 +98,7 @@
 					
 					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))}</p>
 					<p class="affichageArticle">Prix initial :${article.getPrix_initial()}</p>
+					<p class="affichageArticle">Dernier Prix :${article.getPrix_vente()}</p>
 					<p class="affichageArticle">Vendeur :</p>
 					<form action="${pageContext.request.contextPath}/Profil" method="post">
 						<input type="hidden" name="idProfil" value="${article.getUtilisateur().getNo_utilisateur()}">
