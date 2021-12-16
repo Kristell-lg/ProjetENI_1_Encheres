@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.projetEncheres.bo.Encheres;
+import fr.eni.projetEncheres.bo.Retraits;
 
 /**
  * @authorLukaCHOUVILLE EncheresDAOJDBCImpl
@@ -23,9 +24,10 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 	private static final String SELECT_ENCHERES_id = "SELECT * FROM ENCHERES e INNER JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article AND e.no_utilisateur=? ";
 	private static final String SELECT_NBENCHERES_Article = "SELECT COUNT(no_utilisateur)as nbEnchere FROM ENCHERES WHERE no_article = ?";
 	
-	private static final String SELECT_DERNIER_ENCHERES_ARTICLE = "SELECT no_utilisateur,no_article,date_enchere,MAX(montant_enchere) as montant_enchere FROM ENCHERES WHERE no_article=? GROUP BY no_utilisateur, no_article, date_enchere, montant_enchere";
+	private static final String SELECT_DERNIER_ENCHERES_ARTICLE = "SELECT * FROM ENCHERES WHERE no_article=? GROUP BY no_utilisateur, no_article, date_enchere, montant_enchere HAVING date_enchere = (SELECT MAX(date_enchere) FROM ENCHERES WHERE no_article=?)";
 
 	private static final String INSERTENCHERE = "INSERT INTO ENCHERES(no_utilisateur,no_article,date_enchere,montant_enchere)VALUES(?,?,?,?)";
+	private static final String MODIFIER =  "UPDATE ENCHERES SET montant_enchere = ?,date_enchere=?  WHERE no_article = ? AND no_utilisateur=? "; 
 	private static final String DELETE = "DELETE FROM ENCHERES WHERE enchere.No_utilisateur = ?";
 	
 //Selectionnerl'ensembledesencheres
@@ -168,6 +170,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 			pstmt = cnx.prepareStatement(SELECT_DERNIER_ENCHERES_ARTICLE);
 
 			pstmt.setInt(1, no_article);
+			pstmt.setInt(2, no_article);
 
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -191,5 +194,32 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 			encheres = new Encheres(-1,-1,LocalDateTime.now(),0);
 		}
 		return encheres;
+	}
+	
+	public void modifier(Encheres enchere) throws DALException {
+		 
+		PreparedStatement pstmt= null;
+				
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			pstmt = cnx.prepareStatement(MODIFIER);
+			pstmt.setInt(1, enchere.getMontant_enchere() );
+			pstmt.setObject(2, java.sql.Timestamp.valueOf(enchere.getDate_enchere()));
+			pstmt.setInt(3, enchere.getNo_article() );
+        	pstmt.setInt(4, enchere.getNo_utilisateur() );
+			
+        	
+        	pstmt.executeUpdate();
+
+		}  catch (SQLException e) {
+			throw new DALException("Echec Connection/Requete : ",e);
+		}
+		finally {
+					
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				throw new DALException("Echec Fermeture Connection : ",e);
+			}
+		}
 	}
 }

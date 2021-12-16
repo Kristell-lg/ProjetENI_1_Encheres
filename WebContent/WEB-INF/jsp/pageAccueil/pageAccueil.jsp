@@ -43,6 +43,7 @@
 			
 					<form action="${pageContext.request.contextPath}/Accueil" method="post">
 					<div id="container">
+						<p>- Filtrer les annonces - </p>
 						<label for="categorie">Catégorie:</label>
 			
 						<select name="categorie" id="categorie">
@@ -52,7 +53,7 @@
 						    <option value=3>Vêtement</option>
 						    <option value=4>Sport et Loisirs</option>
 						</select>
-						
+						<br>
 						<label for="recherche">Recherche par titre d'annonce :</label>
 						<input type="text" name="recherche">
 						

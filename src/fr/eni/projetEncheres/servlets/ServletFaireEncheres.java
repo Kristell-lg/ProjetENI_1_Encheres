@@ -48,7 +48,7 @@ public class ServletFaireEncheres extends HttpServlet {
 			throws ServletException, IOException {
 
 		RequestDispatcher erreurEnchere = request.getRequestDispatcher("/AfficherArticle");
-		
+
 		HttpSession session = request.getSession();
 		session.setMaxInactiveInterval(300);
 
@@ -73,66 +73,71 @@ public class ServletFaireEncheres extends HttpServlet {
 
 				EncheresManager EncheresManager = new EncheresManager();
 				Encheres enchere = new Encheres(no_utilisateur, articleId, date_enchere, montant_enchere);
-				
+
 				Boolean dernierPrixOk = EncheresManager.VerfiEnchereArticle(articleId);
-				Encheres dernierEncheres=null;
-				int dernierPrix =0;
-				
+				Encheres dernierEncheres = null;
+				int dernierPrix = 0;
+
 				if (dernierPrixOk) {
 					dernierEncheres = EncheresManager.selectionnerDernierEnchereArticle(articleId);
+					System.out.println("dernierEnchere" + dernierEncheres);
 					dernierPrix = dernierEncheres.getMontant_enchere();
 				}
-	
+
 				List<Encheres> enchereliste = EncheresManager.selectionner();
 
 				if (enchereliste.isEmpty()) {
-					if (utilisateur.getCredit() >= enchere.getMontant_enchere() && enchere.getMontant_enchere() > article.getPrix_initial() && enchere.getMontant_enchere() > dernierPrix) {
-						 
-						 EncheresManager.ajoutEnchere(enchere); 
-						 
-						 request.setAttribute("idArticle", articleId);
-						 request.setAttribute("dernierEncheresPrix", dernierPrix);
-						 
-						 RequestDispatcher succesEncheres = request.getRequestDispatcher("/AccueilLogIn");
-						 succesEncheres.forward(request, response);
-						  
-						 } else { 
-						 request.setAttribute("idArticle", articleId);
-						 request.setAttribute("article", article); request.setAttribute("erreur", "La mise que vous avez entré n'est pas correcte ! (Rappel : vous devez avoir assez de crédits et le prix doit être supérieur à la dernière mise en vente )!");
-						 }
+					if (utilisateur.getCredit() >= enchere.getMontant_enchere()
+							&& enchere.getMontant_enchere() > article.getPrix_initial()
+							&& enchere.getMontant_enchere() > dernierPrix) {
+
+						EncheresManager.ajoutEnchere(enchere);
+
+						request.setAttribute("idArticle", articleId);
+						request.setAttribute("dernierEncheresPrix", dernierPrix);
+
+						RequestDispatcher succesEncheres = request.getRequestDispatcher("/AccueilLogIn");
+						succesEncheres.forward(request, response);
+
+					} else {
+						request.setAttribute("idArticle", articleId);
+						request.setAttribute("article", article);
+						request.setAttribute("erreur",
+								"La mise que vous avez entré n'est pas correcte ! (Rappel : vous devez avoir assez de crédits et le prix doit être supérieur à la dernière mise en vente )!");
+					}
 				} else {
-					for (Encheres encheres : enchereliste) {	
-						if (encheres.getNo_article() == articleId && encheres.getNo_utilisateur() == no_utilisateur) {
-							//VERIFIE QUE LE DERNIER ENCHERISSEUR N'EST PAS LE USER EN COURS
-							if (dernierEncheres.getNo_utilisateur()==no_utilisateur) {
-								ok = false;
-							}
-		
-						}
+					if (dernierEncheres.getNo_utilisateur() == no_utilisateur) {
+						ok = false;
 					}
 				}
 
 				// PRIMARY KEY A GERER
 				if (ok) {
 					System.out.println("pas d'enchère déjà");
-					
-					 if (utilisateur.getCredit() >= enchere.getMontant_enchere() && enchere.getMontant_enchere() > article.getPrix_initial() && enchere.getMontant_enchere() > dernierPrix) {
-					 EncheresManager.ajoutEnchere(enchere); request.setAttribute("idArticle", articleId); 
-					 
-					 request.setAttribute("dernierEncheresPrix", dernierPrix);
-					 RequestDispatcher succesEncheres = request.getRequestDispatcher("/AccueilLogIn");
-					 succesEncheres.forward(request, response);
-					  
-					 } else { request.setAttribute("idArticle", articleId);
-					 request.setAttribute("article", article); request.setAttribute("erreur",
-					 "La mise que vous avez entré n'est pas correcte ! (Rappel : vous devez avoir assez de crédits et le prix doit être supérieur à la dernière mise en vente )!");
-					 }
-					 
+
+					if (utilisateur.getCredit() >= enchere.getMontant_enchere()
+							&& enchere.getMontant_enchere() > article.getPrix_initial()
+							&& enchere.getMontant_enchere() > dernierPrix) {
+						EncheresManager.ajoutEnchere(enchere);
+						request.setAttribute("idArticle", articleId);
+
+						request.setAttribute("dernierEncheresPrix", dernierPrix);
+						RequestDispatcher succesEncheres = request.getRequestDispatcher("/AccueilLogIn");
+						succesEncheres.forward(request, response);
+
+					} else {
+						request.setAttribute("idArticle", articleId);
+						request.setAttribute("article", article);
+						request.setAttribute("erreur",
+								"La mise que vous avez entré n'est pas correcte ! (Rappel : vous devez avoir assez de crédits et le prix doit être supérieur à la dernière mise en vente )!");
+					}
+
 				} else {
 					System.out.println("enchère déjà");
 					request.setAttribute("idArticle", articleId);
 					request.setAttribute("article", article);
-					request.setAttribute("erreur", "Vous ne pouvez pas faire une enchère si vous êtes le dernier à avoir encheri");
+					request.setAttribute("erreur",
+							"Vous ne pouvez pas faire une enchère si vous êtes le dernier à avoir encheri");
 				}
 
 			} catch (Exception e) {
@@ -141,8 +146,8 @@ public class ServletFaireEncheres extends HttpServlet {
 				request.setAttribute("article", article);
 				request.setAttribute("erreur", "Erreur pendant la création de l'enchère est survenue");
 			}
-			
-			if(request.getAttribute("erreur") != null) {
+
+			if (request.getAttribute("erreur") != null) {
 				erreurEnchere.forward(request, response);
 			}
 		}

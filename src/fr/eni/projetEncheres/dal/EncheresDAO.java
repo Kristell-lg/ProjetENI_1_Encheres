@@ -17,5 +17,5 @@ public interface EncheresDAO {
 	public int selectionnerEnchereArticle(int no_article) throws DALException;
 	public void ajoutEnchere(Encheres enchere) throws DALException;
 	public void supprimerEnchere(Encheres enchere) throws Exception;
-	
+	public void modifier(Encheres enchere) throws DALException;
 }
