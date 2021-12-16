@@ -15,7 +15,7 @@ import fr.eni.projetEncheres.bll.ArticlesManager;
 import fr.eni.projetEncheres.bo.Articles;
 
 /**
- * Servlet implementation class ServletAccueil
+ * Servlet implementation class Servl etAccueil
  */
 @WebServlet("/Accueil")
 public class ServletAccueil extends HttpServlet {
