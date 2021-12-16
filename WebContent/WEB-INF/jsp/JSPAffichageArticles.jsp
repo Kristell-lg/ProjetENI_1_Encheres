@@ -106,7 +106,7 @@
 					</form>	
 					
 					<p class="affichageArticle">-----------------------------------------------</p>
-					
+					 
 				</c:forEach>
 		
 				
