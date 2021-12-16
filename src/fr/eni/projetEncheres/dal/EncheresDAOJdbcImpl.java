@@ -27,7 +27,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 	private static final String SELECT_DERNIER_ENCHERES_ARTICLE = "SELECT * FROM ENCHERES WHERE no_article=? GROUP BY no_utilisateur, no_article, date_enchere, montant_enchere HAVING date_enchere = (SELECT MAX(date_enchere) FROM ENCHERES WHERE no_article=?)";
 
 	private static final String INSERTENCHERE = "INSERT INTO ENCHERES(no_utilisateur,no_article,date_enchere,montant_enchere)VALUES(?,?,?,?)";
-	private static final String MODIFIER =  "UPDATE ENCHERES SET montant_enchere = ? WHERE no_article = ? AND no_utilisateur=? "; 
+	private static final String MODIFIER =  "UPDATE ENCHERES SET montant_enchere = ?,date_enchere=?  WHERE no_article = ? AND no_utilisateur=? "; 
 	private static final String DELETE = "DELETE FROM ENCHERES WHERE enchere.No_utilisateur = ?";
 	
 //Selectionnerl'ensembledesencheres
@@ -203,8 +203,9 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			pstmt = cnx.prepareStatement(MODIFIER);
 			pstmt.setInt(1, enchere.getMontant_enchere() );
-			pstmt.setInt(2, enchere.getNo_article() );
-        	pstmt.setInt(3, enchere.getNo_utilisateur() );
+			pstmt.setObject(2, java.sql.Timestamp.valueOf(enchere.getDate_enchere()));
+			pstmt.setInt(3, enchere.getNo_article() );
+        	pstmt.setInt(4, enchere.getNo_utilisateur() );
 			
         	
         	pstmt.executeUpdate();
