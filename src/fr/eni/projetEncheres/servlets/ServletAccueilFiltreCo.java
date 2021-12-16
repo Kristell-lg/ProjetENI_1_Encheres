@@ -87,7 +87,7 @@ public class ServletAccueilFiltreCo extends HttpServlet {
 
 			if (filtre == 2) {
 				try {
-					request.setAttribute("titre", "Filtre" + filtreString);
+					request.setAttribute("titre", "Filtre : " + filtreString);
 					// SELECTION DE TOUTES LES ENCHERES EN COURS POUR CET UTILISATEUR
 
 					EncheresManager encheresManager = new EncheresManager();
@@ -120,7 +120,7 @@ public class ServletAccueilFiltreCo extends HttpServlet {
 				}
 			} else if (filtre==1){
 				try {
-					request.setAttribute("titre", "Filtre" + filtreString);
+					request.setAttribute("titre", "Filtre : " + filtreString);
 					// SELECTION DE TOUTES LES ENCHERES EN COURS POUR CET UTILISATEUR
 
 					ArticlesManager articleManager = new ArticlesManager();
@@ -143,7 +143,7 @@ public class ServletAccueilFiltreCo extends HttpServlet {
 			}
 			else if (filtre == 3) {
 				try {
-					request.setAttribute("titre", "Filtre" + filtreString);
+					request.setAttribute("titre", "Filtre : " + filtreString);
 					// SELECTION DE TOUTES LES ENCHERES EN COURS POUR CET UTILISATEUR
 
 					EncheresManager encheresManager = new EncheresManager();
@@ -178,7 +178,7 @@ public class ServletAccueilFiltreCo extends HttpServlet {
 			
 			else if (filtre == 4) {
 				try {
-					request.setAttribute("titre", "Filtre" + filtreString);
+					request.setAttribute("titre", "Filtre : " + filtreString);
 					// SELECTION DE TOUTES LES ENCHERES EN COURS POUR CET UTILISATEUR
 
 					EncheresManager encheresManager = new EncheresManager();
@@ -203,7 +203,7 @@ public class ServletAccueilFiltreCo extends HttpServlet {
 			
 			else if (filtre == 5) {
 				try {
-					request.setAttribute("titre", "Filtre" + filtreString);
+					request.setAttribute("titre", "Filtre : " + filtreString);
 					// SELECTION DE TOUTES LES ENCHERES EN COURS POUR CET UTILISATEUR
 					ArticlesManager articleManager = new ArticlesManager();
 					List<Articles> articleListe = articleManager.selectionner();
