@@ -14,7 +14,9 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/headerFooter.css"/>
+
 <link rel="stylesheet" href="css/pageAccueil.css"/>
+
  
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
@@ -25,7 +27,8 @@
 <div id="main">
 <%@ include file="header.html" %>
 
-<h1 id="titre">Liste des enchères</h1>
+
+					<h1 id="titre">Liste des enchères</h1>
 
 
 	
@@ -39,6 +42,7 @@
 				
 			
 					<form action="${pageContext.request.contextPath}/Accueil" method="post">
+					<div id="container">
 						<label for="categorie">Catégorie:</label>
 			
 						<select name="categorie" id="categorie">
@@ -56,9 +60,11 @@
 					</form>
 				</div>
 				
-				<h2 id="nomArticle">${requestScope.titre}</h2>
+				<h2 id="titreArticle">${requestScope.titre}</h2>
 				<div id="position">
-				<c:forEach var="article" items="${articlesListe}">
+				
+				<c:forEach  var="article" items="${articlesListe}">
+				
 				<div id="container">
 					<a class="affichageArticle" href="${pageContext.request.contextPath}/Connexion">${article.getNom_article()}</a>
 					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))}</p>
@@ -100,14 +106,12 @@
 					
 					</div>
 					
-				<p class="affichageArticle">
-					Aucun article n'est disponible
-				</p>
+				
 			</c:otherwise>
 		</c:choose>	
 
 
-
+<%@ include file="footer.html" %>
 </div>
 </body>
 

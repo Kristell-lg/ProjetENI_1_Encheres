@@ -10,7 +10,8 @@ html, body {
 }
 
 body {
-    margin: auto;
+    
+    
 }
 
 
@@ -33,11 +34,13 @@ footer {
     background-color: #00475E;
     font-family: 'Economica', sans-serif;
     color: #F3BDA1;
-    position: absolute;
-    bottom: 0;
+  
+   
     width: 100%;
     padding-top: 10px;
     height: 50px;
+    position: absolute; bottom: 0; 
+    left: 0; right: 0
 }
 
 
@@ -216,4 +219,18 @@ a {
     /* remove extra button spacing for Mozilla Firefox */
     border: 0;
     padding: 0;
+}
+
+#titre {
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Economica',
+    sans-serif;
+}
+
+#titreArticle{
+	text-align: center;
+    font-size: 30px;
+    font-family: 'Economica',
+    sans-serif;
 }
