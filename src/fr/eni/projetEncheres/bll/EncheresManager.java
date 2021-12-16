@@ -52,7 +52,7 @@ public class EncheresManager {
 			/* Remboursser */
 			if(derEnchere != null) {
 				Utilisateurs utilremboursse = utilisateursManager.selectUtilisateur(derEnchere.getNo_utilisateur()); // Recup l'utilisateur a remboursser
-				utilisateursManager.remboursser(utilremboursse, derEnchere.getMontant_enchere()); // Remboursser l'utilisateur
+				utilisateursManager.rembourser(utilremboursse, derEnchere.getMontant_enchere()); // Remboursser l'utilisateur
 			}
 		} catch (Exception e) {
 			System.out.println(derEnchere);
