@@ -1,0 +1,15 @@
+	<display-name>ProjetENI_1_Encheres</display-name>
+	<servlet>
+		<description>Index</description>
+		<servlet-name>Index</servlet-name>
+		<jsp-file>/index.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Index</servlet-name>
+		<url-pattern>/index</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
