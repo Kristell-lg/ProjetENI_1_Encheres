@@ -6,10 +6,7 @@
 package fr.eni.projetEncheres.servlets;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -25,7 +22,6 @@ import fr.eni.projetEncheres.bll.EncheresManager;
 import fr.eni.projetEncheres.bo.Articles;
 import fr.eni.projetEncheres.bo.Encheres;
 import fr.eni.projetEncheres.bo.Utilisateurs;
-import fr.eni.projetEncheres.dal.UtilisateursDAO;
 
 /**
  * Servlet implementation class ServletFaireEncheres
@@ -77,14 +73,22 @@ public class ServletFaireEncheres extends HttpServlet {
 
 				EncheresManager EncheresManager = new EncheresManager();
 				Encheres enchere = new Encheres(no_utilisateur, articleId, date_enchere, montant_enchere);
-
+				
+				Boolean dernierPrixOk = EncheresManager.VerfiEnchereArticle(articleId);
+				Encheres dernierEncheres=null;
+				
+				if (dernierPrixOk) {
+					dernierEncheres = EncheresManager.selectionnerDernierEnchereArticle(articleId);
+				}
+	
 				List<Encheres> enchereliste = EncheresManager.selectionner();
 
 				if (enchereliste.isEmpty()) {
-					if (utilisateur.getCredit() >= enchere.getMontant_enchere() && enchere.getMontant_enchere() > article.getPrix_initial() ) {
+					if (utilisateur.getCredit() >= enchere.getMontant_enchere() && enchere.getMontant_enchere() > article.getPrix_initial() && enchere.getMontant_enchere() > dernierEncheres.getMontant_enchere()) {
 						 
 						 EncheresManager.ajoutEnchere(enchere); request.setAttribute("retour","enchère envoyée"); 
 						 request.setAttribute("idArticle", articleId);
+						 request.setAttribute("dernierEncheresPrix", dernierEncheres.getMontant_enchere());
 						 
 						 RequestDispatcher succesEncheres = request.getRequestDispatcher("/AccueilLogIn");
 						 succesEncheres.forward(request, response);
@@ -106,9 +110,11 @@ public class ServletFaireEncheres extends HttpServlet {
 				if (ok) {
 					System.out.println("pas d'enchère déjà");
 					
-					 if (utilisateur.getCredit() >= enchere.getMontant_enchere() && enchere.getMontant_enchere() > article.getPrix_initial()) {
+					 if (utilisateur.getCredit() >= enchere.getMontant_enchere() && enchere.getMontant_enchere() > article.getPrix_initial() && enchere.getMontant_enchere() > dernierEncheres.getMontant_enchere()) {
 					 EncheresManager.ajoutEnchere(enchere); request.setAttribute("retour","enchère envoyée");
 					 request.setAttribute("idArticle", articleId);
+					 
+					 request.setAttribute("dernierEncheresPrix", dernierEncheres.getMontant_enchere());
 					 RequestDispatcher succesEncheres = request.getRequestDispatcher("/AccueilLogIn");
 					 succesEncheres.forward(request, response);
 					  

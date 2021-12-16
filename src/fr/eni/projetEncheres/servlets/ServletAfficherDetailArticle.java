@@ -37,14 +37,26 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 		
 		ArticlesManager articlesManager = new ArticlesManager();
 		RetraitsManager retraitsManager = new RetraitsManager();
-
+		EncheresManager EncheresManager = new EncheresManager();
 		
 		int idArticle = Integer.valueOf(request.getParameter("idArticle"));
 		if (idArticle!=0) {
 			try {
 				Articles article = articlesManager.selectArticle(idArticle);
 				Retraits retrait = retraitsManager.selectionnerArticleID(article);
+				Boolean dernierPrixOk = EncheresManager.VerfiEnchereArticle(idArticle);
+				Encheres dernierEncheres = null;
+				int dernierPrix =0;
 				
+				if (dernierPrixOk) {
+					dernierEncheres = EncheresManager.selectionnerDernierEnchereArticle(idArticle);
+					dernierPrix = dernierEncheres.getMontant_enchere();
+				}
+				else {
+					dernierPrix = article.getPrix_initial();
+				}
+				
+				request.setAttribute("dernierPrix", dernierPrix);
 				request.setAttribute("article", article);
 				request.setAttribute("retrait", retrait);
 				
@@ -70,14 +82,26 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 		
 		ArticlesManager articlesManager = new ArticlesManager();
 		RetraitsManager retraitsManager = new RetraitsManager();
-
+		EncheresManager EncheresManager = new EncheresManager();
 		
 		int idArticle = (int) request.getAttribute("idArticle");
 		if (idArticle!=0) {
 			try {
 				Articles article = articlesManager.selectArticle(idArticle);
 				Retraits retrait = retraitsManager.selectionnerArticleID(article);
+				Boolean dernierPrixOk = EncheresManager.VerfiEnchereArticle(idArticle);
+				Encheres dernierEncheres = null;
+				int dernierPrix =0;
 				
+				if (dernierPrixOk) {
+					dernierEncheres = EncheresManager.selectionnerDernierEnchereArticle(idArticle);
+					dernierPrix = dernierEncheres.getMontant_enchere();
+				}
+				else {
+					dernierPrix = article.getPrix_initial();
+				}
+				
+				request.setAttribute("dernierPrix", dernierPrix);
 				request.setAttribute("article", article);
 				request.setAttribute("retrait", retrait);
 				
