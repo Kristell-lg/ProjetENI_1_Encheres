@@ -89,8 +89,7 @@
 					
 						<label for="codepostal">*Code Postal : </label>
 						<input type="text" name="codepostal" id="codepostal" value="${sessionScope.utilisateur.getCode_postal()}" maxlength="5" />
-				</div>
-				</div>
+				
 			 </c:when>
 			 
 			 <c:otherwise>
@@ -109,6 +108,8 @@
 			<form action="${pageContext.request.contextPath}/Desinscription">
 				<input type="submit" value="Supprimer le compte"/>
 			</form>
+			</div>
+			<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
 		</div>
 	</body>
 	
