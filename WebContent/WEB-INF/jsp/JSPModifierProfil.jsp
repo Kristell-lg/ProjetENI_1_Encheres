@@ -70,11 +70,17 @@
 				<div class="inscription-champs">
 					
 						<label for="email">Email : </label>
-						<input type="email" pattern="+@+." name="email" id="email" value="${sessionScope.utilisateur.getEmail()}" maxlength="20" />
-					
+						<input type="email" pattern="+@+." name="email" id="email" value="${sessionScope.utilisateur.getEmail()}" maxlength="30" />
+						
+						<br>
+						<br>
+						
 						<label for="tel">Téléphone : </label>
-						<input type="tel" name="tel" id="tel" value="${sessionScope.utilisateur.getTelephone()}" maxlength="15"/>
-					
+						<input type="tel" name="tel" id="tel" value="${sessionScope.utilisateur.getTelephone()}" maxlength="10"/>
+						
+						<br>
+						<br>
+						
 						<label for="rue">*Rue : </label>
 						<input type="text" name="rue" id="rue" value="${sessionScope.utilisateur.getRue()}" maxlength="30" />
 					
