@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.projetEncheres.bll.ArticlesManager;
 import fr.eni.projetEncheres.bll.UtilisateursManager;
+import fr.eni.projetEncheres.bo.Articles;
 import fr.eni.projetEncheres.bo.Utilisateurs;
 
 /**
@@ -31,8 +33,10 @@ public class ServletDesinscriptionUtilisateur extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPDesinscriptionUtilisateurs.jsp");
 		rd.forward(request, response);
+
 	}
 
 	/**
@@ -41,12 +45,13 @@ public class ServletDesinscriptionUtilisateur extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher erreurSuppression = request.getRequestDispatcher("/WEB-INF/jsp/JSPDesinscriptionUtilisateurs.jsp");
-		
+		RequestDispatcher erreurSuppression = request
+				.getRequestDispatcher("/WEB-INF/jsp/JSPDesinscriptionUtilisateurs.jsp");
+
 		// intégrer JSP accueil
-		RequestDispatcher succesSuppression = request.getRequestDispatcher("/Accueil");
-		
+
 		Boolean logIn = false;
+		Utilisateurs utilisateur = null;
 		String pseudo = request.getParameter("pseudo");
 		String mot_de_passe = request.getParameter("mot_de_passe");
 
@@ -57,22 +62,29 @@ public class ServletDesinscriptionUtilisateur extends HttpServlet {
 			listeUtilisateursBDD = utilisateursManager.selectionner();
 			if (listeUtilisateursBDD != null) {
 				for (Utilisateurs utilisateurs : listeUtilisateursBDD) {
-					//CHERCHER DANS LA BDD - si un pseudo correpond à celui entré par l'utilisateur
-					if (utilisateurs.getPseudo().trim().equals(pseudo)|| utilisateurs.getMot_de_passe().trim().equals(mot_de_passe)) {
-						//CHERCHER DANS LA BDD - si le mot de passe correspond à ce pseudo
-							System.out.println("utilisateur Désinscrit");
-							logIn = true;
-							utilisateursManager.supprimerUtilisateur(utilisateurs);
+					// CHERCHER DANS LA BDD - si un pseudo correpond à celui entré par l'utilisateur
+					if (utilisateurs.getPseudo().trim().equals(pseudo)
+							|| utilisateurs.getMot_de_passe().trim().equals(mot_de_passe)) {
+						// CHERCHER DANS LA BDD - si le mot de passe correspond à ce pseudo
+						logIn = true;
+						utilisateur = utilisateurs;
 
-						} else {
-							request.setAttribute("msgErreurConnexion", "Pseudo ou Mot de Passe erroné");
-							request.setAttribute("pseudoSaisi", pseudo);
-							succesSuppression.forward(request, response);
-						}
 					}
+				}
 
 			} else {
 				System.out.println("Liste utilisateur nulle!");
+			}
+
+			if (logIn) {
+				utilisateursManager.supprimerUtilisateur(utilisateur);
+				RequestDispatcher succesSuppression = request.getRequestDispatcher("/Accueil");
+				succesSuppression.forward(request, response);
+			} else {
+				System.out.println("erreur suppr");
+				request.setAttribute("msgErreurConnexion", "Pseudo ou Mot de Passe erroné");
+				request.setAttribute("pseudoSaisi", pseudo);
+				erreurSuppression.forward(request, response);
 			}
 		} catch (Exception e) {
 			request.setAttribute("msgErreurConnexion", "Erreur dans le chargement des données");
@@ -84,4 +96,3 @@ public class ServletDesinscriptionUtilisateur extends HttpServlet {
 	}
 
 }
-

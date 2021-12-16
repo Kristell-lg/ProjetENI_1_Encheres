@@ -47,6 +47,11 @@ public class ServletAccueil extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		if (request.getParameter("categorie")!= null | request.getParameter("recherche") !=null) {
+			
+		
+		
 		int categorie = Integer.valueOf(request.getParameter("categorie"));
 		String recherche = request.getParameter("recherche");
 
@@ -160,6 +165,20 @@ public class ServletAccueil extends HttpServlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}
+		}
+		}
+		else {
+			RequestDispatcher succesConnexion = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil/pageAccueil.jsp");
+			// SELECTION DE TOUS LES ARTICLES
+			try {
+				ArticlesManager articlesManager = new ArticlesManager();
+				List<Articles> articlesListe = articlesManager.selectionner();
+				System.out.println(articlesListe);
+				request.setAttribute("articlesListe", articlesListe);
+				succesConnexion.forward(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 
