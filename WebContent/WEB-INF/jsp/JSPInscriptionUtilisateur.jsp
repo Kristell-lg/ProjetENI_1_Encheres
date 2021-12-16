@@ -54,14 +54,17 @@
 					
 				
 						<label for="email">*Email : </label>
-						<input type="email" pattern="+@+." name="email" id="email" value="${requestScope.email}"maxlength="20" required/>
+						<input type="email" pattern="+@+." name="email" id="email" value="${requestScope.email}"maxlength="50" required/>
 					
-					<br>
-					<br>
+						<br>
+						<br>
+						
 						<label for="tel">Téléphone : </label>
 						<input type="tel" name="tel" id="tel" maxlength="10" pattern="^((\+)33|0)[1-9](\d{2}){4}$" value="${requestScope.tel}"required/>
-					<br>
-					<br>
+						
+						<br>
+						<br>
+						
 						<label for="rue">*Rue : </label>
 						<input type="text" name="rue" id="rue"maxlength="30" value="${requestScope.rue}" required/>
 					

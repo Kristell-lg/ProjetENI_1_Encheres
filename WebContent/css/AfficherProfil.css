@@ -22,28 +22,30 @@ border-radius: 3px;
 
 
 /* Bordered form */
-form {
 
-    width: 100%;
-    padding: 30px;
-    border: 1px solid #ffffff;
-    background: #fff;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),
-    0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
 
 #container h1 {
     width: 38%;
     margin: 0 auto;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
+}
+
+#container h2 {
+    margin: 10px;
+    padding-top: 15px;
+    padding:5 px;
 }
 
 
+
 input[type=text],
-input[type=password] {
+input[type=password],
+input[type=number],
+input[type=date]
+ {
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
+    padding: 5px;
+    margin: 10px;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
@@ -90,6 +92,7 @@ input {
     font-size: 50px;
     font-family: 'Economica',
     sans-serif;
+    padding : 15px;
 }
 
 

@@ -45,7 +45,7 @@
 		<p class="afficherEnchere">Vendeur :${utilisateur.getPseudo()}</p> <!-- comment aller chercher l'utilisateur vendeur ? -->
 		
 		<label class="afficherEnchere" for="ma_proposition">Ma proposition : </label>
-			<input class="afficherEnchere" type="number" name="ma_proposition" required>
+			<input class="afficherEnchere" type="number" name="ma_proposition" min="0" required>
 		
 		<div class="enchere-Bouton">
 				<input type="submit" value="Enchérir"/>

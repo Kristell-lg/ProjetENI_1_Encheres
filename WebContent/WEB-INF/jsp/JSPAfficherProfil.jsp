@@ -24,76 +24,82 @@
 	<c:choose>
 		<c:when test="${!empty requestScope.utilisateur}">
 			<h1 id="titre">Profil de ${requestScope.utilisateur.getPseudo()}</h1>
-						 <div id="container">
-						<label for="Pseudo">Pseudo : </label>
-						<input type="text" name="Pseudo" id="Pseudo" value="${requestScope.utilisateur.getPseudo()}" disabled/>	
+				<div id="container">
+					<label for="Pseudo">Pseudo : </label>
+					<input type="text" name="Pseudo" id="Pseudo" value="${requestScope.utilisateur.getPseudo()}" disabled/>	
 						
-						<label for="prenom">Prénom : </label>
-						<input type="text" name="prenom" id="prenom" value="${requestScope.utilisateur.getPrenom()}" disabled/>
+					<label for="prenom">Prénom : </label>
+					<input type="text" name="prenom" id="prenom" value="${requestScope.utilisateur.getPrenom()}" disabled/>
 						
-						<label for="nom">Nom : </label>
-						<input type="text" name="nom" id="nom" value="${requestScope.utilisateur.getNom()}" disabled/>
+					<label for="nom">Nom : </label>
+					<input type="text" name="nom" id="nom" value="${requestScope.utilisateur.getNom()}" disabled/>
 						
-						<label for="email">Email : </label>
-						<input type="email" name="email" id="email" value="${requestScope.utilisateur.getEmail()}" disabled/>
+					<label for="email">Email : </label>
+					<input type="email" name="email" id="email" value="${requestScope.utilisateur.getEmail()}" disabled/>
 						
-						<label for="tel">Téléphone : </label>
-						<input type="tel" name="tel" id="tel" value="${requestScope.utilisateur.getTelephone()}" disabled/>
+					<br>
+					<br>
+					
+					<label for="tel">Téléphone : </label>
+					<input type="tel" name="tel" id="tel" value="${requestScope.utilisateur.getTelephone()}" disabled/>
+					
+					<br>
+					<br>
+					
+					<label for="rue">Rue : </label>
+					<input type="text" name="rue" id="rue" value="${requestScope.utilisateur.getRue()}" disabled/>
 						
-						<label for="rue">Rue : </label>
-						<input type="text" name="rue" id="rue" value="${requestScope.utilisateur.getRue()}" disabled/>
+					<label for="ville">Ville : </label>
+					<input type="text" name="ville" id="ville" value="${requestScope.utilisateur.getVille()}" disabled/>
 						
-						<label for="ville">Ville : </label>
-						<input type="text" name="ville" id="ville" value="${requestScope.utilisateur.getVille()}" disabled/>
+					<label for="codepostal">Code Postal : </label>
+					<input type="text" name="codepostal" id="codepostal" value="${requestScope.utilisateur.getCode_postal()}" disabled/>
 						
-						<label for="codepostal">Code Postal : </label>
-						<input type="text" name="codepostal" id="codepostal" value="${requestScope.utilisateur.getCode_postal()}" disabled/>
-						
-						<label for="credit">Crédit : </label>
-						<input type="text" name="cerdit" id="credit" value="${requestScope.utilisateur.getCredit()}" disabled/>
-					</div>
+					<label for="credit">Crédit : </label>
+					<input type="text" name="cerdit" id="credit" value="${requestScope.utilisateur.getCredit()}" disabled/>
+				</div>
 		</c:when>
 		
 		<c:when test="${!empty sessionScope.utilisateur}">
 			<h1 id="titre">Mon profil</h1>
-			 <div id="container">
-						<label for="Pseudo">Pseudo : </label>
-						<input type="text" name="Pseudo" id="Pseudo" value="${sessionScope.utilisateur.getPseudo()}" disabled/>	
+			 	<div id="container">
+					<label for="Pseudo">Pseudo : </label>
+					<input type="text" name="Pseudo" id="Pseudo" value="${sessionScope.utilisateur.getPseudo()}" disabled/>	
 						
-						<label for="prenom">Prénom : </label>
-						<input type="text" name="prenom" id="prenom" value="${sessionScope.utilisateur.getPrenom()}" disabled/>
+					<label for="prenom">Prénom : </label>
+					<input type="text" name="prenom" id="prenom" value="${sessionScope.utilisateur.getPrenom()}" disabled/>
 						
-						<label for="nom">Nom : </label>
-						<input type="text" name="nom" id="nom" value="${sessionScope.utilisateur.getNom()}" disabled/>
+					<label for="nom">Nom : </label>
+					<input type="text" name="nom" id="nom" value="${sessionScope.utilisateur.getNom()}" disabled/>
 						
-						<label for="email">Email : </label>
-						<input type="email" name="email" id="email" value="${sessionScope.utilisateur.getEmail()}" disabled/>
+					<label for="email">Email : </label>
+					<input type="email" name="email" id="email" value="${sessionScope.utilisateur.getEmail()}" disabled/>
 						
-						<br>
-					    <br>
+					<br>
+					<br>
 						
-						<label for="tel">Téléphone : </label>
-						<input type="tel" name="tel" id="tel" value="${sessionScope.utilisateur.getTelephone()}" disabled/>
+					<label for="tel">Téléphone : </label>
+					<input type="tel" name="tel" id="tel" value="${sessionScope.utilisateur.getTelephone()}" disabled/>
+					
+					<br>
+					<br>
 						
-						<br>
-						<br>
+					<label for="rue">Rue : </label>
+					<input type="text" name="rue" id="rue" value="${sessionScope.utilisateur.getRue()}" disabled/>
 						
-						<label for="rue">Rue : </label>
-						<input type="text" name="rue" id="rue" value="${sessionScope.utilisateur.getRue()}" disabled/>
+					<label for="ville">Ville : </label>
+					<input type="text" name="ville" id="ville" value="${sessionScope.utilisateur.getVille()}" disabled/>
 						
-						<label for="ville">Ville : </label>
-						<input type="text" name="ville" id="ville" value="${sessionScope.utilisateur.getVille()}" disabled/>
+					<label for="codepostal">Code Postal : </label>
+					<input type="text" name="codepostal" id="codepostal" value="${sessionScope.utilisateur.getCode_postal()}" disabled/>
 						
-						<label for="codepostal">Code Postal : </label>
-						<input type="text" name="codepostal" id="codepostal" value="${sessionScope.utilisateur.getCode_postal()}" disabled/>
-						
-						<label for="credit">Crédit : </label>
-						<input type="text" name="cerdit" id="credit" value="${sessionScope.utilisateur.getCredit()}" disabled/>
+					<label for="credit">Crédit : </label>
+					<input type="text" name="cerdit" id="credit" value="${sessionScope.utilisateur.getCredit()}" disabled/>
 					
 					
-			<form action="${pageContext.request.contextPath}/ModifierProfil" method="get">
-					<input type="submit" value="Modifier" />
-			</form>
+					<form action="${pageContext.request.contextPath}/ModifierProfil" method="get">
+						<input type="submit" value="Modifier" />
+					</form>
 				</div>
 		</c:when>
 		
