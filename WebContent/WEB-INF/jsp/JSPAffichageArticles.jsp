@@ -67,7 +67,6 @@
 					</form>
 					
 					<form action="${pageContext.request.contextPath}/AccueilFiltre" method="post">
-						<label for="categorie">Catégorie:</label>
 						
 						<label for="filtre">Filtrer</label>
 						<select name="filtre" id="filtre">
