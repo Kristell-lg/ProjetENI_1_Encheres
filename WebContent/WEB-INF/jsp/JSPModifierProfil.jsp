@@ -76,7 +76,7 @@
 						<br>
 						
 						<label for="tel">Téléphone : </label>
-						<input type="tel" name="tel" id="tel" value="${sessionScope.utilisateur.getTelephone()}" maxlength="15"/>
+						<input type="tel" name="tel" id="tel" value="${sessionScope.utilisateur.getTelephone()}" maxlength="10"/>
 						
 						<br>
 						<br>
