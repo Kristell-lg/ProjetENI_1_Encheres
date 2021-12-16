@@ -10,9 +10,9 @@
 
 <!-- CSS -->
 
-<link rel="stylesheet" href="css/headerFooterS.css"/>
-<link rel="stylesheet" href="css/ConnexionUsers.css" />
-<link rel="stylesheet" href="css/AfficherProfils.css" />
+<link rel="stylesheet" href="css/headerFooter.css"/>
+<link rel="stylesheet" href="css/ConnexionUser.css" />
+<link rel="stylesheet" href="css/AfficherProfil.css" />
 
 <!-- FONT ECONOMICA -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
