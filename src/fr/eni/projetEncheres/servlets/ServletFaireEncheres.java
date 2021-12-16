@@ -81,7 +81,7 @@ public class ServletFaireEncheres extends HttpServlet {
 				List<Encheres> enchereliste = EncheresManager.selectionner();
 
 				if (enchereliste.isEmpty()) {
-					if (utilisateur.getCredit() >= enchere.getMontant_enchere()) {
+					if (utilisateur.getCredit() >= enchere.getMontant_enchere() && enchere.getMontant_enchere() > article.getPrix_initial() ) {
 						 
 						 EncheresManager.ajoutEnchere(enchere); request.setAttribute("retour","enchère envoyée"); 
 						 request.setAttribute("idArticle", articleId);
@@ -91,7 +91,7 @@ public class ServletFaireEncheres extends HttpServlet {
 						  
 						 } else { 
 						 request.setAttribute("idArticle", articleId);
-						 request.setAttribute("article", article); request.setAttribute("erreur", "Vous n'avez pas assez de crédit pour faire cette enchère");
+						 request.setAttribute("article", article); request.setAttribute("erreur", "La mise que vous avez entré n'est pas correcte ! (Rappel : vous devez avoir assez de crédits et le prix doit être supérieur à la dernière mise en vente )!");
 						 }
 				} else {
 					for (Encheres encheres : enchereliste) {	
@@ -106,7 +106,7 @@ public class ServletFaireEncheres extends HttpServlet {
 				if (ok) {
 					System.out.println("pas d'enchère déjà");
 					
-					 if (utilisateur.getCredit() >= enchere.getMontant_enchere()) {
+					 if (utilisateur.getCredit() >= enchere.getMontant_enchere() && enchere.getMontant_enchere() > article.getPrix_initial()) {
 					 EncheresManager.ajoutEnchere(enchere); request.setAttribute("retour","enchère envoyée");
 					 request.setAttribute("idArticle", articleId);
 					 RequestDispatcher succesEncheres = request.getRequestDispatcher("/AccueilLogIn");
@@ -114,7 +114,7 @@ public class ServletFaireEncheres extends HttpServlet {
 					  
 					 } else { request.setAttribute("idArticle", articleId);
 					 request.setAttribute("article", article); request.setAttribute("erreur",
-					 "Vous n'avez pas assez de crédit pour faire cette enchère");
+					 "La mise que vous avez entré n'est pas correcte ! (Rappel : vous devez avoir assez de crédits et le prix doit être supérieur à la dernière mise en vente )!");
 					 }
 					 
 				} else {
