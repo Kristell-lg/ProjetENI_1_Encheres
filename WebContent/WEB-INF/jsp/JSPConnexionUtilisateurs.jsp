@@ -7,8 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <!-- CSS  -->
-
-
 <link rel="stylesheet" href="css/headerFooterS.css"/>
 <link rel="stylesheet" href="css/ConnexionUsers.css" />
 <!-- FONT ECONOMICA -->
