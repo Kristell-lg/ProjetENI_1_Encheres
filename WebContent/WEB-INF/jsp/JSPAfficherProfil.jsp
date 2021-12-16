@@ -24,7 +24,7 @@
 	<c:choose>
 		<c:when test="${!empty requestScope.utilisateur}">
 			<h1 id="titre">Profil de ${requestScope.utilisateur.getPseudo()}</h1>
-						
+						 <div id="container">
 						<label for="Pseudo">Pseudo : </label>
 						<input type="text" name="Pseudo" id="Pseudo" value="${requestScope.utilisateur.getPseudo()}" disabled/>	
 						
@@ -51,7 +51,7 @@
 						
 						<label for="credit">Crédit : </label>
 						<input type="text" name="cerdit" id="credit" value="${requestScope.utilisateur.getCredit()}" disabled/>
-					
+					</div>
 		</c:when>
 		
 		<c:when test="${!empty sessionScope.utilisateur}">
