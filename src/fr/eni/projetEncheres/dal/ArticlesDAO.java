@@ -15,5 +15,5 @@ public interface ArticlesDAO {
 	public void insert(Articles article);
 	public Articles selectArticle(int no_article) throws DALException;
 	public List<Articles> selectionnerCategorie(int categorie) throws SQLException;
-	
+	public void modiffierPrixVente(Articles a) throws DALException;
 }

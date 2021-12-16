@@ -3,6 +3,7 @@ package fr.eni.projetEncheres.bll;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.projetEncheres.bo.Articles;
 import fr.eni.projetEncheres.bo.Encheres;
 import fr.eni.projetEncheres.bo.Utilisateurs;
 import fr.eni.projetEncheres.dal.DALException;
@@ -41,13 +42,20 @@ public class EncheresManager {
 
 	public void ajoutEnchere(Encheres enchere) throws BLLException { // INSERT ENCHERE //
 		Encheres derEnchere = null;
+		Articles articles = null;
 		try {
 			UtilisateursManager utilisateursManager = new UtilisateursManager(); // Recup la dernier enchere
+			ArticlesManager articleManager = new ArticlesManager();
 			int no_article = enchere.getNo_article();
 			if(VerfiEnchereArticle(no_article)) {
 				derEnchere = selectionnerDernierEnchereArticle(no_article);
 			}
 			encheresDAO.ajoutEnchere(enchere);
+			System.out.println(articleManager.selectArticle(enchere.getNo_article()));
+			System.out.println(enchere.getMontant_enchere());
+			articles = articleManager.selectArticle(enchere.getNo_article());;
+			articles.setPrix_vente(enchere.getMontant_enchere());
+			articleManager.ModifierPrixVente(articles);
 			utilisateursManager.crediter(utilisateursManager.selectUtilisateur(enchere.getNo_utilisateur()), enchere.getMontant_enchere());
 			/* Remboursser */
 			if(derEnchere != null) {

@@ -55,7 +55,7 @@
 				<p>Description : ${requestScope.article.getDescription()}</p>
 				<p>Catégorie : ${requestScope.article.getCategorie().getLibelle()}</p>
 				
-				<p>Meilleur Offre :</p>
+				<p>Meilleur Offre : ${requestScope.article.getPrix_vente()}</p>
 				
 				<p>Mise à prix : ${requestScope.article.getPrix_initial()}</p>
 				<p>Retrait : ${requestScope.retrait.Afficher()}</p>

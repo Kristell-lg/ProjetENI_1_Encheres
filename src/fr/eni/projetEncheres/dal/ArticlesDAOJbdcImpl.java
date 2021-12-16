@@ -16,7 +16,8 @@ import fr.eni.projetEncheres.bo.Utilisateurs;
 /**
  * 
  * @author Clément
- *@update Kristell
+ * @update Kristell
+ * @update Luka CHOUVILLE
  */
 
 public class ArticlesDAOJbdcImpl implements ArticlesDAO {
@@ -25,6 +26,8 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 	private static final String SELECT_TOUT_CATEGORIE = "SELECT * FROM (ARTICLES_VENDUS a  INNER JOIN UTILISATEURS u ON a.no_utilisateur=u.no_utilisateur) INNER JOIN CATEGORIES c ON c.no_categorie =? AND a.no_categorie =c.no_categorie";
 	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie)VALUES(?,?,?,?,?,?,?,?)";
 	private static final String SELECT_ID = "SELECT * FROM (ARTICLES_VENDUS a  INNER JOIN UTILISATEURS u ON a.no_utilisateur=u.no_utilisateur AND a.no_article=?) INNER JOIN CATEGORIES c ON a.no_categorie =c.no_categorie";
+	private static final String UPDATE_VENTE = "UPDATE ARTICLES_VENDUS SET prix_vente=? WHERE no_article=?";
+	
 	// select by encheres 
 	
 	
@@ -168,5 +171,18 @@ public class ArticlesDAOJbdcImpl implements ArticlesDAO {
 			return article;
 		}
 
-	
+	public void modiffierPrixVente(Articles a) throws DALException {
+		 
+        try (Connection cnx = ConnectionProvider.getConnection();
+        		PreparedStatement pstmtUtilisateurs = cnx.prepareStatement(UPDATE_VENTE);)
+        		{
+        	pstmtUtilisateurs.setInt(1, a.getPrix_vente());
+			pstmtUtilisateurs.setInt(2, a.getNo_article());
+			
+			pstmtUtilisateurs.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DALException(e);
+		}
+	}
 }

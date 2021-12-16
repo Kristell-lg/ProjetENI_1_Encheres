@@ -76,7 +76,15 @@ public class ArticlesManager {
 		return article;
 
 	}
-	
+	public void ModifierPrixVente(Articles article) throws BLLException {
+		ArticlesValidation(article);
+		try {
+			this.articlesDAO.modiffierPrixVente(article);;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	private void ArticlesValidation(Articles article) throws BLLException {
 
 		boolean dataValid = true;
