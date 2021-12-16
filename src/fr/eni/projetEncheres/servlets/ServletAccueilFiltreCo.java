@@ -210,7 +210,7 @@ public class ServletAccueilFiltreCo extends HttpServlet {
 					List<Articles> articleListeByID = new ArrayList<Articles>();
 
 						for (Articles article : articleListe) {
-							if (article.getUtilisateur().getNo_utilisateur() == utilisateur.getNo_utilisateur() && article.getDate_debut_encheres().isBefore(LocalDate.now())) {
+							if (article.getUtilisateur().getNo_utilisateur() == utilisateur.getNo_utilisateur() && article.getDate_debut_encheres().isAfter(LocalDate.now())) {
 								articleListeByID.add(article);
 							}
 						}
