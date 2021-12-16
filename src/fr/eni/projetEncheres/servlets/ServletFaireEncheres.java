@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.projetEncheres.bll.ArticlesManager;
 import fr.eni.projetEncheres.bll.EncheresManager;
+import fr.eni.projetEncheres.bll.UtilisateursManager;
 import fr.eni.projetEncheres.bo.Articles;
 import fr.eni.projetEncheres.bo.Encheres;
 import fr.eni.projetEncheres.bo.Utilisateurs;
@@ -80,7 +81,6 @@ public class ServletFaireEncheres extends HttpServlet {
 
 				if (dernierPrixOk) {
 					dernierEncheres = EncheresManager.selectionnerDernierEnchereArticle(articleId);
-					System.out.println("dernierEnchere" + dernierEncheres);
 					dernierPrix = dernierEncheres.getMontant_enchere();
 				}
 
@@ -90,12 +90,16 @@ public class ServletFaireEncheres extends HttpServlet {
 					if (utilisateur.getCredit() >= enchere.getMontant_enchere()
 							&& enchere.getMontant_enchere() > article.getPrix_initial()
 							&& enchere.getMontant_enchere() > dernierPrix) {
-
+						System.out.println("enchère déjà");
 						EncheresManager.ajoutEnchere(enchere);
 
 						request.setAttribute("idArticle", articleId);
 						request.setAttribute("dernierEncheresPrix", dernierPrix);
-
+						
+						UtilisateursManager utilisateurmnger = new UtilisateursManager();
+						Utilisateurs utilisateurUp = utilisateurmnger.selectUtilisateur(no_utilisateur);
+						session.setAttribute("utilisateur", utilisateurUp);
+						
 						RequestDispatcher succesEncheres = request.getRequestDispatcher("/AccueilLogIn");
 						succesEncheres.forward(request, response);
 
@@ -106,7 +110,7 @@ public class ServletFaireEncheres extends HttpServlet {
 								"La mise que vous avez entré n'est pas correcte ! (Rappel : vous devez avoir assez de crédits et le prix doit être supérieur à la dernière mise en vente )!");
 					}
 				} else {
-					if (dernierEncheres.getNo_utilisateur() == no_utilisateur) {
+					if (dernierPrixOk==true && dernierEncheres.getNo_utilisateur() == no_utilisateur) {
 						ok = false;
 					}
 				}
@@ -122,6 +126,12 @@ public class ServletFaireEncheres extends HttpServlet {
 						request.setAttribute("idArticle", articleId);
 
 						request.setAttribute("dernierEncheresPrix", dernierPrix);
+						
+						UtilisateursManager utilisateurmnger = new UtilisateursManager();
+						Utilisateurs utilisateurUp = utilisateurmnger.selectUtilisateur(no_utilisateur);
+						System.out.println("servlet new user"+utilisateurUp);
+						session.setAttribute("utilisateur", utilisateurUp);
+						
 						RequestDispatcher succesEncheres = request.getRequestDispatcher("/AccueilLogIn");
 						succesEncheres.forward(request, response);
 
