@@ -10,8 +10,8 @@
 
 <!-- CSS  -->
 
-<link rel="stylesheet" href="css/headerFooter.css"/>
-<link rel="stylesheet" href="css/AfficherProfil.css" />
+
+<link rel="stylesheet" href="css/Article.css" />
 
 <!-- FONT ECONOMICA -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,13 +28,19 @@
 <%@ include file="/WEB-INF/jsp/pageAccueil/headerCO.html" %>
 	<c:choose>
 		<c:when test="${empty requestScope.erreur}">
-		
+		<div id="containerProfil">
+		<div id="Profil">
 			<p class="affichageArticle">Bonjour ${sessionScope.utilisateur.getPseudo()} !</p>
 			<p class="affichageArticle">Crédit : ${sessionScope.utilisateur.getCredit()} points</p>
+			</div>
+			<div id="LienHeader">
 			<a class="affichageArticle" href="/ProjetENI_1_Encheres/ServletCreationArticles">Mettre en vente un article</a>
+			<p></p>
 			<a class="affichageArticle" href="/ProjetENI_1_Encheres/Profil">Mon Profil</a>
+			<p></p>
 			<a class="affichageArticle" href="/ProjetENI_1_Encheres/Deconnexion">Déconnexion</a>
-			
+			</div>
+			</div>
 		</c:when>
 		
 		<c:otherwise>
@@ -49,6 +55,8 @@
 			<c:when test="${!empty articlesListe}">
 				
 				<form action="${pageContext.request.contextPath}/AccueilFiltre" method="post">
+				<div id="FlexRecherche">
+						<div id="CategorieEnsemble">
 						<label for="categorie">Catégorie:</label>
 			
 						<select name="categorie" id="categorie">
@@ -63,8 +71,10 @@
 						<input type="text" name="recherche">
 							
 						<input type="submit" value="Valider">
+						</div>
 					</form>
 					
+					<div id="FiltreEnsemble">
 					<form action="${pageContext.request.contextPath}/AccueilFiltre" method="post">
 						
 						<label for="filtre">Filtrer</label>
@@ -81,34 +91,40 @@
 						</select>
 							
 						<input type="submit" value="Valider">
+						</div>
 					</form>
-			
+			</div>
 				<c:if test="${!empty titre}">
 					<p>${titre}</p>
 				</c:if>
 				
-				<c:forEach var="article" items="${articlesListe}">
 				
+				<div id="position">
+				<c:forEach var="article" items="${articlesListe}">
+					<div id="container">
 					<form action="${pageContext.request.contextPath}/AfficherArticle" method="get">
+						<div id="ButtonDeux">
 						<input type="hidden" name="idArticle" value="${article.getNo_article()}">
-						<button type="submit">${article.getNom_article()}</button>
-					</form>	
+						<button id="ButtonDeux" type="submit">${article.getNom_article()}</button>
+				</div>
 					
-					
+						
 					<p class="affichageArticle">Fin des enchères :${article.getDate_fin_encheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))}</p>
 					<p class="affichageArticle">Prix initial :${article.getPrix_initial()}</p>
 					<p class="affichageArticle">Dernier Prix :${article.getPrix_vente()}</p>
 					<p class="affichageArticle">Vendeur :</p>
+					
 					<form action="${pageContext.request.contextPath}/Profil" method="post">
+						
 						<input type="hidden" name="idProfil" value="${article.getUtilisateur().getNo_utilisateur()}">
 						<button type="submit">${article.getUtilisateur().getPseudo()}</button>
-					</form>	
 					
-					<p class="affichageArticle">-----------------------------------------------</p>
-					 
-				</c:forEach>
-		
+				</div>
 				
+				</c:forEach>
+			
+				</div>
+					
 			</c:when>
 			
 			<c:otherwise>

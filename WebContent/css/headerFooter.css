@@ -234,3 +234,19 @@ a {
     font-family: 'Economica',
     sans-serif;
 }
+#retour{
+	 background-color: #00475E;
+    border-radius: 8px;
+    color: #F3BDA1;
+    border: 2px solid;
+    padding: 10px 22px;
+    text-align: center;
+    text-decoration: none;
+    
+    font-size: 15px;
+    color: #F3BDA1;
+    text-decoration: none;
+    font-family: 'Economica',
+        sans-serif;
+        cursor: pointer;
+}
