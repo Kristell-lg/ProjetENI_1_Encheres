@@ -66,7 +66,7 @@
 						    <option value=3>Vêtement</option>
 						    <option value=4>Sport et Loisirs</option>
 						</select>
-						
+						<br>
 						<label for="recherche">Recherche par titre d'annonce :</label>
 						<input type="text" name="recherche">
 							
@@ -95,7 +95,7 @@
 					</form>
 			</div>
 				<c:if test="${!empty titre}">
-					<p>${titre}</p>
+					<p id="titre">${titre}</p>
 				</c:if>
 				
 				
