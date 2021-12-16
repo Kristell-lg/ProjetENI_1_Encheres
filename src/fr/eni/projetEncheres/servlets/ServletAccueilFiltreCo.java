@@ -143,7 +143,7 @@ public class ServletAccueilFiltreCo extends HttpServlet {
 			}
 			else if (filtre == 3) {
 				try {
-					request.setAttribute("titre", "Filtre : " + filtreString);
+					request.setAttribute("titre", "Mes ventes gagnées");
 					// SELECTION DE TOUTES LES ENCHERES EN COURS POUR CET UTILISATEUR
 
 					EncheresManager encheresManager = new EncheresManager();
@@ -167,7 +167,6 @@ public class ServletAccueilFiltreCo extends HttpServlet {
 							}
 						}
 					}
-
 
 					request.setAttribute("articlesListe", articleListeByID);
 					succesConnexion.forward(request, response);

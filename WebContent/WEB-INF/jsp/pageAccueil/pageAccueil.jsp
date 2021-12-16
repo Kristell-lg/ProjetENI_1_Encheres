@@ -13,8 +13,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/headerFooterS.css"/>
-<link rel="stylesheet" href="css/pageAccueils.css"/>
+<link rel="stylesheet" href="css/headerFooter.css"/>
+<link rel="stylesheet" href="css/pageAccueil.css"/>
  
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
@@ -24,7 +24,8 @@
 <body>
 <div id="main">
 <%@ include file="header.html" %>
-					<h1>Liste des enchères</h1>
+
+<h1 id="titre">Liste des enchères</h1>
 
 
 	

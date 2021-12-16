@@ -27,10 +27,7 @@
 	
 	<c:choose>
 		<c:when test="${empty requestScope.erreur}">
-			<form action="${pageContext.request.contextPath}/AfficherArticle" method="post">
-			<input type="number" name="idArticle" min="0">
-			<input type="submit">
-			</form>
+
 			
 			<c:if test="${!empty requestScope.article and sessionScope.utilisateur.getNo_utilisateur()==requestScope.article.getUtilisateur().getNo_utilisateur()}">
 				

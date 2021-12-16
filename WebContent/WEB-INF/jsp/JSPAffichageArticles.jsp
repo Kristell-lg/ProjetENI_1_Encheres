@@ -11,7 +11,6 @@
 <!-- CSS  -->
 
 <link rel="stylesheet" href="css/headerFooter.css"/>
-<link rel="stylesheet" href="css/ConnexionUser.css" />
 <link rel="stylesheet" href="css/AfficherProfil.css" />
 
 <!-- FONT ECONOMICA -->
