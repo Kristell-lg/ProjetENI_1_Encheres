@@ -25,7 +25,7 @@
 	</head>
 	<body>
 	<div id="main">
-	<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
+	<%@ include file="/WEB-INF/jsp/pageAccueil/headerCO.html" %>
 		<form method="post" action="${pageContext.request.contextPath}/SupprimerEnchere">
 		<c:if test="${!empty requestScope.msgMdpCorrespondance}">
 			<p style="color:red">${requestScope.msgMdpCorrespondance}</p>

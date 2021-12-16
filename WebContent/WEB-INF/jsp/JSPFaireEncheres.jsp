@@ -22,6 +22,9 @@
 <title>Detail vente</title>
 </head>
 <body>
+
+<%@ include file="/WEB-INF/jsp/pageAccueil/headerCO.html" %>
+
 		<form method="post" action="${pageContext.request.contextPath}/FaireEncheres">
 
 <h1 id = "titre">Détail vente</h1>

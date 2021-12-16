@@ -22,7 +22,7 @@
   <body>
   	<div id="main">
   
-  <%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
+  <%@ include file="/WEB-INF/jsp/pageAccueil/headerCO.html" %>
         <!--Cette JSP est une notification a déstination du vendeur pour avoir les informations concernant le détail de la vente réalisée-->
 
 <!--USER a remporter la vente (TITRE)-->

@@ -27,7 +27,7 @@
 	</head>
 	<body>
 	<div id="main">
-	<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
+	<%@ include file="/WEB-INF/jsp/pageAccueil/headerCO.html" %>
 		<form method="post" action="${pageContext.request.contextPath}/ModifierProfil">
 		<c:if test="${!empty requestScope.erreur}">
 			<p style="color:red">${requestScope.erreur}</p>

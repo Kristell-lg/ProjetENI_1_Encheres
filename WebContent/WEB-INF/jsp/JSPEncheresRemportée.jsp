@@ -22,7 +22,7 @@
 <body>
 	<div id="main">
 
-<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
+<%@ include file="/WEB-INF/jsp/pageAccueil/headerCO.html" %>
 	<h1 id="titre">Vous avez remporté la vente</h1>
 
 <div id=containe>

@@ -26,7 +26,7 @@
 	<body>
 		<div id="main">
 	
-		<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
+		<%@ include file="/WEB-INF/jsp/pageAccueil/headerCO.html" %>
 		<h1 id="titre">Gestion Article</h1>
 		<h2 >Ajout Article</h2>
 	

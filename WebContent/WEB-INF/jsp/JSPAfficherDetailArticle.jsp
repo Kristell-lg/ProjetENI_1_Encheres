@@ -23,7 +23,7 @@
 <body>
 	<div id="main">
 
-<%@ include file="/WEB-INF/jsp/pageAccueil/header.html" %>
+<%@ include file="/WEB-INF/jsp/pageAccueil/headerCO.html" %>
 	
 	<c:choose>
 		<c:when test="${empty requestScope.erreur}">
