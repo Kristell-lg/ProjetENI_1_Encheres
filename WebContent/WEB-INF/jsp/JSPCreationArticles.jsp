@@ -27,8 +27,7 @@
 		<div id="main">
 	
 		<%@ include file="/WEB-INF/jsp/pageAccueil/headerCO.html" %>
-		<h1 id="titre">Gestion Article</h1>
-		<h2 >Ajout Article</h2>
+		<h1 id="titre">Ajout Article</h1>
 	
 		<div id="container">
 		<c:if test="${!empty sessionScope.pseudoSession}"> <p>Création article : ${sessionScope.pseudoSession}</p> </c:if>
@@ -66,7 +65,7 @@
 				</select>
 			</div>
 			<fieldset>
-				<p>Retrait</p>
+				<h2 >Retrait</h2>
 				<div>
 					<label for="rue">Rue : </label>
 					<input type="text" name="rue" id="rue"maxlength="30" value="${sessionScope.utilisateur.getRue()}" required/>
@@ -81,12 +80,11 @@
 				</div>
 			</fieldset>
 			<input type="submit"> 
-			<input type="reset">
-			</div>
 			
 	</form>
-		
+		</div>
 		<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
+		
 		</div>
 	</body>
 </html>
