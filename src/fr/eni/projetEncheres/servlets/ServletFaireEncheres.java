@@ -76,17 +76,20 @@ public class ServletFaireEncheres extends HttpServlet {
 				
 				Boolean dernierPrixOk = EncheresManager.VerfiEnchereArticle(articleId);
 				Encheres dernierEncheres=null;
+				int dernierPrix =0;
 				
 				if (dernierPrixOk) {
 					dernierEncheres = EncheresManager.selectionnerDernierEnchereArticle(articleId);
+					dernierPrix = dernierEncheres.getMontant_enchere();
 				}
 	
 				List<Encheres> enchereliste = EncheresManager.selectionner();
 
 				if (enchereliste.isEmpty()) {
-					if (utilisateur.getCredit() >= enchere.getMontant_enchere() && enchere.getMontant_enchere() > article.getPrix_initial() && enchere.getMontant_enchere() > dernierEncheres.getMontant_enchere()) {
+					if (utilisateur.getCredit() >= enchere.getMontant_enchere() && enchere.getMontant_enchere() > article.getPrix_initial() && enchere.getMontant_enchere() > dernierPrix) {
 						 
-						 EncheresManager.ajoutEnchere(enchere); request.setAttribute("retour","enchère envoyée"); 
+						 EncheresManager.ajoutEnchere(enchere); 
+						 
 						 request.setAttribute("idArticle", articleId);
 						 request.setAttribute("dernierEncheresPrix", dernierEncheres.getMontant_enchere());
 						 
@@ -100,8 +103,11 @@ public class ServletFaireEncheres extends HttpServlet {
 				} else {
 					for (Encheres encheres : enchereliste) {	
 						if (encheres.getNo_article() == articleId && encheres.getNo_utilisateur() == no_utilisateur) {
-							//TODO AJouter test du dernier encherisseur
-							ok = false;
+							//VERIFIE QUE LE DERNIER ENCHERISSEUR N'EST PAS LE USER EN COURS
+							if (dernierEncheres.getNo_utilisateur()==no_utilisateur) {
+								ok = false;
+							}
+		
 						}
 					}
 				}
@@ -110,7 +116,7 @@ public class ServletFaireEncheres extends HttpServlet {
 				if (ok) {
 					System.out.println("pas d'enchère déjà");
 					
-					 if (utilisateur.getCredit() >= enchere.getMontant_enchere() && enchere.getMontant_enchere() > article.getPrix_initial() && enchere.getMontant_enchere() > dernierEncheres.getMontant_enchere()) {
+					 if (utilisateur.getCredit() >= enchere.getMontant_enchere() && enchere.getMontant_enchere() > article.getPrix_initial() && enchere.getMontant_enchere() > dernierPrix) {
 					 EncheresManager.ajoutEnchere(enchere); request.setAttribute("retour","enchère envoyée");
 					 request.setAttribute("idArticle", articleId);
 					 
