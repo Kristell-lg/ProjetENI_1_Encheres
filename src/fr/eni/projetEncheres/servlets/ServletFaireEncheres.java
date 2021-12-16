@@ -91,7 +91,7 @@ public class ServletFaireEncheres extends HttpServlet {
 						 EncheresManager.ajoutEnchere(enchere); 
 						 
 						 request.setAttribute("idArticle", articleId);
-						 request.setAttribute("dernierEncheresPrix", dernierEncheres.getMontant_enchere());
+						 request.setAttribute("dernierEncheresPrix", dernierPrix);
 						 
 						 RequestDispatcher succesEncheres = request.getRequestDispatcher("/AccueilLogIn");
 						 succesEncheres.forward(request, response);
@@ -117,10 +117,9 @@ public class ServletFaireEncheres extends HttpServlet {
 					System.out.println("pas d'enchère déjà");
 					
 					 if (utilisateur.getCredit() >= enchere.getMontant_enchere() && enchere.getMontant_enchere() > article.getPrix_initial() && enchere.getMontant_enchere() > dernierPrix) {
-					 EncheresManager.ajoutEnchere(enchere); request.setAttribute("retour","enchère envoyée");
-					 request.setAttribute("idArticle", articleId);
+					 EncheresManager.ajoutEnchere(enchere); request.setAttribute("idArticle", articleId); 
 					 
-					 request.setAttribute("dernierEncheresPrix", dernierEncheres.getMontant_enchere());
+					 request.setAttribute("dernierEncheresPrix", dernierPrix);
 					 RequestDispatcher succesEncheres = request.getRequestDispatcher("/AccueilLogIn");
 					 succesEncheres.forward(request, response);
 					  

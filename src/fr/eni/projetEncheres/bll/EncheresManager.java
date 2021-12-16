@@ -50,10 +50,10 @@ public class EncheresManager {
 			if(VerfiEnchereArticle(no_article)) {
 				derEnchere = selectionnerDernierEnchereArticle(no_article);
 			}
+			
 			encheresDAO.ajoutEnchere(enchere);
-			System.out.println(articleManager.selectArticle(enchere.getNo_article()));
-			System.out.println(enchere.getMontant_enchere());
-			articles = articleManager.selectArticle(enchere.getNo_article());;
+			
+			articles = articleManager.selectArticle(enchere.getNo_article());
 			articles.setPrix_vente(enchere.getMontant_enchere());
 			articleManager.ModifierPrixVente(articles);
 			utilisateursManager.crediter(utilisateursManager.selectUtilisateur(enchere.getNo_utilisateur()), enchere.getMontant_enchere());
@@ -63,7 +63,6 @@ public class EncheresManager {
 				utilisateursManager.rembourser(utilremboursse, derEnchere.getMontant_enchere()); // Remboursser l'utilisateur
 			}
 		} catch (Exception e) {
-			System.out.println(derEnchere);
 			throw new BLLException("Echec Insertion Enchere : ", e);
 		}
 	}
