@@ -12,7 +12,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Inscription</title>
-		<!-- CSS -->
+		<!-- CSS  -->
 <link rel="stylesheet" href="css/headerFooter.css"/>
 <link rel="stylesheet" href="css/AfficherProfil.css">
 		<!-- FONT ECONOMICA -->

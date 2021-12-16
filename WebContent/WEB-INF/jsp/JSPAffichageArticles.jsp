@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- CSS -->
+<!-- CSS  -->
 
 <link rel="stylesheet" href="css/headerFooter.css"/>
 <link rel="stylesheet" href="css/ConnexionUser.css" />

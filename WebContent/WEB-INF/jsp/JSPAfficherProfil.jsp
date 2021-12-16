@@ -8,7 +8,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Profil</title>
-		<!-- CSS -->
+		<!-- CSS   -->
 <link rel="stylesheet" href="css/headerFooter.css"/>
 <link rel="stylesheet" href="css/AfficherProfil.css" />
 

@@ -11,7 +11,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Désinscription</title>
-		<!-- CSS -->
+		<!-- CSS  -->
 <link rel="stylesheet" href="css/headerFooter.css"/>
 <link rel="stylesheet" href="css/AfficherProfil.css"> <!-- Applique le nouveau design -->
 
