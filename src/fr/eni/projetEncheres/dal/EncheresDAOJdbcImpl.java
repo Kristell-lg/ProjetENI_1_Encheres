@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.projetEncheres.bo.Encheres;
-import fr.eni.projetEncheres.bo.Retraits;
 
 /**
  * @authorLukaCHOUVILLE EncheresDAOJDBCImpl
@@ -77,7 +76,6 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODOAuto-generatedcatchblock
 			e.printStackTrace();
 		}
 
