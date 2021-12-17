@@ -178,11 +178,8 @@ public class ServletAccueilFiltreCo extends HttpServlet {
 					request.setAttribute("titre", "Filtre : " + filtreString);
 					// SELECTION DE TOUTES LES ENCHERES EN COURS POUR CET UTILISATEUR
 
-					EncheresManager encheresManager = new EncheresManager();
 					ArticlesManager articleManager = new ArticlesManager();
-					List<Encheres> enchereListe = encheresManager.selectionner();
 					List<Articles> articleListe = articleManager.selectionner();
-					List<Encheres> enchereListeByID = new ArrayList<Encheres>();
 					List<Articles> articleListeByID = new ArrayList<Articles>();
 
 						for (Articles article : articleListe) {
@@ -223,11 +220,8 @@ public class ServletAccueilFiltreCo extends HttpServlet {
 					request.setAttribute("titre", "Filtre" + filtreString);
 					// SELECTION DE TOUTES LES ENCHERES EN COURS POUR CET UTILISATEUR
 
-					EncheresManager encheresManager = new EncheresManager();
 					ArticlesManager articleManager = new ArticlesManager();
-					List<Encheres> enchereListe = encheresManager.selectionner();
 					List<Articles> articleListe = articleManager.selectionner();
-					List<Encheres> enchereListeByID = new ArrayList<Encheres>();
 					List<Articles> articleListeByID = new ArrayList<Articles>();
 
 						for (Articles article : articleListe) {

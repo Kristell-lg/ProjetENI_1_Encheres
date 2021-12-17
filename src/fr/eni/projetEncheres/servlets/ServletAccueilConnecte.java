@@ -50,7 +50,7 @@ public class ServletAccueilConnecte extends HttpServlet {
 					if (utilisateurs.getPseudo().trim().equals(pseudo)) {
 						// CHERCHER DANS LA BDD - si le mot de passe correspond à ce pseudo
 						if (utilisateurs.getMot_de_passe().trim().equals(mot_de_passe)) {
-							id = utilisateurs.getNo_utilisateur();
+							 id = utilisateurs.getNo_utilisateur();
 
 						}
 					}

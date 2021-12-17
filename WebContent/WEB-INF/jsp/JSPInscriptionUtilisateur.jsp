@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="css/AfficherProfil.css">
 		<!-- FONT ECONOMICA -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
+<link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Economica&display=swap" rel="stylesheet">
 		<!-- ICONE DE PAGE -->
 <link rel="Shortcut Icon" href="css/images/iconeOsna.png">
@@ -76,10 +76,12 @@
 					
 			<!-- Bouton -->
 				<input type="submit" value="Créer"/>
+		</form>
 		
 		<form action="${pageContext.request.contextPath}/Accueil">
 			<input type="submit" value="Annuler"/>
 		</form>
+		
 		</div>
 		<%@ include file="/WEB-INF/jsp/pageAccueil/footer.html" %>
 		</div>
