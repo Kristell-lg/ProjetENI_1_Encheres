@@ -104,14 +104,17 @@
 
 				</div>
 
-				<c:if test="${!empty titre}">
-					<p id="titre">${titre}</p>
-				</c:if>
-
-
+				
 				<div id="position">
+					<div id="container">
+					
+					<c:if test="${!empty titre}">
+						<h2 id="titreArticle">${requestScope.titre}</h2>
+					</c:if>
+
+
+				
 					<c:forEach var="article" items="${articlesListe}">
-						<div id="container">
 							<form action="${pageContext.request.contextPath}/AfficherArticle"
 								method="get">
 								<div id="ButtonDeux">
@@ -136,10 +139,11 @@
 									value="${article.getUtilisateur().getNo_utilisateur()}">
 								<button type="submit">${article.getUtilisateur().getPseudo()}</button>
 							</form>
-						</div>
+						
 					</c:forEach>
-
 				</div>
+
+			</div>
 
 			</c:when>
 
