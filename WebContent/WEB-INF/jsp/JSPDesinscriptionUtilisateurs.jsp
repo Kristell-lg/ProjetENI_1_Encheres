@@ -47,7 +47,6 @@
 			<br>
 			<p>Attention cette suppression sera définitive</p>
 				<input type="submit" value="Se désinscrire"/>
-				<input type="reset" value="Annuler"/>
 					</div>
 			
 		</form>
