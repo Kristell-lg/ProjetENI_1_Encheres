@@ -4,29 +4,16 @@
 <!--Remplacement du H1 par l'image du site + lien vers l'accueil -->
     
    
-  <a href="${pageContext.request.contextPath}/Accueil"><img src="css/images/logoOSNAV2Dark (2).png" alt= "Les Objets Sont Nos Amis Marketplace (image)></a>
+  <a href="${pageContext.request.contextPath}/Accueil"><img src="css/images/logoOSNAV2Dark (2).png" alt= "Les Objets Sont Nos Amis Marketplace (image)"></a>
 
 
-<div id="header">
-      <!-- Bouton search a css
+	<div id="header">
+	      
+	     <button onclick="location.href='${pageContext.request.contextPath}/Connexion'" type="button"> Connexion</button>
+	     <button id="refresh" onclick="document.location.reload(false)"> Rafraichir </button>
+		 <input id="retour" type="button" value="Retour" onclick="history.go(-1)">
+	     <button onclick="location.href='${pageContext.request.contextPath}/Accueil'" type="button"> Accueil</button>
+	     
+	</div>
 
-      <form class="form-wrapper cf">
-        <input type="text" placeholder="Je recherche" required>
-        <button type="submit">Rechercher</button>
-
-      </form>-->
-      <div id="bouton">
-      
-      <button> <a href="${pageContext.request.contextPath}/Connexion">Connexion</a></button>
-
-
-      <!-- Faire le CSS du BACK et RETURN -->
-
-
-      <button id="refresh" onclick="document.location.reload(false)"> Rafraichir </button>
-
-      <input type="button" value="Retour" onclick="history.go(-1)">
-      <button><a href="${pageContext.request.contextPath}/Accueil">Accueil</a></button>
-</div>
-
-  </header>
+</header>
