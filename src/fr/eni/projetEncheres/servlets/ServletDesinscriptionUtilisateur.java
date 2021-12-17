@@ -15,9 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.projetEncheres.bll.ArticlesManager;
 import fr.eni.projetEncheres.bll.UtilisateursManager;
-import fr.eni.projetEncheres.bo.Articles;
 import fr.eni.projetEncheres.bo.Utilisateurs;
 
 /**

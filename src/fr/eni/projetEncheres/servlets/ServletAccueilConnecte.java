@@ -13,12 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.projetEncheres.bll.ArticlesManager;
-import fr.eni.projetEncheres.bll.EncheresManager;
 import fr.eni.projetEncheres.bll.UtilisateursManager;
 import fr.eni.projetEncheres.bo.Articles;
-import fr.eni.projetEncheres.bo.Encheres;
 import fr.eni.projetEncheres.bo.Utilisateurs;
-import fr.eni.projetEncheres.dal.DALException;
 
 /**
  * Servlet implementation class ServletAccueil
