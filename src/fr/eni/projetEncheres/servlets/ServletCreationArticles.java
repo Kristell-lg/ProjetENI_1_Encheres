@@ -44,6 +44,8 @@ public class ServletCreationArticles extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//CREATION D'ARTICLE
+		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
 		String nom_article = request.getParameter("nom_article");
@@ -59,7 +61,6 @@ public class ServletCreationArticles extends HttpServlet {
 		String ville = request.getParameter("ville");
 		
 		Categories categorie = new Categories(categorieSaisie);
-		//TODO Changer utilisateurs et catégories
 		HttpSession session = request.getSession();
 		
 		Utilisateurs utilisateur = null;

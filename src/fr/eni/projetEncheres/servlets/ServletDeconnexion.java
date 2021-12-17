@@ -15,22 +15,16 @@ import javax.servlet.http.HttpSession;
 public class ServletDeconnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletDeconnexion() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	
+	//DECONNEXION PASSANT EN SESSION INVALIDE 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
         session.invalidate();
 
-        // TODO Redirection vers l'accueil déconnecté
         response.sendRedirect("/ProjetENI_1_Encheres/Connexion");
 	}
 

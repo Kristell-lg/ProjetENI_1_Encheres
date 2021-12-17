@@ -34,8 +34,7 @@ public class ServletInscriptionutilisateur extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher erreurInscription = request.getRequestDispatcher("/WEB-INF/jsp/JSPInscriptionUtilisateur.jsp");
 		
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!TODO mettre la JSP accueil connecté!!!!!!!!!!!!!
-		//RequestDispatcher succesInscription = request.getRequestDispatcher("/Connexion");
+		
 		
 		UtilisateursManager utilisateursManager = new UtilisateursManager();
 		

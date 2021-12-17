@@ -40,7 +40,7 @@ public class ServletAfficherProfil extends HttpServlet {
 			int id = Integer.valueOf(request.getParameter("idProfil"));
 			Utilisateurs utilisateur = utilisateursManager.selectUtilisateur(id);
 			
-			// mise en place des variable
+			// mise en place des variables
 			request.setAttribute("utilisateur",utilisateur);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/JSPAfficherProfil.jsp");
 			rd.forward(request, response);

@@ -80,7 +80,7 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		//Envoyer les informations de catalogue vers la  JSP
+		//Envoyer les informations du catalogue vers la JSP
 		if (logIn) {
 			
 			ArticlesManager articlesManager = new ArticlesManager();
@@ -111,7 +111,6 @@ public class ServletConnexionUtilisateurs extends HttpServlet {
 			request.setAttribute("erreur", "Pseudo ou Mot de Passe erroné");
 			erreurConnexion.forward(request, response);
 		}
-	        //TODO Réécriture du lien si le client n'accepte pas les cookies 						
 		
 	}
 

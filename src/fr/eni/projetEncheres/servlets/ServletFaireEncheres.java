@@ -47,7 +47,8 @@ public class ServletFaireEncheres extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+//CREATION D'ENCHERE
+		
 		RequestDispatcher erreurEnchere = request.getRequestDispatcher("/AfficherArticle");
 
 		HttpSession session = request.getSession();
