@@ -20,7 +20,7 @@ import fr.eni.projetEncheres.bo.Encheres;
 import fr.eni.projetEncheres.bo.Utilisateurs;
 
 /**
- * Servlet implementation class ServletAccueilFiltreCo
+ * Servlet implementation class ServletAccueilFiltreCo.
  */
 @WebServlet("/AccueilFiltre")
 public class ServletAccueilFiltreCo extends HttpServlet {

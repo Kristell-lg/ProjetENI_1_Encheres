@@ -18,7 +18,7 @@ import fr.eni.projetEncheres.bo.Articles;
 import fr.eni.projetEncheres.bo.Utilisateurs;
 
 /**
- * Servlet implementation class ServletAccueil
+ * Servlet implementation class ServletAccueil .
  */
 @WebServlet("/AccueilLogIn")
 public class ServletAccueilConnecte extends HttpServlet {
