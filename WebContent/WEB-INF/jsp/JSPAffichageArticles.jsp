@@ -50,10 +50,13 @@
 					</div>
 				</div>
 			</c:when>
-
+					
 			<c:otherwise>
-				<p id="msgErreurConnexionUtilisateur">${requestScope.erreur}</p>
+				<div id="position">
+					<p id="msgErreurConnexionUtilisateur">${requestScope.erreur}</p>
+				</div>
 			</c:otherwise>
+						
 
 		</c:choose>
 		<h1 id="titre">Catalogue des articles</h1>
@@ -141,7 +144,50 @@
 			</c:when>
 
 			<c:otherwise>
-				<p class="affichageArticle">Aucun article n'est disponible</p>
+				<div id="FlexRecherche">
+					<div id="CategorieEnsemble">
+						<form action="${pageContext.request.contextPath}/AccueilFiltre"
+							method="post">
+
+							<label for="categorie">Catégorie:</label> <select
+								name="categorie" id="categorie">
+								<option value=0>--Choisir une catégorie--</option>
+								<option value=1>Informatique</option>
+								<option value=2>Ameublement</option>
+								<option value=3>Vêtement</option>
+								<option value=4>Sport et Loisirs</option>
+							</select> <br> <label for="recherche">Recherche par titre
+								d'annonce :</label> <input type="text" name="recherche"> <input
+								type="submit" value="Valider">
+						</form>
+					</div>
+
+					<div id="FiltreEnsemble">
+						<form action="${pageContext.request.contextPath}/AccueilFiltre"
+							method="post">
+
+							<label for="filtre">Filtrer</label> <select name="filtre"
+								id="filtre">
+								<option value=0>--Choisir un filtre--</option>
+								<option value=0>--Choisir dans mes achats--</option>
+								<option value=1>Enchères ouvertes</option>
+								<option value=2>Mes enchères en cours</option>
+								<option value=3>Mes enchères remportées</option>
+								<option value=0>--Choisir dans mes ventes--</option>
+								<option value=4>Mes vente en cours</option>
+								<option value=5>Ventes non débutées</option>
+								<option value=6>Mes ventes terminées</option>
+							</select> <input type="submit" value="Valider">
+						</form>
+					</div>
+
+				</div>
+			
+				<div id="position">
+					<div id="container">
+						<p class="erreur">Aucun article n'est disponible</p>
+					</div>
+				</div>
 			</c:otherwise>
 
 		</c:choose>

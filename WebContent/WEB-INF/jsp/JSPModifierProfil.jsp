@@ -27,16 +27,25 @@
 	</head>
 	<body>
 	<div id="main">
+	
+	
+	
 	<%@ include file="/WEB-INF/jsp/pageAccueil/headerCO.html" %>
+	
 		<form method="post" action="${pageContext.request.contextPath}/ModifierProfil">
+		<h1 id="titre">Modification du profil</h1>
 		<c:if test="${!empty requestScope.erreur}">
-			<p style="color:red">${requestScope.erreur}</p>
+			<div id="position">
+				<div id="container">
+				<p style="color:red">${requestScope.erreur}</p>
+				</div>
+			</div>
 		</c:if>
 		
-		
+		<br>
 		<c:choose>
 			 <c:when test="${!empty sessionScope.utilisateur}">
-			 		<h1 id="titre">Modification du profil</h1>
+			 		
 			 		<div id="container">
 				<div class="inscription-champs">
 					<div>

@@ -217,7 +217,7 @@ input {
     font-family: 'Economica',
         sans-serif;
         cursor: pointer;
-        display: block
+        display: block;
         justify-content: center;
 }
 form{
@@ -294,4 +294,9 @@ a:hover {
 a:active {
   background: #265301;
   color: #CDFEAA;
+}
+
+
+.erreur{
+	color: red;
 }
