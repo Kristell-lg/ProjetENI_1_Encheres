@@ -47,7 +47,6 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 						resultEncheres.getInt("no_article"), (resultEncheres.getTimestamp("date_enchere")).toLocalDateTime(),
 						resultEncheres.getInt("montant_enchere"));
 				EncheresListe.add(enchere);
-				System.out.println("DAL"+EncheresListe);
 			}
 		} catch (SQLException e) {
 			throw new DALException("Echec Connection/Requete:", e);
@@ -87,10 +86,10 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 		
 	    try (Connection connection = ConnectionProvider.getConnection();
 	    		PreparedStatement stmt = connection.prepareStatement(DELETE);) {
-	    				stmt.setInt(1,  enchere.getNo_utilisateur());
-	    				stmt.execute();
-	    				} catch (SQLException e) {
-	    				throw new Exception(e);
+	    	stmt.setInt(1,  enchere.getNo_utilisateur());
+	    	stmt.execute();
+	    } catch (SQLException e) {
+	    	throw new Exception(e);
 	    }
 	} 
 	public Encheres selectionnerEnchereByIdUtilisateur(int no_utilisateur) throws Exception {
@@ -107,10 +106,8 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 
 			rs = stmt.executeQuery();
 			if(rs.next()) {
-				System.out.println("1");
 				encheres = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"),
 						(rs.getTimestamp("date_enchere")).toLocalDateTime(), rs.getInt("montant_enchere"));
-				System.out.println("2");
 			}	
 
 		} catch (SQLException e) {
@@ -179,7 +176,6 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 			}	
 
 		} catch (SQLException e) {
-			System.out.println(e);
 			throw new DALException("EchecConnection/Requete:", e);
 		} finally {
 

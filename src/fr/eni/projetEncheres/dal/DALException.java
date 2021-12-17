@@ -3,7 +3,7 @@ package fr.eni.projetEncheres.dal;
 public class DALException extends Exception {
 
 	/**
-	 * 
+	 *  @author Luka CHOUVILLE
 	 */
 	private static final long serialVersionUID = 1L;
 
