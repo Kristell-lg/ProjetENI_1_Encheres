@@ -19,6 +19,7 @@ public class RetraitsManager {
 		public RetraitsManager() {
 				this.retraitsDAO = DAOFactory.getRetraitsDAO();
 		}
+		
 		//METHODES
 		public List<Retraits> selectionner() throws BLLException { // SELECT_TOUT RETRAIT //
 
@@ -32,6 +33,7 @@ public class RetraitsManager {
 
 			return RetraitsListe;
 		}
+		
 		public Retraits selectionnerArticleID(Articles article) throws BLLException { // SELECT_ID RETRAIT //
 
 			Retraits Retrait = null;
@@ -44,6 +46,7 @@ public class RetraitsManager {
 
 			return Retrait;
 		}
+		
 		public void ajouter(Retraits retrait) throws BLLException { // AJOUTER RETRAIT //
 
 			try {
@@ -53,6 +56,7 @@ public class RetraitsManager {
 			}
 
 		}
+		
 		public void modifier(Retraits retrait) throws BLLException { // MODIFIER RETRAIT //
 
 			try {

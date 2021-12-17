@@ -1,39 +1,42 @@
 package fr.eni.projetEncheres.bll;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.projetEncheres.bo.Articles;
-import fr.eni.projetEncheres.bo.Utilisateurs;
 import fr.eni.projetEncheres.dal.ArticlesDAO;
 import fr.eni.projetEncheres.dal.DAOFactory;
 
 /**
  * 
  * @author Clément
+ * @update Kristell
  *
- *  */
+ */
 
 public class ArticlesManager {
-	
-	private ArticlesDAO articlesDAO;
-	
-	public ArticlesManager() {
-		this.articlesDAO = DAOFactory.getArticlesDAO();	
-}
 
+	private ArticlesDAO articlesDAO;
+
+	//Constructeur
+	public ArticlesManager() {
+		this.articlesDAO = DAOFactory.getArticlesDAO();
+	}
+
+	
+	//Ajout d'articles
 	public void AjouterArticle(Articles article) throws BLLException {
 		ArticlesValidation(article);
 		try {
-			this.articlesDAO.insert(article);;
+			this.articlesDAO.insert(article);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-}
 
+	}
 
+	
+	//Selection de l'ensemble des articles
 	public List<Articles> selectionner() {
 
 		List<Articles> ArticlesListe = new ArrayList<Articles>();
@@ -47,7 +50,8 @@ public class ArticlesManager {
 		return ArticlesListe;
 
 	}
-	
+
+	//Sélection des articles selon leur catégorie
 	public List<Articles> selectionnerCategorie(int categorie) {
 		List<Articles> ArticlesListe = new ArrayList<Articles>();
 
@@ -59,32 +63,38 @@ public class ArticlesManager {
 
 		return ArticlesListe;
 	}
+
 	
+	//Sélection des articles selon leur numéro d'article
 	public Articles selectArticle(int no_article) throws BLLException {
 
 		Articles article = null;
-		if (no_article!=0) {
+		if (no_article != 0) {
 			try {
 				article = articlesDAO.selectArticle(no_article);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else {
+		} else {
 			throw new BLLException("Le numéro d'article ne peut être nul!");
 		}
 		return article;
 
 	}
+
+	//Mise à jour du prix de vente des articles après enchère
 	public void ModifierPrixVente(Articles article) throws BLLException {
 		ArticlesValidation(article);
 		try {
-			this.articlesDAO.modiffierPrixVente(article);;
+			this.articlesDAO.modiffierPrixVente(article);
+			;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
+
+	//Méthode de validation des articles
 	private void ArticlesValidation(Articles article) throws BLLException {
 
 		boolean dataValid = true;
@@ -104,30 +114,33 @@ public class ArticlesManager {
 		}
 
 		// Validation date debut d'encheres
-		if (article.getDate_debut_encheres() == null || article.getDate_debut_encheres().isBefore(article.getDate_debut_encheres())) {
+		if (article.getDate_debut_encheres() == null
+				|| article.getDate_debut_encheres().isBefore(article.getDate_debut_encheres())) {
 			sb.append("La date de début d'enchères est obligatoire et forcément antérieur à la date de fin d'enchères");
 			dataValid = false;
 		}
-		
+
 		// Validation date fin d'encheres
-		if (article.getDate_fin_encheres() == null || article.getDate_fin_encheres().isAfter(article.getDate_fin_encheres())) {
-			sb.append("La date de fin d'enchères est obligatoire et forcément posterieur à la date de début d'enchères");
+		if (article.getDate_fin_encheres() == null
+				|| article.getDate_fin_encheres().isAfter(article.getDate_fin_encheres())) {
+			sb.append(
+					"La date de fin d'enchères est obligatoire et forcément posterieur à la date de début d'enchères");
 			dataValid = false;
 		}
-		
-		// Validation prix_inital 
+
+		// Validation prix_inital
 		if (article.getPrix_initial() == 0 || article.getPrix_initial() < 0) {
 			sb.append("le prix doit être supérieur à 0");
 			dataValid = false;
 		}
 
-		// Validation no_utilisateur, a approfondir 
-		if (article.getUtilisateur() == null ) {
+		// Validation no_utilisateur, a approfondir
+		if (article.getUtilisateur() == null) {
 			sb.append("problème au niveau du numéro d'utilisateur");
 			dataValid = false;
 		}
-		
-		// Validation no_categorie, a approfondir 
+
+		// Validation no_categorie, a approfondir
 		if (article.getCategorie() == null) {
 			sb.append("problème au niveau du numéro de catégorie");
 			dataValid = false;
@@ -138,11 +151,6 @@ public class ArticlesManager {
 			throw new BLLException(sb.toString());
 		}
 
-		
 	}
 
-
-
 }
-
-

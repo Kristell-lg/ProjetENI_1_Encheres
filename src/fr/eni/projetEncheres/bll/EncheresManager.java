@@ -6,13 +6,11 @@ import java.util.List;
 import fr.eni.projetEncheres.bo.Articles;
 import fr.eni.projetEncheres.bo.Encheres;
 import fr.eni.projetEncheres.bo.Utilisateurs;
-import fr.eni.projetEncheres.dal.DALException;
 import fr.eni.projetEncheres.dal.DAOFactory;
 import fr.eni.projetEncheres.dal.EncheresDAO;
 
 public class EncheresManager {
 
-	// ATTRIBUE
 
 	private EncheresDAO encheresDAO;
 
@@ -70,7 +68,7 @@ public class EncheresManager {
 			articles.setPrix_vente(enchere.getMontant_enchere());
 			articleManager.ModifierPrixVente(articles);
 			utilisateursManager.crediter(utilisateursManager.selectUtilisateur(enchere.getNo_utilisateur()), enchere.getMontant_enchere());
-			/* Remboursser */
+			/* Rembourser */
 			if(derEnchere != null) {
 				Utilisateurs utilremboursse = utilisateursManager.selectUtilisateur(derEnchere.getNo_utilisateur()); // Recup l'utilisateur a remboursser
 				utilisateursManager.rembourser(utilremboursse, derEnchere.getMontant_enchere()); // Remboursser l'utilisateur
@@ -80,9 +78,11 @@ public class EncheresManager {
 		}
 	}
 
+	// Supprimer des enchères//
 	public void supprimerEnchere(Encheres enchere) throws Exception{
 	    this.encheresDAO.supprimerEnchere(enchere); 
 	}
+	
 	
 	public Encheres selectionnerEnchereByIdUtilisateur(int no_utilisateur) throws BLLException { // SELECT_ENCHERES_id_id//
 
@@ -100,6 +100,8 @@ public class EncheresManager {
 
 		return encheres;
 	}
+	
+	
 	public Boolean VerfiEnchereArticle(int no_article) throws BLLException{
 		int nbEncheres = 0;
 		try {
@@ -112,6 +114,8 @@ public class EncheresManager {
 		}
 		return false;
 	}
+	
+	
 	// /!\ Doit etre dans un test !! Verifier qu'il y a au moin déja un enchere pour eviter le null pointer //
 	public Encheres selectionnerDernierEnchereArticle(int no_article) throws BLLException { // SELECT_DERNIER_ENCHERES_ARTICLE_// 
 

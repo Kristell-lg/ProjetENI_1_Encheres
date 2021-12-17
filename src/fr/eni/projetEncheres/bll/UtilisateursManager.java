@@ -127,8 +127,8 @@ public class UtilisateursManager {
  	 		
  	 }
  	 	
+ 	 
 		// vérification des données Utilisateur
-		// rajout du statut d'admin ?
 	private void UtilisateurValidation(Utilisateurs utilisateur) throws BLLException {
 
 		boolean dataValid = true;

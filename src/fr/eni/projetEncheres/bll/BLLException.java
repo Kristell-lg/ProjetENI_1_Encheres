@@ -1,6 +1,14 @@
 package fr.eni.projetEncheres.bll;
 
+
 public class BLLException extends Exception {
+/**
+ * 
+ * @author Luka
+ *
+ */
+	private static final long serialVersionUID = 1L;
+
 	public BLLException() {
 		super();
 	}
