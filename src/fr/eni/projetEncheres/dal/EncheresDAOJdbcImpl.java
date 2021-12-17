@@ -125,7 +125,6 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 	
 	public int selectionnerEnchereArticle(int no_article) throws DALException {
 
-		List<Encheres> EncheresListe = new ArrayList<Encheres>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int nbEnchere = 0;
